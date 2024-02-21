@@ -1,0 +1,9 @@
+#header{
+    border: 2px solid red;
+}
+#child1{
+    background-color: aqua;
+}
+#child2{
+    background-color: yellowgreen;
+}

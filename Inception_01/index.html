@@ -4,9 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- <script src="app.js" defer></script> -->
+    <script src="app2.js" type="text/jsx" defer></script>
 </head>
 <body>
-    <div id="root"></div>
+    <h1>above root</h1>
+    <div id="root">Hello</div>
+    <h1>below root</h1>
+    <a href="https://www.google.com/" target="_blank">Click Me</a>
 </body>
 <!-- React CDN -->
 <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
@@ -14,12 +20,13 @@
 <!-- Babel CDN -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js" integrity="sha512-ND11pbmp3M3Wldj90In1EUlHIt8T7O6FykizQ/yXrFjHtpX+D0SX+/IVeLjqAV91r/Lavq4BpWJIC0nUtw5Kvw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-<script type="text/jsx">
+<!-- <script type="text/jsx">
     ReactDOM.createRoot(document.querySelector("#root")).render(
         // React.createElement("h1", {}, "Hello I am React Cdn")
         <>
             <h1>Hello</h1>
         </>
     )
-</script>
+</script> -->
+
 </html>
