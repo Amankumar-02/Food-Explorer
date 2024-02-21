@@ -2949,22 +2949,32 @@ try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
-var _reactDom = require("react-dom");
-var _reactDomDefault = parcelHelpers.interopDefault(_reactDom);
-(0, _reactDomDefault.default).createRoot(document.querySelector("#root")).render(/*#__PURE__*/ (0, _reactDefault.default).createElement("div", {
+var _client = require("react-dom/client");
+var _clientDefault = parcelHelpers.interopDefault(_client);
+(0, _clientDefault.default).createRoot(document.querySelector("#root")).render(/*#__PURE__*/ (0, _reactDefault.default).createElement("div", {
     id: "header"
 }, [
     /*#__PURE__*/ (0, _reactDefault.default).createElement("div", {
-        id: "child1"
+        id: "child1",
+        key: "childKey1"
     }, [
-        /*#__PURE__*/ (0, _reactDefault.default).createElement("h1", {}, "I'm an h1 Tag Namaste React from child 1"),
-        /*#__PURE__*/ (0, _reactDefault.default).createElement("h2", {}, "I'm an h2 Tag Namaste React from child 1")
+        /*#__PURE__*/ (0, _reactDefault.default).createElement("h1", {
+            key: "subChild1"
+        }, "I'm an h1 Tag Namaste React from child 1"),
+        /*#__PURE__*/ (0, _reactDefault.default).createElement("h2", {
+            key: "subChild2"
+        }, "I'm an h2 Tag Namaste React from child 1")
     ]),
     /*#__PURE__*/ (0, _reactDefault.default).createElement("div", {
-        id: "child2"
+        id: "child2",
+        key: "childKey2"
     }, [
-        /*#__PURE__*/ (0, _reactDefault.default).createElement("h1", {}, "I'm an h1 Tag from child 2"),
-        /*#__PURE__*/ (0, _reactDefault.default).createElement("h2", {}, "I'm an h2 Tag from child 2")
+        /*#__PURE__*/ (0, _reactDefault.default).createElement("h1", {
+            key: "subChild3"
+        }, "I'm an h1 Tag from child 2"),
+        /*#__PURE__*/ (0, _reactDefault.default).createElement("h2", {
+            key: "subChild4"
+        }, "I'm an h2 Tag from child 2")
     ])
 ]));
 
@@ -2973,7 +2983,7 @@ var _reactDomDefault = parcelHelpers.interopDefault(_reactDom);
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","react-dom":"j6uA9","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"21dqq":[function(require,module,exports) {
+},{"react":"21dqq","react-dom/client":"lOjBx","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"21dqq":[function(require,module,exports) {
 "use strict";
 module.exports = require("a569817e6ea559f6");
 
@@ -4843,7 +4853,28 @@ module.exports = require("a569817e6ea559f6");
     /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */ if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop === "function") __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(new Error());
 })();
 
-},{}],"j6uA9":[function(require,module,exports) {
+},{}],"lOjBx":[function(require,module,exports) {
+"use strict";
+var m = require("aaccff5d309d9239");
+var i = m.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+exports.createRoot = function(c, o) {
+    i.usingClientEntryPoint = true;
+    try {
+        return m.createRoot(c, o);
+    } finally{
+        i.usingClientEntryPoint = false;
+    }
+};
+exports.hydrateRoot = function(c, h, o) {
+    i.usingClientEntryPoint = true;
+    try {
+        return m.hydrateRoot(c, h, o);
+    } finally{
+        i.usingClientEntryPoint = false;
+    }
+};
+
+},{"aaccff5d309d9239":"j6uA9"}],"j6uA9":[function(require,module,exports) {
 "use strict";
 function checkDCE() {
     /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */ if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ === "undefined" || typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE !== "function") return;
