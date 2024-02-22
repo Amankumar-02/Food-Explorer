@@ -1,5 +1,5 @@
-6035
-78C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\package.json133529719338642315 0
+6039
+78C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\package.json133529737732422245 0
 113C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\@parcel\optimizer-css\package.json133529688432371422 0
 109C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\@parcel\optimizer-htmlnano\src133529688436812941 1
 114C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\caniuse-lite\data\features\http3.js133529688561352039 0
@@ -13,7 +13,7 @@
 100C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\csso\dist\csso.esm.js133529688506331207 0
 136C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\csso\node_modules\css-tree\cjs\syntax\node\Identifier.cjs133529688491750960 0
 118C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\caniuse-lite\data\features\proximity.js133529688568859997 0
-70C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\dist133529731445356630 1
+70C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\dist133529737749058560 1
 110C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\cosmiconfig\dist\loaders.js.map133529688462792750 0
 105C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\caniuse-lite\data\features133529688578817057 1
 135C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\@parcel\core\test\fixtures\invalid-target-source-missing133529688541819321 1
@@ -37,7 +37,7 @@
 104C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\loose-envify\package.json133529689949605202 0
 101C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\source-map\lib\util.js133529688457596558 0
 116C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\@parcel\core\lib\SymbolPropagation.js133529688534261075 0
-72C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\App.js133529711128481224 0
+72C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\App.js133529739326456668 0
 132C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\@parcel\runtime-js\lib\helpers\browser\wasm-loader.js133529688482193318 0
 131C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\csso\node_modules\css-tree\lib\syntax\node\String.js133529688545103808 0
 91C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\svgo\LICENSE133529688419355089 0
@@ -462,7 +462,7 @@
 89C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\parse-json133529688428615664 1
 88C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\path-type133529688433015426 1
 105C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\utility-types\package.json133529688440856044 0
-93C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\dist\index.9e4c6fd2.css.map133529731444519894 0
+93C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\dist\index.9e4c6fd2.css.map133529737746241188 0
 121C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\json-parse-even-better-errors\package.json133529688421628470 0
 110C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\weak-lru-cache\rollup.config.js133529688436502534 0
 120C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\react-dom\cjs\react-dom.production.min.js133529689952797574 0
@@ -1361,6 +1361,7 @@
 113C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\css-tree\lib\parser\SyntaxError.js133529688546044671 0
 92C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\semver\ranges133529688488284452 1
 121C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\caniuse-lite\data\features\documenthead.js133529688549656778 0
+88C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\dist\index.140af8f4.js133529731866196813 0
 110C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\semver\ranges\min-satisfying.js133529688468101498 0
 126C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\css-tree\lib\tokenizer\char-code-definitions.js133529688532852697 0
 107C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\semver\ranges\min-version.js133529688469125004 0
@@ -2362,6 +2363,7 @@
 118C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\json-parse-even-better-errors\README.md133529688433698772 0
 91C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\js-yaml\dist133529688476194429 1
 136C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\htmlnano\docs\versioned_docs\version-2.0.0\040-presets.md133529688502045254 0
+89C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\dist\index.c19b2cc4.css133529731866136679 0
 96C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\js-yaml\README.md133529688475648473 0
 100C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\js-yaml\lib\common.js133529688433718774 0
 100C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\js-yaml\lib\dumper.js133529688448282430 0
@@ -2884,7 +2886,7 @@
 117C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\caniuse-lite\dist\unpacker\browsers.js133529688514602003 0
 118C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\csso\node_modules\mdn-data\css\index.js133529688428425591 0
 132C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\csso\node_modules\mdn-data\css\properties.schema.json133529688465153586 0
-92C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\dist\index.7826abd7.js.map133529731445331282 0
+92C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\dist\index.7826abd7.js.map133529737749008533 0
 136C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\@parcel\optimizer-svgo\node_modules\svgo\plugins\_path.js133529688439620254 0
 119C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\csso\node_modules\mdn-data\css\readme.md133529688473847829 0
 121C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\@swc\helpers\cjs\_wrap_async_generator.cjs133529688521129484 0
@@ -4506,7 +4508,7 @@
 98C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\braces\lib\parse.js133529688450647201 0
 131C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\@swc\helpers\cjs\_class_private_field_loose_base.cjs133529688467922555 0
 102C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\braces\lib\stringify.js133529688452668600 0
-81C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\dist\index.html133529731444073416 0
+81C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\dist\index.html133529737745895388 0
 98C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\braces\lib\utils.js133529688453983721 0
 98C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\base-x\package.json133529688423893834 0
 95C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\base-x\README.md133529688432001367 0
@@ -5270,7 +5272,7 @@
 114C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\@parcel\package-manager\src\Pnpm.js133529688471964801 0
 128C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\@parcel\package-manager\src\promiseFromProcess.js133529688472417811 0
 115C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\@parcel\package-manager\src\utils.js133529688473643089 0
-89C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\dist\index.9e4c6fd2.css133529731444164270 0
+89C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\dist\index.9e4c6fd2.css133529737746105867 0
 114C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\@parcel\package-manager\src\Yarn.js133529688475111760 0
 115C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\@parcel\package-manager\lib\index.js133529688438140437 0
 155C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\@parcel\optimizer-svgo\node_modules\csso\lib\restructure\3-disjoinRuleset.js133529688432701603 0
@@ -6033,4 +6035,6 @@
 90C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\.bin\semver133529688583828421 0
 94C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\.bin\semver.cmd133529688583828421 0
 92C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\node_modules\.bin\svgo.ps1133529688583828421 0
-88C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\dist\index.7826abd7.js133529731445158750 0
+92C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\dist\index.140af8f4.js.map133529731866756714 0
+88C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\dist\index.7826abd7.js133529737748684446 0
+93C:\Users\amank\Documents\GitHub\Namaste-React\Igniting_our_app_02\dist\index.c19b2cc4.css.map133529731866746731 0

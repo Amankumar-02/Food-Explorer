@@ -1,0 +1,22 @@
+.res-card{
+    width: 200px;
+    /* height: 300px; */
+    display: flex;
+    flex-direction: column;
+    background-color: #f0f0f0;
+    padding: 5px;
+    margin: 5px;
+    gap: 10px;
+}
+.res-card:hover{
+    border: 1px solid black;
+    cursor: pointer;
+}
+.res-logo{
+    width: 100%;
+    height: 160px;
+}
+.res-logo:hover{
+    transform: scale(0.92);
+}
+

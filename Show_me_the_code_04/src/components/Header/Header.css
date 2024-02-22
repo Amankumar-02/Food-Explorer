@@ -1,0 +1,23 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 5rem;
+}
+.logo{
+    width: 140px;
+}
+.search > form > input{
+    margin-left: 5px;
+    padding: 5px 20px;
+}
+.nav-items > ul{
+    display: flex;
+    list-style-type: none;
+}
+.nav-items > ul > li{
+    padding: 10px;
+    margin: 10px;
+    font-size: 18px;
+    font-weight: 600;
+}
