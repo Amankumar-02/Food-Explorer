@@ -12,7 +12,7 @@ function RestaurantCard({items}) {
               <h3>{name}</h3>
               <div>
                   <h4>{avgRating}</h4>
-                  <h4>{sla.deliveryTime} mins</h4>
+                  <h4>{sla.slaString}</h4>
               </div>
               <h4>{cuisines.join(", ")}</h4>
               <h4>{areaName}</h4>

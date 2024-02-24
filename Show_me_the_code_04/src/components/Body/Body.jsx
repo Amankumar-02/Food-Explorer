@@ -7,11 +7,8 @@ function Body() {
   const [homePageData, setHomePageData] = useState("");
   const [restList1, setRestList1] = useState([]);
   const [restList2, setRestList2] = useState([]);
-  const filterRestautants = ()=>{
-    setRestList2(prev=>prev.filter(item=>
-      item.info.avgRating > 4
-    ));
-  }
+  const [searchInput, setSearchInput] = useState("");
+
   useEffect(()=>{
     const fetchRestaurantData = async()=>{
       try{
@@ -20,7 +17,7 @@ function Body() {
           throw new Error("Error Serving Restaurant List");
         }else{
           const data = await res.json();
-          console.log(data?.data)
+          // console.log(data?.data)
           setHomePageData(data?.data)
           setRestList1(data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
           setRestList2(data?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
@@ -31,6 +28,24 @@ function Body() {
     };
     fetchRestaurantData();
   }, [])
+
+  const searchItemEvent = (e)=>{
+    e.preventDefault();
+    if(!searchInput){
+      setRestList1(homePageData.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+    }else{
+      const filteredRestaurant = homePageData.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants.filter(res=>res.info.name.toLowerCase().includes(searchInput.toLowerCase()));
+      setRestList1(filteredRestaurant);
+    }
+    setSearchInput("");
+  };
+
+  const filterRestautants = ()=>{
+    setRestList2(prev=>prev.filter(item=>
+      item.info.avgRating > 4
+    ));
+  };
+
   
   return (
     <>
@@ -39,19 +54,21 @@ function Body() {
       ) : (
         <>
           <div className="body">
-            {/* <div className="filter">
-          <h2>Filters</h2>
-          <button className='filter-btn' onClick={()=>setRestList1(cardData)}>All Restaurants</button>
-          <button className='filter-btn' onClick={filterRestautants}>Top Rated Restaurants</button>
-        </div> */}
-            <h2>{homePageData?.cards[1]?.card?.card?.header?.title}</h2>
+            <div className="search-item">
+              <h2>{homePageData?.cards[1]?.card?.card?.header?.title}</h2>
+              <form onSubmit={searchItemEvent}>
+                <input type="text" value={searchInput} onChange={(e)=>setSearchInput(e.target.value)} placeholder='Seach top rated restaurants'/>
+                <input type="submit" value="Go" />
+              </form>
+            </div>
             <div className="res-container">
               {restList1.map((item, index) => (
                 <RestaurantCard key={index} items={item.info} />
               ))}
             </div>
             <div className="filter">
-              <h2>Filters</h2>
+              <h2>{homePageData?.cards[2]?.card?.card?.title}</h2>
+              <h2 className='filter-title'>Filters</h2>
               <button
                 className="filter-btn"
                 onClick={() => setRestList2(homePageData?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)}
@@ -62,7 +79,7 @@ function Body() {
                 Top Rated Restaurants
               </button>
             </div>
-            <h2>{homePageData?.cards[2]?.card?.card?.title}</h2>
+            
             <div className="res-container">
               {restList2.map((item, index) => (
                 <RestaurantCard key={index} items={item.info} />
