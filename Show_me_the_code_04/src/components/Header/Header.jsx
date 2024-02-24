@@ -1,8 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Header.css';
-import logo from '../../../public/food app icon food explorer - Made with PosterMyWall.png'
+import logo from '../../../public/logo.png';
 
 function Header() {
+  const [btnName, setBtnName] = useState({title:"Login", color:"#008000db"});
+  const [btnStatus, setBtnStatus] = useState(true);
+  const changeBtnName = ()=>{
+    if(btnStatus===true){
+      setBtnName({title:"Logout", color:"red"});
+      setBtnStatus(false);
+    }else{
+      setBtnName({title:"Login", color:"#008000db"});
+      setBtnStatus(true);
+    }
+  }
   return (
     <div className="header">
       <div className="logo-container">
@@ -20,6 +31,7 @@ function Header() {
           <li>About Us</li>
           <li>Contact Us</li>
           <li>Cart</li>
+          <button className='login-btn' style={{backgroundColor:`${btnName.color}`}} onClick={changeBtnName}>{btnName.title}</button>
         </ul>
       </div>
     </div>

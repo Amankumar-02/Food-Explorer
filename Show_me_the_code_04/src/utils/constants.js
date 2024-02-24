@@ -900,10 +900,17 @@ const cardData = [
           },
           "widgetId": "collectionV5RestaurantListWidget_SimRestoRelevance_food_seo"
         }
-      ];
+];
+
+// Original Url
 // const RESTAURANT_HOME = "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.6195574&lng=77.0549901&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
-// const RESTAURANT_HOME = "https://corsproxy.org/?https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Frestaurants%2Flist%2Fv5%3Flat%3D28.6195574%26lng%3D77.0549901%26is-seo-homepage-enabled%3Dtrue%26page_type%3DDESKTOP_WEB_LISTING";
+// const RESTAURANT_HOME2 = "https://www.swiggy.com/api/seo/getListing?lat=28.6195574&lng=77.0549901";
+const RESTAURANT_SEARCH_RESULT = "https://www.swiggy.com/dapi/restaurants/search/v3?lat=28.6195574&lng=77.0549901&str=idli%20dosa&trackingId=undefined&submitAction=ENTER&queryUniqueId=undefined"
+
+// CorsProxy Url
 const RESTAURANT_HOME = "https://corsproxy.org/?https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Frestaurants%2Flist%2Fv5%3Flat%3D28.6195574%26lng%3D77.0549901%26is-seo-homepage-enabled%3Dtrue%26page_type%3DDESKTOP_WEB_LISTING";
+const RESTAURANT_HOME2 = "https://corsproxy.org/?https%3A%2F%2Fwww.swiggy.com%2Fapi%2Fseo%2FgetListing%3Flat%3D28.6195574%26lng%3D77.0549901";
+
 const IMG_URL = "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/";
 
-export {cardData, RESTAURANT_HOME, IMG_URL};
+export {cardData, RESTAURANT_HOME, RESTAURANT_HOME2, RESTAURANT_SEARCH_RESULT, IMG_URL};
