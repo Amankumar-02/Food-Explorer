@@ -47,7 +47,8 @@ class UserClass extends Component{
                     <button onClick={()=>{this.setState({obj:{firstName: this.state.value.split(" ")[0], lastName:this.state.value.split(" ")[1]}, value:"",})}}>Add value to Object</button>
                 </div>
             </div>
-            <UserClassChild/>
+            <UserClassChild uniqueId={"First"}/>
+            <UserClassChild uniqueId={"Second"}/>
             </>
         )
     }

@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import UserClass from './Users/UserClass';
+import { RESTAURANT_HOME } from '../../utils/constants';
 
 function AboutUs() {
   return (
