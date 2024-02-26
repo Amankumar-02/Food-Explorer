@@ -2,12 +2,13 @@ import React from 'react';
 import ReactDOM from "react-dom/client"
 import App from './App';
 import {createBrowserRouter, RouterProvider, createRoutesFromElements, Route} from "react-router-dom";
-import { Body, AboutUs, ContactUs, Error } from "./components/index";
+import { Body, AboutUs, ContactUs, Error, RestaurantMenu } from "./components/index";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path='/' element={<App/>} errorElement={<Error/>}>
             <Route path='/' element={<Body/>}/>
+            <Route path='/restaurants/:restId' element={<RestaurantMenu/>}/>
             <Route path='/about' element={<AboutUs/>}/>
             <Route path='/contact' element={<ContactUs/>}/>
         </Route>
