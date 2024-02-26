@@ -3,7 +3,6 @@ import ReactDOM from "react-dom/client"
 import App from './App';
 import {createBrowserRouter, RouterProvider, createRoutesFromElements, Route} from "react-router-dom";
 import { Body, AboutUs, ContactUs, Error, RestaurantMenu } from "./components/index";
-
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path='/' element={<App/>} errorElement={<Error/>}>
