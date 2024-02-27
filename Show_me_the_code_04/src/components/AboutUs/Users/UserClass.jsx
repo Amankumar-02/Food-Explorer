@@ -20,6 +20,23 @@ class UserClass extends Component{
     }
     componentDidMount(){
         console.log("Parent Did Mount");
+        this.timer = setInterval(()=>{console.log("Interval of 1s inside a class component")}, 1000);
+    }
+    componentDidUpdate(prevProps, prevState){
+        if(this.state.count1 !== prevState.count1){
+            // code which is written inside useEffect
+            //In every render, When the if condition is true the code is execute
+            console.log("First condition")
+        }
+        // for another condition
+        if(this.state.count2 !== prevState.count2){
+            // code
+            console.log("Second condition")
+        }
+    }
+    componentWillUnmount(){
+        clearInterval(this.timer);
+        console.log("unMount")
     }
     render(){
         const {name, location} = this.props;
