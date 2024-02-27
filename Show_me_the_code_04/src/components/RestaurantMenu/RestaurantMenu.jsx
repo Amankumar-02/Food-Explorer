@@ -2,33 +2,46 @@ import React, { useEffect, useState } from 'react';
 import {Shimmer} from '../index';
 import { useParams } from 'react-router-dom';
 import { MENU_IMG_URL, RESTAURANT_MENU_RESULT } from '../../utils/constants';
+import useApiFetch from '../../hooks/useApiFetch';
 
 function RestaurantMenu() {
     const {restId} = useParams();
-    const [restMenu, setRestMenu] = useState(null);
+    const [restMenu, setRestMenu] = useState("");
     const [restMenuInfo, setRestMenuInfo] = useState([]);
     const [restMenuOffers, setRestMenuOffers] = useState([]);
     const [restMenuItems, setRestMenuItems] = useState([]);
+    
+    // useEffect(()=>{
+    //     const fetchMenu = async ()=>{
+    //         try{
+    //             const res = await fetch(RESTAURANT_MENU_RESULT+restId);
+    //             if(!res.ok){
+    //                 throw new Error ("Error Serving Restaurant Menu");
+    //             }else{
+    //                 const data = await res.json();
+    //                 setRestMenu(data?.data?.cards);
+    //                 setRestMenuInfo(data?.data?.cards[2]?.card?.card?.info);
+    //                 setRestMenuOffers(data?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle);
+    //                 setRestMenuItems(data?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
+    //                 console.log(data?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards)
+    //             }
+    //         }catch(error){
+    //             console.log("Error fetching data:", error)
+    //         }
+    //     };
+    //     fetchMenu()
+    // }, [])
+
+    const fetchMenuData = useApiFetch(RESTAURANT_MENU_RESULT+restId);
     useEffect(()=>{
-        const fetchMenu = async ()=>{
-            try{
-                const res = await fetch(RESTAURANT_MENU_RESULT+restId);
-                if(!res.ok){
-                    throw new Error ("Error Serving Restaurant Menu");
-                }else{
-                    const data = await res.json();
-                    setRestMenu(data?.data?.cards);
-                    setRestMenuInfo(data?.data?.cards[2]?.card?.card?.info);
-                    setRestMenuOffers(data?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle);
-                    setRestMenuItems(data?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
-                    console.log(data?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards)
-                }
-            }catch(error){
-                console.log("Error fetching data:", error)
-            }
-        };
-        fetchMenu()
-    }, [])
+      if(fetchMenuData){
+        setRestMenu(fetchMenuData?.data?.cards);
+        setRestMenuInfo(fetchMenuData?.data?.cards[2]?.card?.card?.info);
+        setRestMenuOffers(fetchMenuData?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle);
+        setRestMenuItems(fetchMenuData?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
+        console.log("All Menu Data Rendered");
+      }
+    }, [fetchMenuData]);
 
     // if(restMenu === null){return(<Shimmer/>)}
 

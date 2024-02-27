@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './Body.css';
 import {RestaurantCard, Shimmer} from '../index';
 import { RESTAURANT_HOME } from '../../utils/constants';
+import useApiFetch from '../../hooks/useApiFetch';
 
 function Body() {
   const [homePageData, setHomePageData] = useState("");
@@ -9,25 +10,35 @@ function Body() {
   const [restList2, setRestList2] = useState([]);
   const [searchInput, setSearchInput] = useState("");
 
+  // useEffect(()=>{
+  //   const fetchRestaurantData = async()=>{
+  //     try{
+  //       const res = await fetch(RESTAURANT_HOME);
+  //       if(!res.ok){
+  //         throw new Error("Error Serving Restaurant List");
+  //       }else{
+  //         const data = await res.json();
+  //         // console.log(data?.data)
+  //         setHomePageData(data?.data)
+  //         setRestList1(data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+  //         setRestList2(data?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+  //       }
+  //     }catch (error){
+  //       console.log("Error fetching data:", error)
+  //     }
+  //   };
+  //   fetchRestaurantData();
+  // }, [])
+  
+  const fetchHomeData = useApiFetch(RESTAURANT_HOME);
   useEffect(()=>{
-    const fetchRestaurantData = async()=>{
-      try{
-        const res = await fetch(RESTAURANT_HOME);
-        if(!res.ok){
-          throw new Error("Error Serving Restaurant List");
-        }else{
-          const data = await res.json();
-          // console.log(data?.data)
-          setHomePageData(data?.data)
-          setRestList1(data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-          setRestList2(data?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-        }
-      }catch (error){
-        console.log("Error fetching data:", error)
-      }
-    };
-    fetchRestaurantData();
-  }, [])
+    if(fetchHomeData){
+      setHomePageData(fetchHomeData?.data)
+      setRestList1(fetchHomeData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+      setRestList2(fetchHomeData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+      console.log("All Home Data Rendered");
+    }
+  }, [fetchHomeData]);
 
   const searchItemEvent = (e)=>{
     e.preventDefault();
