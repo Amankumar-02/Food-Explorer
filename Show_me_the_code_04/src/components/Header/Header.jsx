@@ -18,7 +18,7 @@ function Header() {
     }
   }
   return (
-    <div className="header sticky top-0 left-0 bg-[#ffffffde] flex justify-between items-center py-2 px-16">
+    <div className="header sticky top-0 left-0 z-[999] bg-[#D5CBF6de] shadow-md flex justify-between items-center mb-4 py-2 px-16">
       <div className="logo-container">
         <Link to={"/"}>
           <img className="logo w-[140px]" src={logo} alt="" />
@@ -26,38 +26,38 @@ function Header() {
       </div>
       <div className="search">
         <form>
-          <input type="text" className='ms-1 px-5 py-1' placeholder="Search" />
-          <input type="submit" className='ms-1 px-5 py-1' value="Go" />
+          <input type="text" className='me-1 px-5 py-1' placeholder="Search" />
+          <input type="submit" className='px-5 py-1' value="Go" />
         </form>
       </div>
       <div className="nav-items">
-        <ul className="flex items-center list-none">
-          <li className="p-3 mx-2 text-lg font-semibold text-black">Status: {internetStatus ? <>✅</> : <>🔴</>}</li>
+        <ul className="flex items-center gap-6 list-none">
+          <li className="text-lg font-semibold text-black">Status: {internetStatus ? <>✅</> : <>🔴</>}</li>
           <Link to={"/"} className="no-underline">
-            <li className="p-3 mx-2 text-lg font-semibold text-black">
+            <li className="text-lg font-semibold text-black">
               Home
             </li>
           </Link>
           <Link to={"/grocery"} className="no-underline">
-            <li className="p-3 mx-2 text-lg font-semibold text-black">
+            <li className="text-lg font-semibold text-black">
               Grocery
             </li>
           </Link>
           <Link to={"/about"} className="no-underline">
-            <li className="p-3 mx-2 text-lg font-semibold text-black">
+            <li className="text-lg font-semibold text-black">
               About Us
             </li>
           </Link>
           <Link to={"/contact"} className="no-underline">
-            <li className="p-3 mx-2 text-lg font-semibold text-black">
+            <li className="text-lg font-semibold text-black">
               Contact Us
             </li>
           </Link>
-          <li className="p-3 mx-2 text-lg font-semibold text-black">
+          <li className="text-lg font-semibold text-black">
             Cart
           </li>
           <button
-            className="login-btn p-3 m-3 cursor-pointer font-semibold text-sm border-none rounded-xl text-white"
+            className="login-btn py-2 px-4 m-3 cursor-pointer font-semibold text-sm border-none rounded-xl text-white"
             style={{ backgroundColor: `${btnName.color}` }}
             onClick={changeBtnName}
           >

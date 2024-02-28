@@ -13,18 +13,18 @@
 /* .res-card:hover{
     border: 1px solid black;
     cursor: pointer;
-}
-.res-logo{
+} */
+/* .res-logo{
     margin: 5px auto;
     width: 94%;
     height: 160px;
     object-fit: cover;
     border-radius: 10px;
-}
+} */
 .res-logo:hover{
     transform: scale(0.92);
 }
-.res-card-content{
+/* .res-card-content{
     margin: 5px auto;
     width: 94%;
     display: flex;
