@@ -1,10 +1,10 @@
-.header{
+/* .header{
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0.5rem 5rem;
-}
-.logo{
+} */
+/* .logo{
     width: 140px;
 }
 .search > form > input{
@@ -24,8 +24,8 @@
     font-size: 18px;
     font-weight: 600;
     color: black;
-}
-.login-btn{
+} */
+/* .login-btn{
     padding: 10px;
     margin: 10px;
     cursor: pointer;
@@ -34,4 +34,4 @@
     border: none;
     border-radius: 10px;
     color: white;
-}
+} */

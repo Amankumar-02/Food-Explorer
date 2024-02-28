@@ -56,28 +56,29 @@ function Body() {
           ) : (
             <>
               <div className="body">
-                <div className="search-item">
+                <div className="search-item mx-8 mb-2">
                   <h2>{homePageData?.cards[1]?.card?.card?.header?.title}</h2>
                   <form onSubmit={searchItemEvent}>
                     <input
                       type="text"
+                      className='me-3 mt-3 py-1 px-3'
                       value={searchInput}
                       onChange={(e) => setSearchInput(e.target.value)}
                       placeholder="Seach top rated restaurants"
                     />
-                    <input type="submit" value="Go" />
+                    <input type="submit" className='me-3 mt-3  py-1 px-3' value="Go" />
                   </form>
                 </div>
-                <div className="res-container">
+                <div className="res-container flex flex-wrap ms-4">
                   {restList1.map((item, index) => (
                     <RestaurantCard key={index} items={item.info} />
                   ))}
                 </div>
-                <div className="filter">
+                <div className="filter my-4 mx-8">
                   <h2>{homePageData?.cards[2]?.card?.card?.title}</h2>
-                  <h2 className="filter-title">Filters</h2>
+                  <h2 className="filter-title mt-3">Filters</h2>
                   <button
-                    className="filter-btn"
+                    className="filter-btn cursor-pointer my-3 ms-3 py-1 px-4"
                     onClick={() =>
                       setRestList2(
                         homePageData?.cards[4]?.card?.card?.gridElements
@@ -87,12 +88,12 @@ function Body() {
                   >
                     All Restaurants
                   </button>
-                  <button className="filter-btn" onClick={filterRestautants}>
+                  <button className="filter-btn cursor-pointer my-3 ms-3 py-1 px-4" onClick={filterRestautants}>
                     Top Rated Restaurants
                   </button>
                 </div>
 
-                <div className="res-container">
+                <div className="res-container flex flex-wrap ms-4">
                   {restList2.map((item, index) => (
                     <RestaurantCard key={index} items={item.info} />
                   ))}

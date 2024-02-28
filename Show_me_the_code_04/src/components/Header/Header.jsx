@@ -18,31 +18,55 @@ function Header() {
     }
   }
   return (
-    <div className="header">
+    <div className="header flex justify-between items-center py-2 px-16">
       <div className="logo-container">
         <Link to={"/"}>
-        <img className='logo' src={logo} alt="" />
+          <img className="logo w-[140px]" src={logo} alt="" />
         </Link>
       </div>
       <div className="search">
         <form>
-          <input type="text" placeholder='Search'/>
-          <input type="submit" value="Go"/> 
+          <input type="text" className='ms-1 px-5 py-1' placeholder="Search" />
+          <input type="submit" className='ms-1 px-5 py-1' value="Go" />
         </form>
       </div>
       <div className="nav-items">
-        <ul>
-          <li>Status: {internetStatus? (<>✅</>) : (<>🔴</>)}</li>
-          <Link to={"/"}><li>Home</li></Link>
-          <Link to={"/grocery"}><li>Grocery</li></Link>
-          <Link to={"/about"}><li>About Us</li></Link>
-          <Link to={"/contact"}><li>Contact Us</li></Link>
-          <li>Cart</li>
-          <button className='login-btn' style={{backgroundColor:`${btnName.color}`}} onClick={changeBtnName}>{btnName.title}</button>
+        <ul className="flex items-center list-none">
+          <li className="p-3 mx-2 text-lg font-semibold text-black">Status: {internetStatus ? <>✅</> : <>🔴</>}</li>
+          <Link to={"/"} className="no-underline">
+            <li className="p-3 mx-2 text-lg font-semibold text-black">
+              Home
+            </li>
+          </Link>
+          <Link to={"/grocery"} className="no-underline">
+            <li className="p-3 mx-2 text-lg font-semibold text-black">
+              Grocery
+            </li>
+          </Link>
+          <Link to={"/about"} className="no-underline">
+            <li className="p-3 mx-2 text-lg font-semibold text-black">
+              About Us
+            </li>
+          </Link>
+          <Link to={"/contact"} className="no-underline">
+            <li className="p-3 mx-2 text-lg font-semibold text-black">
+              Contact Us
+            </li>
+          </Link>
+          <li className="p-3 mx-2 text-lg font-semibold text-black">
+            Cart
+          </li>
+          <button
+            className="login-btn p-3 m-3 cursor-pointer font-semibold text-sm border-none rounded-xl text-white"
+            style={{ backgroundColor: `${btnName.color}` }}
+            onClick={changeBtnName}
+          >
+            {btnName.title}
+          </button>
         </ul>
       </div>
     </div>
-  )
+  );
 }
 
 export default Header

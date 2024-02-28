@@ -8,7 +8,7 @@ function RestaurantMenu() {
     const {restId} = useParams();
     const [restMenu, setRestMenu] = useState("");
     const [restMenuInfo, setRestMenuInfo] = useState([]);
-    const [restMenuOffers, setRestMenuOffers] = useState([]);
+    // const [restMenuOffers, setRestMenuOffers] = useState([]);
     const [restMenuItems, setRestMenuItems] = useState([]);
 
     const fetchMenuData = useApiFetch(RESTAURANT_MENU_RESULT+restId);
@@ -16,9 +16,11 @@ function RestaurantMenu() {
       if(fetchMenuData){
         setRestMenu(fetchMenuData?.data?.cards);
         setRestMenuInfo(fetchMenuData?.data?.cards[2]?.card?.card?.info);
-        setRestMenuOffers(fetchMenuData?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle);
-        setRestMenuItems(fetchMenuData?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
+        // setRestMenuOffers(fetchMenuData?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle);
+        // setRestMenuItems(fetchMenuData?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
+        setRestMenuItems(fetchMenuData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
         console.log("All Menu Data Rendered");
+        // console.log(fetchMenuData);
       }
     }, [fetchMenuData]);
 
