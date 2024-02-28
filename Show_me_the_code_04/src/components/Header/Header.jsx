@@ -18,7 +18,7 @@ function Header() {
     }
   }
   return (
-    <div className="header flex justify-between items-center py-2 px-16">
+    <div className="header sticky top-0 left-0 bg-[#ffffffde] flex justify-between items-center py-2 px-16">
       <div className="logo-container">
         <Link to={"/"}>
           <img className="logo w-[140px]" src={logo} alt="" />
