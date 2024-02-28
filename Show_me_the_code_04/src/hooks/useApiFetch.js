@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 function useApiFetch(URL){
-    const [FetchedInfo, setFetchedInfo] = useState(null);
+    const [FetchedInfo, setFetchedInfo] = useState("");
     useEffect(()=>{
         const fetchRestaurantData = async()=>{
             try{

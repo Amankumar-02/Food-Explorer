@@ -10,27 +10,6 @@ function RestaurantMenu() {
     const [restMenuInfo, setRestMenuInfo] = useState([]);
     const [restMenuOffers, setRestMenuOffers] = useState([]);
     const [restMenuItems, setRestMenuItems] = useState([]);
-    
-    // useEffect(()=>{
-    //     const fetchMenu = async ()=>{
-    //         try{
-    //             const res = await fetch(RESTAURANT_MENU_RESULT+restId);
-    //             if(!res.ok){
-    //                 throw new Error ("Error Serving Restaurant Menu");
-    //             }else{
-    //                 const data = await res.json();
-    //                 setRestMenu(data?.data?.cards);
-    //                 setRestMenuInfo(data?.data?.cards[2]?.card?.card?.info);
-    //                 setRestMenuOffers(data?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle);
-    //                 setRestMenuItems(data?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
-    //                 console.log(data?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards)
-    //             }
-    //         }catch(error){
-    //             console.log("Error fetching data:", error)
-    //         }
-    //     };
-    //     fetchMenu()
-    // }, [])
 
     const fetchMenuData = useApiFetch(RESTAURANT_MENU_RESULT+restId);
     useEffect(()=>{

@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import './Header.css';
 import logo from '../../../public/logo.png';
 import {Link} from 'react-router-dom';
+import useInternetStatus from '../../hooks/useInternetStatus';
 
 function Header() {
   const [btnName, setBtnName] = useState({title:"Login", color:"#008000db"});
   const [btnStatus, setBtnStatus] = useState(true);
+  const internetStatus = useInternetStatus();
   const changeBtnName = ()=>{
     if(btnStatus===true){
       setBtnName({title:"Logout", color:"red"});
@@ -30,7 +32,9 @@ function Header() {
       </div>
       <div className="nav-items">
         <ul>
+          <li>Status: {internetStatus? (<>✅</>) : (<>🔴</>)}</li>
           <Link to={"/"}><li>Home</li></Link>
+          <Link to={"/grocery"}><li>Grocery</li></Link>
           <Link to={"/about"}><li>About Us</li></Link>
           <Link to={"/contact"}><li>Contact Us</li></Link>
           <li>Cart</li>
