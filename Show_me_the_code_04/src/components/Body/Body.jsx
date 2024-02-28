@@ -57,16 +57,16 @@ function Body() {
             <>
               <div className="body">
                 <div className="search-item mx-8 mb-4">
-                  <h2>{homePageData?.cards[1]?.card?.card?.header?.title}</h2>
+                  <h2 className='text-2xl font-semibold'>{homePageData?.cards[1]?.card?.card?.header?.title}</h2>
                   <form onSubmit={searchItemEvent} className='mt-3'>
                     <input
                       type="text"
-                      className='me-3 py-1 px-3'
+                      className='me-3 py-1 px-3 border border-black rounded-xl'
                       value={searchInput}
                       onChange={(e) => setSearchInput(e.target.value)}
                       placeholder="Seach top rated restaurants"
                     />
-                    <input type="submit" className='py-1 px-3' value="Go" />
+                    <input type="submit" className='py-1 px-3 border border-black rounded-xl hover:bg-gray-300 cursor-pointer' value="Go" />
                   </form>
                 </div>
                 <div className="res-container flex gap-3 flex-wrap mx-6 my-4">
@@ -75,10 +75,10 @@ function Body() {
                   ))}
                 </div>
                 <div className="filter my-4 mx-8">
-                  <h2>{homePageData?.cards[2]?.card?.card?.title}</h2>
-                  <h2 className="filter-title my-2">Filters</h2>
+                  <h2 className='text-2xl font-semibold'>{homePageData?.cards[2]?.card?.card?.title}</h2>
+                  <h2 className="filter-title my-2 text-lg font-semibold">Filters</h2>
                   <button
-                    className="filter-btn cursor-pointer me-3 py-1 px-3"
+                    className="filter-btn cursor-pointer me-3 py-1 px-3 border border-black rounded-xl hover:bg-gray-300"
                     onClick={() =>
                       setRestList2(
                         homePageData?.cards[4]?.card?.card?.gridElements
@@ -88,7 +88,7 @@ function Body() {
                   >
                     All Restaurants
                   </button>
-                  <button className="filter-btn cursor-pointer py-1 px-3" onClick={filterRestautants}>
+                  <button className="filter-btn cursor-pointer py-1 px-3 border border-black rounded-xl hover:bg-gray-300" onClick={filterRestautants}>
                     Top Rated Restaurants
                   </button>
                 </div>

@@ -35,16 +35,16 @@ function RestaurantMenu() {
         ) : (
           <>
             <div className="menu mx-8 flex flex-col items-center">
-              <h1>{restMenuInfo?.name}</h1>
-              <p>
+              <h1 className='text-3xl font-bold'>{restMenuInfo?.name}</h1>
+              <p className='text-lg'>
                 {restMenuInfo?.cuisines.join(", ")} -{" "}
                 {restMenuInfo?.costForTwoMessage}
               </p>
-              <h2>Menu</h2>
+              <h2 className='text-xl font-bold'>Menu</h2>
               {restMenuItems.map(({ card }, index) =>
                 card?.card?.title && card?.card?.itemCards ? (
                   <div key={index} className='w-[80%]'>
-                    <h1 className='my-2'>
+                    <h1 className='mt-8 mb-4 text-2xl font-semibold'>
                       {card?.card?.title} ({card?.card?.itemCards.length})
                     </h1>
                     {card?.card?.itemCards.map(({ card }, index2) => (

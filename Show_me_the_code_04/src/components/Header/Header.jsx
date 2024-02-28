@@ -26,8 +26,8 @@ function Header() {
       </div>
       <div className="search">
         <form>
-          <input type="text" className='me-1 px-5 py-1' placeholder="Search" />
-          <input type="submit" className='px-5 py-1' value="Go" />
+          <input type="text" className='me-2 px-5 py-1 border border-black rounded-xl' placeholder="Search" />
+          <input type="submit" className='px-5 py-1 border border-black rounded-xl cursor-pointer hover:bg-[#ad9fdb]' value="Go" />
         </form>
       </div>
       <div className="nav-items">
