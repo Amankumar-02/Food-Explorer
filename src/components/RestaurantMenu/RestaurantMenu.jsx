@@ -11,35 +11,45 @@ function RestaurantMenu() {
     const [restMenuInfo, setRestMenuInfo] = useState([]);
     // const [restMenuOffers, setRestMenuOffers] = useState([]);
     const [restMenuItems, setRestMenuItems] = useState([]);
+    const [showCategory, setShowCategory] = useState(0)
 
     const fetchMenuData = useApiFetch(RESTAURANT_MENU_RESULT+restId);
+
     useEffect(()=>{
       if(fetchMenuData){
+
         setRestMenu(fetchMenuData?.data?.cards);
+
         setRestMenuInfo(fetchMenuData?.data?.cards[0]?.card?.card?.info);
+
         // setRestMenuOffers(fetchMenuData?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle);
+
         // setRestMenuItems(fetchMenuData?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
-        setRestMenuItems(fetchMenuData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
+
+        // setRestMenuItems(fetchMenuData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
+
+        setRestMenuItems(fetchMenuData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(item=>item?.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"));
+
         console.log("All Menu Data Rendered");
+
         // console.log("fetch" , fetchMenuData);
       }
     }, [fetchMenuData]);
 
     const foodFilter = (e) => {
       const originalMenu =
-        fetchMenuData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR
-          ?.cards;
+      fetchMenuData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(item=>item?.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory");
 
-      const filteredItem = originalMenu?.filter(
-        (item) =>
-          item?.card?.card?.["@type"] ===
-          "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
-      );
+      // const filteredItem = originalMenu?.filter(
+      //   (item) =>
+      //     item?.card?.card?.["@type"] ===
+      //     "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+      // );
 
       if (e === "all") {
         setRestMenuItems(originalMenu);
       } else if (e === "veg") {
-        const x = filteredItem.map((group) => ({
+        const x = originalMenu.map((group) => ({
           card: {
             card: {
               ...group.card.card,
@@ -51,7 +61,7 @@ function RestaurantMenu() {
         }));
         setRestMenuItems(x);
       } else if (e === "nonveg") {
-        const x = filteredItem.map((group) => ({
+        const x = originalMenu.map((group) => ({
           card: {
             card: {
               ...group.card.card,
@@ -66,10 +76,6 @@ function RestaurantMenu() {
       }
     };
 
-    // if(restMenu === null){return(<Shimmer/>)}
-
-    // const {name, cuisines, costForTwoMessage} = restMenuInfo;
-
     return (
       <>
         {!restMenu ? (
@@ -77,23 +83,60 @@ function RestaurantMenu() {
         ) : (
           <>
             <div className="menu mx-8 flex flex-col items-center">
-              <h1 className='text-3xl font-bold'>{restMenuInfo?.name}</h1>
-              <p className='text-lg'>
+              <h1 className="text-3xl font-bold">{restMenuInfo?.name}</h1>
+              <p className="text-lg">
                 {restMenuInfo?.cuisines.join(", ")} -{" "}
                 {restMenuInfo?.costForTwoMessage}
               </p>
-              <h2 className='text-xl font-bold'>Menu</h2>
-              <div className='flex gap-4 mt-2'>
-                <button className='border px-2 rounded-lg' onClick={()=>{foodFilter("all")}}>All</button>
-                <button className='border px-2 rounded-lg' onClick={()=>{foodFilter("veg")}}>Veg</button>
-                <button className='border px-2 rounded-lg' onClick={()=>{foodFilter("nonveg")}}>NonVeg</button>
+              <h2 className="text-xl font-bold">Menu</h2>
+              <div className="flex gap-4 mt-2">
+                <button
+                  className="border px-2 rounded-lg"
+                  onClick={() => {
+                    foodFilter("all");
+                  }}
+                >
+                  All
+                </button>
+                <button
+                  className="border px-2 rounded-lg"
+                  onClick={() => {
+                    foodFilter("veg");
+                  }}
+                >
+                  Veg
+                </button>
+                <button
+                  className="border px-2 rounded-lg"
+                  onClick={() => {
+                    foodFilter("nonveg");
+                  }}
+                >
+                  NonVeg
+                </button>
               </div>
-              {restMenuItems.map(({ card }, index) =>
-              // {restMenuItems.filter(item=>item?.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory").map(({ card }, index) =>
-                // card?.card?.title && card?.card?.itemCards && (
-                card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory" && (
-                  <MenuCategory key={index} card={card}/>
-                )
+              {restMenuItems.map(
+                ({ card }, index) =>
+                  // {restMenuItems.filter(item=>item?.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory").map(({ card }, index) =>
+                  // card?.card?.title && card?.card?.itemCards && (
+                  // card?.card?.["@type"] ===
+                  //   "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory" && (
+                    <MenuCategory
+                      key={index}
+                      id={index}
+                      card={card}
+                      toggleEvent={(e)=>{
+                        if(showCategory === e){
+                          setShowCategory(null);
+                        }else{
+                          setShowCategory(e);
+                        }
+                      }}
+                      showToggle={
+                        index === showCategory ? true : false
+                      }
+                    />
+                  // )
               )}
             </div>
           </>
