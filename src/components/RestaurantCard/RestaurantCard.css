@@ -1,0 +1,36 @@
+/* .res-card{ */
+    /* width: 200px; */
+    /* width: 19%; */
+    /* height: 300px; */
+    /* display: flex;
+    flex-direction: column;
+    background-color: #f0f0f0;
+    padding: 5px;
+    margin: 5px;
+    gap: 10px;
+    border-radius: 10px; */
+/* } */
+/* .res-card:hover{
+    border: 1px solid black;
+    cursor: pointer;
+} */
+/* .res-logo{
+    margin: 5px auto;
+    width: 94%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 10px;
+} */
+.res-logo:hover{
+    transform: scale(0.92);
+}
+.offer{
+    box-shadow: inset 0px -10px 30px black;
+}
+/* .res-card-content{
+    margin: 5px auto;
+    width: 94%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+} */
