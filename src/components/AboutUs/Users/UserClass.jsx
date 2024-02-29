@@ -1,6 +1,7 @@
 // import React from "react";
 import { Component } from "react";
 import UserClassChild from "./UserClassChild";
+// import { UserContextStore } from "../../../utils/UserContextStore";
 
 class UserClass extends Component{
     constructor(props){
@@ -45,6 +46,9 @@ class UserClass extends Component{
         return(
             <>
             <h1>UserClass is render using a class based component.</h1>
+            {/* <UserContextStore.Consumer>
+                {({logginName})=>{ return(<h1 className="text-xl font-semibold">Loggin User Name: {logginName}</h1>)}}
+            </UserContextStore.Consumer> */}
             <div className="user-card">
                 <h2>Name: {name}</h2>
                 <h3>Location: {location}</h3>

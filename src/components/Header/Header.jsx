@@ -3,11 +3,15 @@ import './Header.css';
 import logo from '../../../public/logo.png';
 import {Link} from 'react-router-dom';
 import useInternetStatus from '../../hooks/useInternetStatus';
+// import { useContext } from 'react';
+// import { UserContextStore } from '../../utils/UserContextStore';
 
 function Header() {
   const [btnName, setBtnName] = useState({title:"Login", color:"#008000db"});
   const [btnStatus, setBtnStatus] = useState(true);
   const internetStatus = useInternetStatus();
+  // const {logginName} = useContext(UserContextStore);
+
   const changeBtnName = ()=>{
     if(btnStatus===true){
       setBtnName({title:"Logout", color:"red"});
@@ -17,6 +21,7 @@ function Header() {
       setBtnStatus(true);
     }
   }
+
   return (
     <div className="header sticky top-0 left-0 z-[999] bg-[#D5CBF6de] shadow-md flex justify-between items-center mb-4 py-2 px-16">
       <div className="logo-container">
@@ -63,6 +68,7 @@ function Header() {
           >
             {btnName.title}
           </button>
+          {/* <li>{logginName}</li> */}
         </ul>
       </div>
     </div>
