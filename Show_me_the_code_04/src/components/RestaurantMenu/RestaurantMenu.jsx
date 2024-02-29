@@ -21,9 +21,50 @@ function RestaurantMenu() {
         // setRestMenuItems(fetchMenuData?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
         setRestMenuItems(fetchMenuData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
         console.log("All Menu Data Rendered");
-        // console.log(fetchMenuData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
+        // console.log("fetch" , fetchMenuData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
       }
     }, [fetchMenuData]);
+
+    const foodFilter = (e) => {
+      const originalMenu =
+        fetchMenuData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR
+          ?.cards;
+
+      const filteredItem = originalMenu?.filter(
+        (item) =>
+          item?.card?.card?.["@type"] ===
+          "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+      );
+
+      if (e === "all") {
+        setRestMenuItems(originalMenu);
+      } else if (e === "veg") {
+        const x = filteredItem.map((group) => ({
+          card: {
+            card: {
+              ...group.card.card,
+              itemCards: group.card.card.itemCards.filter(
+                (item) => item.card.info.itemAttribute.vegClassifier === "VEG"
+              ),
+            },
+          },
+        }));
+        setRestMenuItems(x);
+      } else if (e === "nonveg") {
+        const x = filteredItem.map((group) => ({
+          card: {
+            card: {
+              ...group.card.card,
+              itemCards: group.card.card.itemCards.filter(
+                (item) =>
+                  item.card.info.itemAttribute.vegClassifier === "NONVEG"
+              ),
+            },
+          },
+        }));
+        setRestMenuItems(x);
+      }
+    };
 
     // if(restMenu === null){return(<Shimmer/>)}
 
@@ -42,33 +83,17 @@ function RestaurantMenu() {
                 {restMenuInfo?.costForTwoMessage}
               </p>
               <h2 className='text-xl font-bold'>Menu</h2>
+              <div className='flex gap-4 mt-2'>
+                <button className='border px-2 rounded-lg' onClick={()=>{foodFilter("all")}}>All</button>
+                <button className='border px-2 rounded-lg' onClick={()=>{foodFilter("veg")}}>Veg</button>
+                <button className='border px-2 rounded-lg' onClick={()=>{foodFilter("nonveg")}}>NonVeg</button>
+              </div>
               {restMenuItems.map(({ card }, index) =>
-                card?.card?.title && card?.card?.itemCards ? (
-                  // <div key={index} className='w-[80%]'>
-                  //   <h1 className='mt-8 mb-4 text-2xl font-semibold'>
-                  //     {card?.card?.title} ({card?.card?.itemCards.length})
-                  //   </h1>
-                  //   {card?.card?.itemCards.map(({ card }, index2) => (
-                  //     <div key={index2} className='relative flex justify-between py-6 px-8 border border-x-0'>
-                  //       <ul className='flex flex-col justify-center list-none w-[60%]'>
-                  //         {card?.info?.itemAttribute?.vegClassifier === "VEG"? (<li className='w-fit border border-green-500 text-[8px]'>🟢</li>):null}
-                  //         {card?.info?.itemAttribute?.vegClassifier === "NONVEG"? (<li className='w-fit border border-red-500 text-[8px]'>🔴</li>):null}
-                  //         <li className='text-lg font-semibold'>{card?.info?.name}</li>
-                  //         <li>Rs.
-                  //           {card?.info?.price / 100 ||
-                  //             card?.info?.defaultPrice / 100}
-                  //         </li>
-                  //         <li>{card?.info?.description}</li>
-                  //       </ul>
-                  //       {card?.info?.imageId? (
-                  //         <img src={MENU_IMG_URL + card?.info?.imageId} className='menu-img w-[150px] object-cover'/>
-                  //         ):null}
-                  //       <button className='absolute right-[75px] bottom-[8px] bg-white z-[99] border-2 rounded-xl px-4 hover:bg-green-500 hover:text-white'>Add</button>
-                  //     </div>
-                  //   ))}
-                  // </div>
+              // {restMenuItems.filter(item=>item?.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory").map(({ card }, index) =>
+                // card?.card?.title && card?.card?.itemCards && (
+                card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory" && (
                   <MenuItems key={index} card={card}/>
-                ) : null
+                )
               )}
             </div>
           </>

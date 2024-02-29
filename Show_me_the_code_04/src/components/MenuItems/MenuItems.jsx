@@ -1,13 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { MENU_IMG_URL } from '../../utils/constants';
 
 function MenuItems({card}) {
+  const [toggle, setToggle] = useState({height:"auto", overflow:"auto", type:true, name:"Less"});
+  const toggleEvent = ()=>{
+    if(toggle.type === true){
+      setToggle({height:"82px", overflow:"hidden", type:false, name:"More"});
+    }else{
+      setToggle({height:"auto", overflow:"auto", type:true, name:"Less"});
+    }
+  }
   return (
     <>
-      <div className="w-[80%]">
-        <h1 className="mt-8 mb-4 text-2xl font-semibold">
+      <div className="w-[80%] transition-all" style={toggle}>
+        <div className='flex justify-between items-center mt-8 mb-4 mx-2'>
+        <h1 className="text-2xl font-semibold">
           {card?.card?.title} ({card?.card?.itemCards.length})
         </h1>
+        <button className='text-lg font-semibold border px-2 rounded-xl' onClick={toggleEvent}>{toggle.name}</button>
+        </div>
         {card?.card?.itemCards.map(({ card }, index2) => (
           <div
             key={index2}
