@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './RestaurantMenu.css';
-import {MenuItems, Shimmer} from '../index';
+import {MenuCategory, Shimmer} from '../index';
 import { Link, useParams } from 'react-router-dom';
 import { MENU_IMG_URL, RESTAURANT_MENU_RESULT } from '../../utils/constants';
 import useApiFetch from '../../hooks/useApiFetch';
@@ -21,7 +21,7 @@ function RestaurantMenu() {
         // setRestMenuItems(fetchMenuData?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
         setRestMenuItems(fetchMenuData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
         console.log("All Menu Data Rendered");
-        // console.log("fetch" , fetchMenuData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
+        // console.log("fetch" , fetchMenuData);
       }
     }, [fetchMenuData]);
 
@@ -92,7 +92,7 @@ function RestaurantMenu() {
               // {restMenuItems.filter(item=>item?.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory").map(({ card }, index) =>
                 // card?.card?.title && card?.card?.itemCards && (
                 card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory" && (
-                  <MenuItems key={index} card={card}/>
+                  <MenuCategory key={index} card={card}/>
                 )
               )}
             </div>
