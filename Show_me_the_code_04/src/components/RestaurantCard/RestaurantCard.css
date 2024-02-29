@@ -24,6 +24,9 @@
 .res-logo:hover{
     transform: scale(0.92);
 }
+.offer{
+    box-shadow: inset 0px -10px 30px black;
+}
 /* .res-card-content{
     margin: 5px auto;
     width: 94%;

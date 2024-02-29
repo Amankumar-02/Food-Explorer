@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Body.css';
-import {RestaurantCard, Shimmer} from '../index';
+import {RestaurantCard, AdditionOfferRestaurantCard, Shimmer} from '../index';
 import { RESTAURANT_HOME } from '../../utils/constants';
 import useApiFetch from '../../hooks/useApiFetch';
 import useInternetStatus from '../../hooks/useInternetStatus';
@@ -11,6 +11,7 @@ function Body() {
   const [restList1, setRestList1] = useState([]);
   const [restList2, setRestList2] = useState([]);
   const [searchInput, setSearchInput] = useState("");
+  const RestaurantCardOffer = AdditionOfferRestaurantCard(RestaurantCard)
 
   const fetchHomeData = useApiFetch(RESTAURANT_HOME);
   useEffect(()=>{
@@ -19,6 +20,7 @@ function Body() {
       setRestList1(fetchHomeData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
       setRestList2(fetchHomeData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
       console.log("All Home Data Rendered");
+      // console.log(fetchHomeData);
     }
   }, [fetchHomeData]);
 
@@ -71,7 +73,8 @@ function Body() {
                 </div>
                 <div className="res-container flex gap-3 flex-wrap mx-6 my-4">
                   {restList1.map((item, index) => (
-                    <RestaurantCard key={index} items={item.info} />
+                    // <RestaurantCard key={index} items={item.info} />
+                    item?.info?.aggregatedDiscountInfoV3? (<RestaurantCardOffer key={index} items={item.info} />):(<RestaurantCard key={index} items={item.info} />)
                   ))}
                 </div>
                 <div className="filter my-4 mx-8">
@@ -95,7 +98,8 @@ function Body() {
 
                 <div className="res-container flex gap-3 flex-wrap mx-6 my-4">
                   {restList2.map((item, index) => (
-                    <RestaurantCard key={index} items={item.info} />
+                    // <RestaurantCard key={index} items={item.info} />
+                    item?.info?.aggregatedDiscountInfoV3? (<RestaurantCardOffer key={index} items={item.info} />):(<RestaurantCard key={index} items={item.info} />)
                   ))}
                 </div>
               </div>
