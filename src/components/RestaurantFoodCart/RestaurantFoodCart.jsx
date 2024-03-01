@@ -6,7 +6,7 @@ import { MENU_IMG_URL } from "../../utils/constants";
 function RestaurantFoodCart() {
   const dispatch = useDispatch();
   const storeData = useSelector((state) => state.cartStore.cart);
-  console.log(storeData);
+  // console.log(storeData);
 
   const modifyQuantity = (task, name) => {
     dispatch(modifyCartQuantity({ nameDis: name, taskDis: task }));
