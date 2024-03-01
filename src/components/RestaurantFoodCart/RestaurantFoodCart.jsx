@@ -75,8 +75,8 @@ function RestaurantFoodCart() {
                       </li>
                       <li className="text-lg font-bold text-gray-600">
                         ₹
-                        {item?.info?.price / 100 ||
-                          item?.info?.defaultPrice / 100}
+                        {item?.info?.price / 100*item?.info?.quantity ||
+                          item?.info?.defaultPrice / 100*item?.info?.quantity}
                       </li>
                     </div>
                     <li className="leading-4 text-sm">{item?.info?.description}</li>

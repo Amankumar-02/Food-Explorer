@@ -41,32 +41,32 @@ function Header() {
         <ul className="flex items-center gap-6 list-none">
           <li className="text-lg font-semibold text-black">Status: {internetStatus ? <>✅</> : <>🔴</>}</li>
           <Link to={"/"} className="no-underline">
-            <li className="text-lg font-semibold text-black">
+            <li className="text-lg font-semibold text-black hover:border-2 hover:border-gray-800 hover:border-x-0 hover:border-t-0">
               Home
             </li>
           </Link>
           <Link to={"/grocery"} className="no-underline">
-            <li className="text-lg font-semibold text-black">
+            <li className="text-lg font-semibold text-black hover:border-2 hover:border-gray-800 hover:border-x-0 hover:border-t-0">
               Grocery
             </li>
           </Link>
           <Link to={"/about"} className="no-underline">
-            <li className="text-lg font-semibold text-black">
+            <li className="text-lg font-semibold text-black hover:border-2 hover:border-gray-800 hover:border-x-0 hover:border-t-0">
               About Us
             </li>
           </Link>
           <Link to={"/contact"} className="no-underline">
-            <li className="text-lg font-semibold text-black">
+            <li className="text-lg font-semibold text-black hover:border-2 hover:border-gray-800 hover:border-x-0 hover:border-t-0">
               Contact Us
             </li>
           </Link>
           <Link to={"/cart"} className="no-underline">
-          <li className="text-lg font-semibold text-black">
+          <li className="text-lg font-semibold text-black hover:border-2 hover:border-gray-800 hover:border-x-0 hover:border-t-0">
             Cart{storeData.length===0? null:(<>: {storeData.length}</>)}
           </li>
           </Link>
           <button
-            className="login-btn py-2 px-4 m-3 cursor-pointer font-semibold text-sm border-none rounded-xl text-white"
+            className="login-btn py-2 px-4 m-3 cursor-pointer font-semibold text-sm border-none rounded-xl text-white hover:outline hover:outline-gray-400"
             style={{ backgroundColor: `${btnName.color}` }}
             onClick={changeBtnName}
           >

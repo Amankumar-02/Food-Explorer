@@ -32,7 +32,7 @@ function RestaurantMenu() {
 
         console.log("All Menu Data Rendered");
 
-        // console.log("fetch" , fetchMenuData);
+        console.log("fetch" , fetchMenuData?.data?.cards[0]?.card?.card?.info);
       }
     }, [fetchMenuData]);
 
@@ -84,14 +84,16 @@ function RestaurantMenu() {
           <>
             <div className="menu mx-8 flex flex-col items-center">
               <h1 className="text-3xl font-bold">{restMenuInfo?.name}</h1>
-              <p className="text-lg">
+              <p className="text-sm text-gray-600">
                 {restMenuInfo?.cuisines.join(", ")} -{" "}
                 {restMenuInfo?.costForTwoMessage}
               </p>
+              <p className='text-sm text-gray-600'>{restMenuInfo?.areaName || restMenuInfo?.locality}{restMenuInfo?.expectationNotifiers? (<><span>, 🏍️ {restMenuInfo?.expectationNotifiers[0]?.text}</span></>):null}</p>
+              <p className='text-sm text-gray-600'>Rating: {restMenuInfo?.avgRating} ⭐</p>
               <h2 className="text-xl font-bold">Menu</h2>
               <div className="flex gap-4 mt-2">
                 <button
-                  className="border px-2 rounded-lg"
+                  className="border px-6 py-1 rounded-lg border border-black hover:bg-gray-300"
                   onClick={() => {
                     foodFilter("all");
                   }}
@@ -99,7 +101,7 @@ function RestaurantMenu() {
                   All
                 </button>
                 <button
-                  className="border px-2 rounded-lg"
+                  className="border px-6 py-1 rounded-lg border border-black hover:bg-gray-300"
                   onClick={() => {
                     foodFilter("veg");
                   }}
@@ -107,7 +109,7 @@ function RestaurantMenu() {
                   Veg
                 </button>
                 <button
-                  className="border px-2 rounded-lg"
+                  className="border px-6 py-1 rounded-lg border border-black hover:bg-gray-300"
                   onClick={() => {
                     foodFilter("nonveg");
                   }}
