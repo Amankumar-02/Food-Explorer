@@ -1,15 +1,19 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { modifyCartQuantity } from "../../reduxFeatures/cartSlice";
+import { modifyCartQuantity, removeCartItem } from "../../reduxFeatures/cartSlice";
 import { MENU_IMG_URL } from "../../utils/constants";
 
 function RestaurantFoodCart() {
   const dispatch = useDispatch();
   const storeData = useSelector((state) => state.cartStore.cart);
-  // console.log(storeData);
+  console.log(storeData);
 
   const modifyQuantity = (task, name) => {
     dispatch(modifyCartQuantity({ nameDis: name, taskDis: task }));
+    if(task === "decrease" && storeData.filter(item=>item?.info?.name === name)[0]?.info?.quantity === 1){
+      console.log("first")
+      dispatch(removeCartItem(name))
+    }
   };
 
   const [cartToggle, setCartToggle] = useState({
@@ -51,9 +55,10 @@ function RestaurantFoodCart() {
               {storeData.map((item, index) => (
                 <div
                   key={index}
-                  className="relative flex justify-between items-center py-6 px-8 border border-x-0"
+                  className="relative flex justify-between items-center py-4 px-8 border border-x-0"
                 >
-                  <ul className="flex flex-col gap-4 justify-center list-none w-[80%]">
+                  <ul className="flex flex-col gap-2 justify-center list-none w-[70%]">
+                    <li className="text-xl font-bold text-gray-700">{item?.info?.restaurantName}</li>
                     {item?.info?.itemAttribute?.vegClassifier === "VEG" ? (
                       <li className="w-fit border border-green-500 text-[8px]">
                         🟢
@@ -65,16 +70,20 @@ function RestaurantFoodCart() {
                       </li>
                     ) : null}
                     <div>
-                      <li className="text-lg font-semibold">
+                      <li className="text-lg font-bold">
                         {item?.info?.name}
                       </li>
-                      <li>
+                      <li className="text-lg font-bold text-gray-600">
                         ₹
                         {item?.info?.price / 100 ||
                           item?.info?.defaultPrice / 100}
                       </li>
                     </div>
-                    <li>{item?.info?.description}</li>
+                    <li className="leading-4 text-sm">{item?.info?.description}</li>
+                    <li>Quantity: <span className="text-red-500 font-semibold">{item?.info?.quantity}</span> items</li>
+                    <li>
+                      <button className="bg-red-500 px-4 text-white font-semibold rounded-xl" onClick={()=>dispatch(removeCartItem(item?.info?.name))}>Remove</button>
+                    </li>
                   </ul>
                   <div className="relative w-[150px] h-[120px] flex justify-center">
                     {item?.info?.imageId ? (
