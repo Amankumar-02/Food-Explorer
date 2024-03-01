@@ -9,6 +9,7 @@ import Error from "./Error/Error";
 import RestaurantMenu from "./RestaurantMenu/RestaurantMenu";
 import MenuCategory from "./MenuItems/MenuCategory";
 import MenuItem from "./MenuItems/MenuItem";
+import RestaurantFoodCart from "./RestaurantFoodCart/RestaurantFoodCart";
 
 
-export {Header, Body, RestaurantCard, AdditionOfferRestaurantCard, Shimmer, AboutUs, ContactUs, Error, RestaurantMenu, MenuCategory, MenuItem};
+export {Header, Body, RestaurantCard, AdditionOfferRestaurantCard, Shimmer, AboutUs, ContactUs, Error, RestaurantMenu, MenuCategory, MenuItem, RestaurantFoodCart};

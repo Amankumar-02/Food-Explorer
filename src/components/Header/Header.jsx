@@ -5,12 +5,14 @@ import {Link} from 'react-router-dom';
 import useInternetStatus from '../../hooks/useInternetStatus';
 // import { useContext } from 'react';
 // import { UserContextStore } from '../../utils/UserContextStore';
+import { useSelector } from 'react-redux';
 
 function Header() {
   const [btnName, setBtnName] = useState({title:"Login", color:"#008000db"});
   const [btnStatus, setBtnStatus] = useState(true);
   const internetStatus = useInternetStatus();
   // const {logginName} = useContext(UserContextStore);
+  const storeData = useSelector((state) => state.cartStore.cart);
 
   const changeBtnName = ()=>{
     if(btnStatus===true){
@@ -58,9 +60,11 @@ function Header() {
               Contact Us
             </li>
           </Link>
+          <Link to={"/cart"} className="no-underline">
           <li className="text-lg font-semibold text-black">
-            Cart
+            Cart{storeData.length===0? null:(<>: {storeData.length}</>)}
           </li>
+          </Link>
           <button
             className="login-btn py-2 px-4 m-3 cursor-pointer font-semibold text-sm border-none rounded-xl text-white"
             style={{ backgroundColor: `${btnName.color}` }}

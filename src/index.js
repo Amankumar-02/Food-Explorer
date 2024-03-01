@@ -2,7 +2,7 @@ import React, { Suspense, lazy } from "react";
 import ReactDOM from "react-dom/client"
 import App from './App';
 import {createBrowserRouter, RouterProvider, createRoutesFromElements, Route} from "react-router-dom";
-import { Body, AboutUs, ContactUs, Error, RestaurantMenu, Shimmer } from "./components/index";
+import { Body, AboutUs, ContactUs, Error, RestaurantMenu, Shimmer, RestaurantFoodCart } from "./components/index";
 
 const Grocery = lazy(()=>import('./components/Grocery/Grocery'));
 
@@ -14,6 +14,7 @@ const router = createBrowserRouter(
             <Route path='/grocery' element={<Suspense fallback={<Shimmer/>}><Grocery/></Suspense>}/>
             <Route path='/about' element={<AboutUs/>}/>
             <Route path='/contact' element={<ContactUs/>}/>
+            <Route path='/cart' element={<RestaurantFoodCart/>}/>
         </Route>
     )
 )
