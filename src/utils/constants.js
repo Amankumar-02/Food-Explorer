@@ -918,4 +918,12 @@ const RESTAURANT_SEARCH_RESULT = "https://corsproxy.org/?https%3A%2F%2Fwww.swigg
 const IMG_URL = "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/";
 const MENU_IMG_URL = "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit/";
 
-export {cardData, RESTAURANT_HOME, RESTAURANT_HOME2, RESTAURANT_MENU_RESULT, RESTAURANT_SEARCH_RESULT, IMG_URL, MENU_IMG_URL};
+const sorting = [
+  { title: "Relevance", purpose: "all" },
+  { title: "Rating (High to Low)", purpose: "ratDesc" },
+  { title: "Rating (Low to High)", purpose: "ratAsc" },
+  { title: "Price (High to Low)", purpose: "PriDesc" },
+  { title: "Price (Low to High)", purpose: "PriAsc" },
+];
+
+export {cardData, RESTAURANT_HOME, RESTAURANT_HOME2, RESTAURANT_MENU_RESULT, RESTAURANT_SEARCH_RESULT, IMG_URL, MENU_IMG_URL, sorting};

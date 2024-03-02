@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { RESTAURANT_SEARCH_RESULT } from '../../utils/constants';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import {Dish, Restaurant} from './index';
 import Shimmer from '../Shimmer/Shimmer';
 
@@ -29,7 +29,8 @@ function SearchRestaurants(){
               }else{
                 const data = await res.json();
                 setSearchFetchedData(data?.data?.cards[1]?.groupedCard?.cardGroupMap)
-                console.log(data?.data?.cards)
+                // console.log("root", data?.data?.cards[1]?.groupedCard?.cardGroupMap?.DISH?.cards)
+                console.log("root", data)
               }
             }catch (error){
               console.log("Error fetching data:", error)
@@ -39,11 +40,12 @@ function SearchRestaurants(){
             fetchRestaurantSearchData();
         }
     }, [changeUrl])
+    
   return (
     <>
     {!searchFetchedData? (<><Shimmer/></>) : (
         <>
-        {searchFetchedData.DISH? (<><Dish searchFetchedData={searchFetchedData?.DISH?.cards}/></>) : (<><Restaurant  searchFetchedData={searchFetchedData?.RESTAURANT?.cards}/></>)}
+        {searchFetchedData.DISH? (<><Dish searchFetchedData={searchFetchedData?.DISH?.cards} searchName={restSearchId}/></>) : (<><Restaurant  searchFetchedData={searchFetchedData?.RESTAURANT?.cards}/></>)}
         </>
     )}
     </>

@@ -1,44 +1,113 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import { MENU_IMG_URL } from '../../../utils/constants';
+import { sorting, MENU_IMG_URL } from "../../../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
-import { addCartItem, modifyCartQuantity, removeCartItem } from "../../../reduxFeatures/cartSlice";
+import { addCartItem, modifyCartQuantity, removeCartItem
+} from "../../../reduxFeatures/cartSlice";
 
-function Dish({ searchFetchedData }) {
+function Dish({ searchFetchedData, searchName }) {
+    const [dishFilter, setDishFilter] = useState([]);
   const navigate = useNavigate();
-  
-  const dishFilter = searchFetchedData.filter(
-    (item) =>
-      item?.card?.card?.["@type"] ===
-      "type.googleapis.com/swiggy.presentation.food.v2.Dish"
-  );
+  const storeData = useSelector((state) => state.cartStore.cart);
+  const dispatch = useDispatch();
 
+  // setting the props Data
+  useEffect(()=>{
+    if(searchFetchedData){
+        setDishFilter(searchFetchedData.filter(
+            (item) =>
+            item?.card?.card?.["@type"] ===
+            "type.googleapis.com/swiggy.presentation.food.v2.Dish"
+            ).slice(0,30))
+    }
+  }, [searchFetchedData])
 //   console.log("dish", dishFilter[0]?.card?.card);
 
-  const imgUrl =
-    "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit/";
+  // sorting event
+  const sortEvent = (purpose) => {
+    const newFilter = searchFetchedData.filter(
+        (item) =>
+          item?.card?.card?.["@type"] ===
+          "type.googleapis.com/swiggy.presentation.food.v2.Dish"
+      ).slice(0,30);
+    if (purpose === "all") {
+      setDishFilter(newFilter);
+    } else if (purpose === "ratDesc") {
+      const sortData = newFilter.sort(
+        (a, b) =>
+          Number(b?.card?.card?.info?.ratings?.aggregatedRating?.rating) -
+          Number(a?.card?.card?.info?.ratings?.aggregatedRating?.rating)
+      );
+      setDishFilter(sortData);
+    } else if (purpose === "ratAsc") {
+      const sortData = newFilter.sort(
+        (a, b) =>
+          Number(a?.card?.card?.info?.ratings?.aggregatedRating?.rating) -
+          Number(b?.card?.card?.info?.ratings?.aggregatedRating?.rating)
+      );
+      setDishFilter(sortData);
+    } else if (purpose === "PriDesc") {
+      const sortData = newFilter.sort(
+        (a, b) =>
+          b?.card?.card?.info?.price / 100 - a?.card?.card?.info?.price / 100
+      );
+      setDishFilter(sortData);
+    } else if (purpose === "PriAsc") {
+      const sortData = newFilter.sort(
+        (a, b) =>
+          a?.card?.card?.info?.price / 100 - b?.card?.card?.info?.price / 100
+      );
+      setDishFilter(sortData);
+    }
+  };
 
-    const dispatch = useDispatch();
-    const storeData = useSelector((state) => state.cartStore.cart);
+  //adding item to cart event
+  const cartEvent = ({ nameLocation, dispatchLocation, restLocation }) => {
+    if (
+      !storeData.filter((item) => item?.info?.name === nameLocation)[0]?.info
+        ?.quantity ||
+      storeData.filter((item) => item?.info?.name === nameLocation)[0]?.info
+        ?.quantity < 0
+    ) {
+      dispatch(
+        addCartItem({
+          ...dispatchLocation?.info,
+          quantity: 1,
+          restaurantName: restLocation,
+        })
+      );
+    }
+  };
 
-    const cartEvent = ({nameLocation, dispatchLocation, restLocation})=>{
-        if(!storeData.filter(item=>item?.info?.name === nameLocation)[0]?.info?.quantity || storeData.filter(item=>item?.info?.name === nameLocation)[0]?.info?.quantity < 0){
-          dispatch(addCartItem({...dispatchLocation?.info, quantity : 1, restaurantName: restLocation}));
-        }
-      };
-    
-      const modifyQuantity = (task, name)=>{
-        dispatch(modifyCartQuantity({nameDis:name, taskDis:task}));
-        if(task === "decrease" && storeData.filter(item=>item?.info?.name === name)[0]?.info?.quantity === 1){
-          console.log("first")
-          dispatch(removeCartItem(name))
-        }
-      };
+  //setting the item quantity event
+  const modifyQuantity = (task, name) => {
+    dispatch(modifyCartQuantity({ nameDis: name, taskDis: task }));
+    if (
+      task === "decrease" &&
+      storeData.filter((item) => item?.info?.name === name)[0]?.info
+        ?.quantity === 1
+    ) {
+      console.log("first");
+      dispatch(removeCartItem(name));
+    }
+  };
 
   return (
     <>
-      <div className="m-auto w-[80%]">
-        <h1 className="text-2xl font-semibold">Dishes Found</h1>
+      {!dishFilter? null : (<>
+        <div className="m-auto w-[80%]">
+        <h1 className="text-2xl font-semibold capitalize">{searchName}</h1>
+        <div className="flex gap-4 items-center mt-4">
+          {sorting.map(({ title, purpose }, index) => (
+            <button
+              key={index}
+              className="border border-black px-4 rounded-xl"
+              onClick={() => sortEvent(purpose)}
+            >
+              {title}
+            </button>
+          ))}
+        </div>
         <div className="flex gap-4 flex-wrap my-4">
           {dishFilter.map(({ card }, index) => (
             <div
@@ -114,15 +183,14 @@ function Dish({ searchFetchedData }) {
                     {card?.card.info.imageId ? (
                       <>
                         <img
-                          src={imgUrl + card?.card.info.imageId}
+                          src={MENU_IMG_URL+card?.card.info.imageId}
                           className="menu-img w-full h-full object-cover rounded-xl"
                           alt=""
                         />
                       </>
                     ) : null}
 
-                    <div 
-                    className="absolute bottom-[-10%] bg-white z-[99] flex border-2 rounded-xl overflow-hidden">
+                    <div className="absolute bottom-[-10%] bg-white z-[99] flex border-2 rounded-xl overflow-hidden">
                       {storeData.filter(
                         (item) => item?.info?.name === card?.card.info.name
                       )[0]?.info?.quantity > 0 ? (
@@ -141,7 +209,11 @@ function Dish({ searchFetchedData }) {
                       <button
                         className="px-2 hover:bg-green-500 hover:text-white"
                         onClick={() => {
-                          cartEvent({nameLocation: card?.card.info.name, dispatchLocation: card?.card, restLocation: card?.card.restaurant.info.name});
+                          cartEvent({
+                            nameLocation: card?.card.info.name,
+                            dispatchLocation: card?.card,
+                            restLocation: card?.card.restaurant.info.name,
+                          });
                         }}
                       >
                         {storeData.filter(
@@ -150,7 +222,8 @@ function Dish({ searchFetchedData }) {
                           <>
                             {
                               storeData.filter(
-                                (item) => item?.info?.name === card?.card.info.name
+                                (item) =>
+                                  item?.info?.name === card?.card.info.name
                               )[0]?.info?.quantity
                             }
                           </>
@@ -174,7 +247,6 @@ function Dish({ searchFetchedData }) {
                         </>
                       ) : null}
                     </div>
-
                   </div>
                 </div>
               </div>
@@ -182,6 +254,7 @@ function Dish({ searchFetchedData }) {
           ))}
         </div>
       </div>
+      </>)}
     </>
   );
 }
