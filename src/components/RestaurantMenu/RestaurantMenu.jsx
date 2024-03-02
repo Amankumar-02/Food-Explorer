@@ -128,6 +128,7 @@ function RestaurantMenu() {
                       id={index}
                       card={card}
                       restName={restMenuInfo?.name}
+                      restId={restMenuInfo?.id}
                       toggleEvent={(e)=>{
                         if(showCategory === e){
                           setShowCategory(null);

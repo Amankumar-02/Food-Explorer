@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { modifyCartQuantity, removeCartItem } from "../../reduxFeatures/cartSlice";
 import { MENU_IMG_URL } from "../../utils/constants";
+import { useNavigate } from "react-router-dom";
 
 function RestaurantFoodCart() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const storeData = useSelector((state) => state.cartStore.cart);
   // console.log(storeData);
@@ -15,7 +17,6 @@ function RestaurantFoodCart() {
       dispatch(removeCartItem(name))
     }
   };
-
   const [cartToggle, setCartToggle] = useState({
     name: "⬆️",
     type: true,
@@ -28,6 +29,7 @@ function RestaurantFoodCart() {
       setCartToggle({ name: "⬆️", type: true, display: "block" });
     }
   };
+
   return (
     <>
       {storeData.length === 0 ? (
@@ -58,7 +60,7 @@ function RestaurantFoodCart() {
                   className="relative flex justify-between items-center py-4 px-8 border border-x-0"
                 >
                   <ul className="flex flex-col gap-2 justify-center list-none w-[70%]">
-                    <li className="text-xl font-bold text-gray-700">{item?.info?.restaurantName}</li>
+                    <li className="text-xl font-bold text-gray-700 cursor-pointer" onClick={()=>navigate(`/restaurants/${item?.info?.restaurantId}`)}>{item?.info?.restaurantName}</li>
                     {item?.info?.itemAttribute?.vegClassifier === "VEG" ? (
                       <li className="w-fit border border-green-500 text-[8px]">
                         🟢

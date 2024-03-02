@@ -8,6 +8,7 @@ function SearchRestaurants(){
     // const navigate = useNavigate();
     const {restSearchId} = useParams();
     const [changeUrl , setChangeUrl] = useState(null);
+    const [searchInfo, setSearchInfo] = useState(null)
     const [searchFetchedData, setSearchFetchedData] = useState(null);
 
     // call everytime when params update
@@ -28,6 +29,7 @@ function SearchRestaurants(){
                 throw new Error("Error Serving Search Data");
               }else{
                 const data = await res.json();
+                setSearchInfo(data?.data?.cards[0]?.card?.card?.tab[0]?.analytics?.context);
                 setSearchFetchedData(data?.data?.cards[1]?.groupedCard?.cardGroupMap)
                 // console.log("root", data?.data?.cards[1]?.groupedCard?.cardGroupMap?.DISH?.cards)
                 console.log("root", data)
@@ -40,12 +42,12 @@ function SearchRestaurants(){
             fetchRestaurantSearchData();
         }
     }, [changeUrl])
-    
+
   return (
     <>
     {!searchFetchedData? (<><Shimmer/></>) : (
         <>
-        {searchFetchedData.DISH? (<><Dish searchFetchedData={searchFetchedData?.DISH?.cards} searchName={restSearchId}/></>) : (<><Restaurant  searchFetchedData={searchFetchedData?.RESTAURANT?.cards}/></>)}
+        {searchFetchedData.DISH? (<><Dish searchFetchedData={searchFetchedData?.DISH?.cards} searchName={JSON.parse(searchInfo).query}/></>) : (<><Restaurant  searchFetchedData={searchFetchedData?.RESTAURANT?.cards}/></>)}
         </>
     )}
     </>

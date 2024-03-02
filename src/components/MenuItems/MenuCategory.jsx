@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {MenuItem} from '../index';
 
-function MenuCategory({card, id, toggleEvent, showToggle, restName}) {
+function MenuCategory({card, id, toggleEvent, showToggle, restName, restId}) {
   // const [toggle, setToggle] = useState({display:"block", type:true, name:"⬆️"});
   // const toggleEvent = ()=>{
   //   if(showToggle === true){
@@ -27,7 +27,7 @@ function MenuCategory({card, id, toggleEvent, showToggle, restName}) {
         {/* <div className="" style={toggle}></div> */}
         <div className={`${showToggle? ("block"): ("hidden")}`}>
           {card?.card?.itemCards.map(({ card }, index2) => (
-            <MenuItem key={index2} card={card} restName={restName}/>
+            <MenuItem key={index2} card={card} restName={restName} restId={restId}/>
           ))}
         </div>
       </div>

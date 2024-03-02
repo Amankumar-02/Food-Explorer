@@ -3,13 +3,13 @@ import { MENU_IMG_URL } from '../../utils/constants';
 import { addCartItem, modifyCartQuantity, removeCartItem } from '../../reduxFeatures/cartSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
-function MenuItem({card, restName}) {
+function MenuItem({card, restName, restId}) {
   const dispatch = useDispatch();
   const storeData = useSelector((state) => state.cartStore.cart);
   // console.log(storeData)
   const cartEvent = (e)=>{
     if(!storeData.filter(item=>item?.info?.name === e)[0]?.info?.quantity || storeData.filter(item=>item?.info?.name === e)[0]?.info?.quantity < 0){
-      dispatch(addCartItem({...card?.info, quantity : 1, restaurantName: restName}));
+      dispatch(addCartItem({...card?.info, quantity : 1, restaurantName: restName, restaurantId: restId}));
     }
   }
 

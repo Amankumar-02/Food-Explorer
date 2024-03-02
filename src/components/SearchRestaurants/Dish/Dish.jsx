@@ -62,7 +62,7 @@ function Dish({ searchFetchedData, searchName }) {
   };
 
   //adding item to cart event
-  const cartEvent = ({ nameLocation, dispatchLocation, restLocation }) => {
+  const cartEvent = ({ nameLocation, dispatchLocation, restLocation, restId }) => {
     if (
       !storeData.filter((item) => item?.info?.name === nameLocation)[0]?.info
         ?.quantity ||
@@ -74,6 +74,7 @@ function Dish({ searchFetchedData, searchName }) {
           ...dispatchLocation?.info,
           quantity: 1,
           restaurantName: restLocation,
+          restaurantId: restId,
         })
       );
     }
@@ -213,6 +214,7 @@ function Dish({ searchFetchedData, searchName }) {
                             nameLocation: card?.card.info.name,
                             dispatchLocation: card?.card,
                             restLocation: card?.card.restaurant.info.name,
+                            restId: card?.card.restaurant.info.id,
                           });
                         }}
                       >
