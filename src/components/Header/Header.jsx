@@ -47,13 +47,13 @@ function Header() {
       </div>
       <div className="nav-items">
         <ul className="flex items-center gap-6 list-none">
-          <li className="text-lg font-semibold text-black">Status: {internetStatus ? <>✅</> : <>🔴</>}</li>
+          <li className="text-lg font-semibold text-black">Active Status: {internetStatus ? <>✅</> : <>🔴</>}</li>
           <Link to={"/"} className="no-underline">
             <li className="text-lg font-semibold text-black hover:border-2 hover:border-gray-800 hover:border-x-0 hover:border-t-0">
               Home
             </li>
           </Link>
-          <Link to={"/grocery"} className="no-underline">
+          {/* <Link to={"/grocery"} className="no-underline">
             <li className="text-lg font-semibold text-black hover:border-2 hover:border-gray-800 hover:border-x-0 hover:border-t-0">
               Grocery
             </li>
@@ -67,7 +67,7 @@ function Header() {
             <li className="text-lg font-semibold text-black hover:border-2 hover:border-gray-800 hover:border-x-0 hover:border-t-0">
               Contact Us
             </li>
-          </Link>
+          </Link> */}
           <Link to={"/cart"} className="no-underline">
           <li className="text-lg font-semibold text-black hover:border-2 hover:border-gray-800 hover:border-x-0 hover:border-t-0">
             Cart{storeData.length===0? null:(<>: {storeData.length}</>)}

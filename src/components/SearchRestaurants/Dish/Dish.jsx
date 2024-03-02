@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addCartItem, modifyCartQuantity, removeCartItem
 } from "../../../reduxFeatures/cartSlice";
 
-function Dish({ searchFetchedData, searchName }) {
+function Dish({ searchFoodResult, searchName }) {
     const [dishFilter, setDishFilter] = useState([]);
   const navigate = useNavigate();
   const storeData = useSelector((state) => state.cartStore.cart);
@@ -13,19 +13,19 @@ function Dish({ searchFetchedData, searchName }) {
 
   // setting the props Data
   useEffect(()=>{
-    if(searchFetchedData){
-        setDishFilter(searchFetchedData.filter(
+    if(searchFoodResult){
+        setDishFilter(searchFoodResult.filter(
             (item) =>
             item?.card?.card?.["@type"] ===
             "type.googleapis.com/swiggy.presentation.food.v2.Dish"
             ).slice(0,30))
     }
-  }, [searchFetchedData])
+  }, [searchFoodResult])
 //   console.log("dish", dishFilter[0]?.card?.card);
 
   // sorting event
   const sortEvent = (purpose) => {
-    const newFilter = searchFetchedData.filter(
+    const newFilter = searchFoodResult.filter(
         (item) =>
           item?.card?.card?.["@type"] ===
           "type.googleapis.com/swiggy.presentation.food.v2.Dish"
@@ -131,7 +131,7 @@ function Dish({ searchFetchedData, searchName }) {
                       card?.card.restaurant.info.avgRatingString}{" "}
                     {`. ${
                       card?.card.restaurant.info.sla.slaString ||
-                      card?.card.restaurant.info.sla.deliveryTime + "min"
+                      card?.card.restaurant.info.sla.deliveryTime + "MINS"
                     }`}
                   </p>
                 </div>

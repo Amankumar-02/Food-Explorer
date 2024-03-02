@@ -32,7 +32,7 @@ function SearchRestaurants(){
                 setSearchInfo(data?.data?.cards[0]?.card?.card?.tab[0]?.analytics?.context);
                 setSearchFetchedData(data?.data?.cards[1]?.groupedCard?.cardGroupMap)
                 // console.log("root", data?.data?.cards[1]?.groupedCard?.cardGroupMap?.DISH?.cards)
-                console.log("root", data)
+                // console.log("root", data)
               }
             }catch (error){
               console.log("Error fetching data:", error)
@@ -47,7 +47,14 @@ function SearchRestaurants(){
     <>
     {!searchFetchedData? (<><Shimmer/></>) : (
         <>
-        {searchFetchedData.DISH? (<><Dish searchFetchedData={searchFetchedData?.DISH?.cards} searchName={JSON.parse(searchInfo).query}/></>) : (<><Restaurant  searchFetchedData={searchFetchedData?.RESTAURANT?.cards}/></>)}
+        {searchFetchedData.DISH? (<>
+        <Dish searchFoodResult={searchFetchedData?.DISH?.cards} searchName={JSON.parse(searchInfo).query}/>
+        </>) : (<>
+        <Restaurant 
+            searchRestaurantResult={searchFetchedData?.RESTAURANT?.cards[0].card.card.info}
+            searchMoreResult={searchFetchedData?.RESTAURANT?.cards[1].card.card.restaurants}
+            searchName={JSON.parse(searchInfo).query}/>
+        </>)}
         </>
     )}
     </>
