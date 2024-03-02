@@ -906,12 +906,14 @@ const cardData = [
 // const RESTAURANT_HOME = "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.6195574&lng=77.0549901&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
 // const RESTAURANT_HOME2 = "https://www.swiggy.com/api/seo/getListing?lat=28.6195574&lng=77.0549901";
 // const RESTAURANT_MENU_RESULT = "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.6195574&lng=77.0549901&restaurantId=648815&catalog_qa=undefined&submitAction=ENTER";
-const RESTAURANT_SEARCH_RESULT = "https://www.swiggy.com/dapi/restaurants/search/v3?lat=28.6195574&lng=77.0549901&str=idli%20dosa&trackingId=undefined&submitAction=ENTER&queryUniqueId=undefined"
+// const RESTAURANT_SEARCH_RESULT = "https://www.swiggy.com/dapi/restaurants/search/v3?lat=28.6195574&lng=77.0549901&str=idli%20dosa&trackingId=undefined&submitAction=ENTER&queryUniqueId=undefined"
 
 // CorsProxy Url
 const RESTAURANT_HOME = "https://corsproxy.org/?https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Frestaurants%2Flist%2Fv5%3Flat%3D28.6195574%26lng%3D77.0549901%26is-seo-homepage-enabled%3Dtrue%26page_type%3DDESKTOP_WEB_LISTING";
 const RESTAURANT_HOME2 = "https://corsproxy.org/?https%3A%2F%2Fwww.swiggy.com%2Fapi%2Fseo%2FgetListing%3Flat%3D28.6195574%26lng%3D77.0549901";
 const RESTAURANT_MENU_RESULT = "https://corsproxy.org/?https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Fmenu%2Fpl%3Fpage-type%3DREGULAR_MENU%26complete-menu%3Dtrue%26lat%3D28.6195574%26lng%3D77.0549901%26restaurantId%3D";
+const RESTAURANT_SEARCH_RESULT = "https://corsproxy.org/?https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Frestaurants%2Fsearch%2Fv3%3Flat%3D28.6195574%26lng%3D77.0549901%26str%3D";
+//https://corsproxy.org/?https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Frestaurants%2Fsearch%2Fv3%3Flat%3D28.6195574%26lng%3D77.0549901%26str%3Didli%2520dosa%26trackingId%3Dundefined%26submitAction%3DENTER%26queryUniqueId%3Dundefined
 
 const IMG_URL = "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/";
 const MENU_IMG_URL = "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit/";

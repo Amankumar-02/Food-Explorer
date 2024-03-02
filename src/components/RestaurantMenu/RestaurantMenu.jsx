@@ -32,7 +32,7 @@ function RestaurantMenu() {
 
         console.log("All Menu Data Rendered");
 
-        // console.log("fetch" , fetchMenuData?.data?.cards[0]?.card?.card?.info);
+        // console.log("fetch" , fetchMenuData);
       }
     }, [fetchMenuData]);
 

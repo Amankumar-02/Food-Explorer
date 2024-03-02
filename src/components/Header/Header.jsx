@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Header.css';
 import logo from '../../../public/logo.png';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import useInternetStatus from '../../hooks/useInternetStatus';
 // import { useContext } from 'react';
 // import { UserContextStore } from '../../utils/UserContextStore';
@@ -10,9 +10,17 @@ import { useSelector } from 'react-redux';
 function Header() {
   const [btnName, setBtnName] = useState({title:"Login", color:"#008000db"});
   const [btnStatus, setBtnStatus] = useState(true);
+  const [restSearchInput, setRestSearchInput] = useState("");
+  const navigate = useNavigate();
   const internetStatus = useInternetStatus();
   // const {logginName} = useContext(UserContextStore);
   const storeData = useSelector((state) => state.cartStore.cart);
+
+  const searchRestaurantsEvent = (e)=>{
+    e.preventDefault();
+    navigate(`/search/${restSearchInput.toLowerCase()}`)
+    setRestSearchInput("");
+  }
 
   const changeBtnName = ()=>{
     if(btnStatus===true){
@@ -32,9 +40,9 @@ function Header() {
         </Link>
       </div>
       <div className="search">
-        <form>
-          <input type="text" className='me-2 px-5 py-1 border border-black rounded-xl' placeholder="Search" />
-          <input type="submit" className='px-5 py-1 border border-black rounded-xl cursor-pointer hover:bg-[#ad9fdb]' value="Go" />
+        <form onSubmit={searchRestaurantsEvent}>
+          <input type="text" className='me-2 px-5 py-1 border border-black rounded-xl' placeholder="Search" value={restSearchInput} onChange={(e)=>{setRestSearchInput(e.target.value)}}/>
+          <input type="submit" className='px-5 py-1 border border-black rounded-xl cursor-pointer hover:bg-[#ad9fdb]' value="Go"/>
         </form>
       </div>
       <div className="nav-items">
