@@ -32,7 +32,7 @@ function RestaurantMenu() {
 
         console.log("All Menu Data Rendered");
 
-        // console.log("fetch" , fetchMenuData);
+        // console.log("fetch" , fetchMenuData?.data?.cards[0]?.card?.card?.info);
       }
     }, [fetchMenuData]);
 
@@ -93,7 +93,7 @@ function RestaurantMenu() {
               <h2 className="text-xl font-bold">Menu</h2>
               <div className="flex gap-4 mt-2">
                 <button
-                  className="border px-6 py-1 rounded-lg border border-black hover:bg-gray-300"
+                  className="px-6 py-1 rounded-lg border border-black hover:bg-gray-300"
                   onClick={() => {
                     foodFilter("all");
                   }}
@@ -101,7 +101,7 @@ function RestaurantMenu() {
                   All
                 </button>
                 <button
-                  className="border px-6 py-1 rounded-lg border border-black hover:bg-gray-300"
+                  className="px-6 py-1 rounded-lg border border-black hover:bg-gray-300"
                   onClick={() => {
                     foodFilter("veg");
                   }}
@@ -109,7 +109,7 @@ function RestaurantMenu() {
                   Veg
                 </button>
                 <button
-                  className="border px-6 py-1 rounded-lg border border-black hover:bg-gray-300"
+                  className="px-6 py-1 rounded-lg border border-black hover:bg-gray-300"
                   onClick={() => {
                     foodFilter("nonveg");
                   }}
