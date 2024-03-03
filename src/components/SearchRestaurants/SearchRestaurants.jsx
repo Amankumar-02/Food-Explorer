@@ -32,7 +32,7 @@ function SearchRestaurants(){
                 setSearchInfo(data?.data?.cards[0]?.card?.card?.tab[0]?.analytics?.context);
                 setSearchFetchedData(data?.data?.cards[1]?.groupedCard?.cardGroupMap)
                 // console.log("root", data?.data?.cards[1]?.groupedCard?.cardGroupMap?.DISH?.cards)
-                // console.log("root", data)
+                console.log("root", data)
               }
             }catch (error){
               console.log("Error fetching data:", error)
@@ -50,10 +50,16 @@ function SearchRestaurants(){
         {searchFetchedData.DISH? (<>
         <Dish searchFoodResult={searchFetchedData?.DISH?.cards} searchName={JSON.parse(searchInfo).query}/>
         </>) : (<>
+        {Object.keys(searchFetchedData.RESTAURANT).length === 0? (<>
+        <div className='w-full h-[400px] flex items-center justify-center'><h1 className='text-xl font-bold'>No match found for "{JSON.parse(searchInfo).query}"</h1></div>
+</>):(
+          <>
         <Restaurant 
             searchRestaurantResult={searchFetchedData?.RESTAURANT?.cards[0].card.card.info}
-            searchMoreResult={searchFetchedData?.RESTAURANT?.cards[1].card.card.restaurants}
+            searchMoreResult={searchFetchedData?.RESTAURANT?.cards[1].card.card.restaurants.slice(0,30)}
             searchName={JSON.parse(searchInfo).query}/>
+          </>
+        )}
         </>)}
         </>
     )}

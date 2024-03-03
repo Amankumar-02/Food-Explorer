@@ -1,14 +1,9 @@
 import React, {useEffect, useState} from "react";
 import { useNavigate } from 'react-router-dom';
 import { IMG_URL } from "../../../utils/constants";
-// import { seDispatch, useDispatch, useSelector } from "react-redux";
-// import { addCartItem, modifyCartQuantity, removeCartItem } from "../../../reduxFeatures/cartSlice";
 
 function Restaurant({ searchRestaurantResult, searchMoreResult, searchName }) {
-    // rest, food ==> array[0,1]
     const navigate = useNavigate();
-    // const storeData = useSelector((state)=>state.cartStore.cart);
-    // const dispatch = useDispatch();
     console.log("first",searchRestaurantResult)
     console.log("second",searchMoreResult)
 
@@ -17,12 +12,70 @@ function Restaurant({ searchRestaurantResult, searchMoreResult, searchName }) {
       {!searchRestaurantResult ? null : (
         <>
           <div className="m-auto w-[80%]">
+            <div>
+            <h1 className="text-2xl font-semibold capitalize">Search Results: {searchName}</h1>
+            <div className="flex gap-4 flex-wrap my-4">
+              {/* {searchRestaurantResult.map((info, index) => ( */}
+                <div
+                  // key={index}
+                  className="w-[530px] p-4 rounded-2xl border border-gray-600 flex items-center cursor-pointer" onClick={()=>navigate(`/restaurants/${searchRestaurantResult.id}`)}
+                >
+                  <div className="relative w-[100px] h-[100px] flex justify-center">
+                    {searchRestaurantResult.cloudinaryImageId ? (
+                      <>
+                        <img
+                          src={IMG_URL + searchRestaurantResult.cloudinaryImageId}
+                          className="menu-img w-full h-full object-cover rounded-xl"
+                          alt=""
+                        />
+                      </>
+                    ) : null}
+                    {!searchRestaurantResult?.aggregatedDiscountInfoV3? null : (<>
+                    <div className="absolute bottom-[-6] bg-white rounded-lg shadow-md flex flex-col items-center overflow-hidden">
+                      {!searchRestaurantResult?.aggregatedDiscountInfoV3?.discountTag? null : (<>
+                      <h1 className="text-xs font-semibold bg-orange-600 px-2 text-white">{searchRestaurantResult?.aggregatedDiscountInfoV3?.discountTag}</h1>
+                      </>)}
+                      {!searchRestaurantResult?.aggregatedDiscountInfoV3?.header? null : (<>
+                      <h2 className="text-[10px] font-bold text-orange-600 px-2">{searchRestaurantResult?.aggregatedDiscountInfoV3?.header}</h2>
+                      </>)}
+                      {!searchRestaurantResult?.aggregatedDiscountInfoV3?.subHeader? null : (<>
+                      <h3 className="text-[8px] font-semibold text-orange-600 px-2">{searchRestaurantResult?.aggregatedDiscountInfoV3?.subHeader}</h3>
+                      </>)}
+                    </div>
+                    </>)}
+                  </div>
+                  <div className="ms-4 flex flex-col gap-1" style={{width: "calc(100% - 100px)"}}>
+                    <h1 className="text-sm font-bold text-gray-600">{searchRestaurantResult.name}</h1>
+                    <p className="text-sm text-gray-600 font-semibold">
+                    ⭐{" "}
+                    {searchRestaurantResult.avgRating ||
+                      searchRestaurantResult.avgRatingString}{" "}
+                    {`. ${
+                      searchRestaurantResult.sla.slaString ||
+                      searchRestaurantResult.sla.deliveryTime + "MINS"
+                    }`}{" "}{`. ${searchRestaurantResult.costForTwoMessage}`}
+                  </p>
+                  {searchRestaurantResult.cuisines.join(", ").length > 250? (<>
+                    <p className="leading-3 text-gray-500 text-xs w-[100%]">
+                    {searchRestaurantResult.cuisines.join(", ").slice(0,250)+'...'}
+                  </p>
+                  </>) : (<>
+                    <p className="leading-3 text-gray-500 text-xs w-[100%]">
+                    {searchRestaurantResult.cuisines.join(", ")}
+                  </p>
+                  </>)}
+                  </div>
+                </div>
+              {/* ))} */}
+            </div>
+            </div>
+            <div>
             <h1 className="text-2xl font-semibold capitalize">More results like this</h1>
             <div className="flex gap-4 flex-wrap my-4">
               {searchMoreResult.map(({ info }, index) => (
                 <div
                   key={index}
-                  className="w-[530px] p-4 rounded-2xl border border-gray-600 flex items-center"
+                  className="w-[530px] p-4 rounded-2xl border border-gray-600 flex items-center cursor-pointer" onClick={()=>navigate(`/restaurants/${info.id}`)}
                 >
                   <div className="relative w-[100px] h-[100px] flex justify-center">
                     {info.cloudinaryImageId ? (
@@ -34,8 +87,21 @@ function Restaurant({ searchRestaurantResult, searchMoreResult, searchName }) {
                         />
                       </>
                     ) : null}
+                    {!info?.aggregatedDiscountInfoV3? null : (<>
+                    <div className="absolute bottom-[-6] bg-white rounded-lg shadow-md flex flex-col items-center overflow-hidden">
+                      {!info?.aggregatedDiscountInfoV3?.discountTag? null : (<>
+                      <h1 className="text-xs font-semibold bg-orange-600 px-2 text-white">{info?.aggregatedDiscountInfoV3?.discountTag}</h1>
+                      </>)}
+                      {!info?.aggregatedDiscountInfoV3?.header? null : (<>
+                      <h2 className="text-[10px] font-bold text-orange-600 px-2">{info?.aggregatedDiscountInfoV3?.header}</h2>
+                      </>)}
+                      {!info?.aggregatedDiscountInfoV3?.subHeader? null : (<>
+                      <h3 className="text-[8px] font-semibold text-orange-600 px-2">{info?.aggregatedDiscountInfoV3?.subHeader}</h3>
+                      </>)}
+                    </div>
+                    </>)}
                   </div>
-                  <div className="ms-4 flex flex-col gap-1">
+                  <div className="ms-4 flex flex-col gap-1" style={{width: "calc(100% - 100px)"}}>
                     <h1 className="text-sm font-bold text-gray-600">{info.name}</h1>
                     <p className="text-sm text-gray-600 font-semibold">
                     ⭐{" "}
@@ -46,9 +112,9 @@ function Restaurant({ searchRestaurantResult, searchMoreResult, searchName }) {
                       info.sla.deliveryTime + "MINS"
                     }`}{" "}{`. ${info.costForTwo}`}
                   </p>
-                  {info.cuisines.join(", ").length > 70? (<>
+                  {info.cuisines.join(", ").length > 250? (<>
                     <p className="leading-3 text-gray-500 text-xs w-[100%]">
-                    {info.cuisines.join(", ").slice(0,70)+'...'}
+                    {info.cuisines.join(", ").slice(0,250)+'...'}
                   </p>
                   </>) : (<>
                     <p className="leading-3 text-gray-500 text-xs w-[100%]">
@@ -58,6 +124,7 @@ function Restaurant({ searchRestaurantResult, searchMoreResult, searchName }) {
                   </div>
                 </div>
               ))}
+            </div>
             </div>
           </div>
         </>

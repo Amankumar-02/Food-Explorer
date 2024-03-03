@@ -21,7 +21,7 @@ function Dish({ searchFoodResult, searchName }) {
             ).slice(0,30))
     }
   }, [searchFoodResult])
-//   console.log("dish", dishFilter[0]?.card?.card);
+  // console.log("dish", dishFilter[0]?.card?.card.info.description.slice(0,50));
 
   // sorting event
   const sortEvent = (purpose) => {
@@ -95,168 +95,189 @@ function Dish({ searchFoodResult, searchName }) {
 
   return (
     <>
-      {!dishFilter? null : (<>
-        <div className="m-auto w-[80%]">
-        <h1 className="text-2xl font-semibold capitalize">{searchName}</h1>
-        <div className="flex gap-4 items-center mt-4">
-          {sorting.map(({ title, purpose }, index) => (
-            <button
-              key={index}
-              className="border border-black px-4 rounded-xl"
-              onClick={() => sortEvent(purpose)}
-            >
-              {title}
-            </button>
-          ))}
-        </div>
-        <div className="flex gap-4 flex-wrap my-4">
-          {dishFilter.map(({ card }, index) => (
-            <div
-              key={index}
-              className="w-[530px] p-4 rounded-2xl border border-gray-600"
-            >
-              <div
-                className="flex justify-between items-center cursor-pointer pb-2 border border-dotted border-gray-600 border-x-0 border-t-0"
-                onClick={() =>
-                  navigate(`/restaurants/${card?.card.restaurant.info.id}`)
-                }
-              >
-                <div>
-                  <h1 className="text-sm font-bold text-gray-600">
-                    By {card?.card.restaurant.info.name}
-                  </h1>
-                  <p className="text-xs text-gray-600">
-                    ⭐{" "}
-                    {card?.card.restaurant.info.avgRating ||
-                      card?.card.restaurant.info.avgRatingString}{" "}
-                    {`. ${
-                      card?.card.restaurant.info.sla.slaString ||
-                      card?.card.restaurant.info.sla.deliveryTime + "MINS"
-                    }`}
-                  </p>
-                </div>
-                <button>➡️</button>
-              </div>
-              <div className="flex justify-between items-center pt-2">
-                <div className="flex flex-col gap-2">
-                  <div className="flex gap-4 items-center">
-                    {card?.card?.info?.isVeg ? (
-                      <>
-                        <p className="w-fit border border-green-500 text-[8px]">
-                          🟢
-                        </p>
-                      </>
-                    ) : (
-                      <>
-                        <p className="w-fit border border-red-500 text-[8px]">
-                          🔺
-                        </p>
-                      </>
-                    )}
-                    {card?.card?.info?.ribbon?.text ? (
-                      <p className="text-xs font-semibold text-yellow-600">
-                        ⭐ {card?.card?.info?.ribbon?.text}
-                      </p>
-                    ) : null}
-                  </div>
-                  <div>
-                    <h1 className="text-sm font-bold text-gray-600">
-                      {card?.card.info.name}
-                    </h1>
-                    <h2 className="text-sm font-semibold text-gray-600">
-                      ₹ {card?.card.info.price / 100}
-                    </h2>
-                  </div>
-                  <p className="leading-3 text-gray-500 text-xs w-[70%]">
-                    {card?.card.info.description}
-                  </p>
-                  <button
-                    className="w-fit font-bold text-gray-700"
+      {!dishFilter ? null : (
+        <>
+          <div className="m-auto w-[80%]">
+            <h1 className="text-2xl font-semibold capitalize">Search Results: {searchName}</h1>
+            <div className="flex gap-4 items-center mt-4">
+              {sorting.map(({ title, purpose }, index) => (
+                <button
+                  key={index}
+                  className="border border-black px-4 rounded-xl hover:bg-gray-300 font-semibold"
+                  onClick={() => sortEvent(purpose)}
+                >
+                  {title}
+                </button>
+              ))}
+            </div>
+            <div className="mt-8 flex gap-4 flex-wrap my-4">
+              {dishFilter.map(({ card }, index) => (
+                <div
+                  key={index}
+                  className="w-[530px] p-4 rounded-2xl border border-gray-600"
+                >
+                  <div
+                    className="flex justify-between items-center cursor-pointer pb-2 border border-dotted border-gray-600 border-x-0 border-t-0"
                     onClick={() =>
                       navigate(`/restaurants/${card?.card.restaurant.info.id}`)
                     }
                   >
-                    More
-                  </button>
-                </div>
-                <div>
-                  <div className="relative w-[100px] h-[100px] flex justify-center">
-                    {card?.card.info.imageId ? (
-                      <>
-                        <img
-                          src={MENU_IMG_URL+card?.card.info.imageId}
-                          className="menu-img w-full h-full object-cover rounded-xl"
-                          alt=""
-                        />
-                      </>
-                    ) : null}
-
-                    <div className="absolute bottom-[-10%] bg-white z-[99] flex border-2 rounded-xl overflow-hidden">
-                      {storeData.filter(
-                        (item) => item?.info?.name === card?.card.info.name
-                      )[0]?.info?.quantity > 0 ? (
-                        <>
-                          <button
-                            className="px-2 hover:bg-gray-300"
-                            onClick={() => {
-                              modifyQuantity("decrease", card?.card.info.name);
-                            }}
-                          >
-                            -
-                          </button>
-                        </>
-                      ) : null}
-
-                      <button
-                        className="px-2 hover:bg-green-500 hover:text-white"
-                        onClick={() => {
-                          cartEvent({
-                            nameLocation: card?.card.info.name,
-                            dispatchLocation: card?.card,
-                            restLocation: card?.card.restaurant.info.name,
-                            restId: card?.card.restaurant.info.id,
-                          });
-                        }}
-                      >
-                        {storeData.filter(
-                          (item) => item?.info?.name === card?.card.info.name
-                        )[0]?.info?.quantity > 0 ? (
+                    <div>
+                      <h1 className="text-sm font-bold text-gray-600">
+                        By {card?.card.restaurant.info.name}
+                      </h1>
+                      <p className="text-xs text-gray-600">
+                        ⭐{" "}
+                        {card?.card.restaurant.info.avgRating ||
+                          card?.card.restaurant.info.avgRatingString}{" "}
+                        {`. ${
+                          card?.card.restaurant.info.sla.slaString ||
+                          card?.card.restaurant.info.sla.deliveryTime + "MINS"
+                        }`}
+                      </p>
+                    </div>
+                    <button>➡️</button>
+                  </div>
+                  <div className="flex justify-between items-center pt-2">
+                    <div className="flex flex-col gap-2" style={{width: "calc(100% - 100px)"}}>
+                      <div className="flex gap-4 items-center">
+                        {card?.card?.info?.isVeg ? (
                           <>
-                            {
-                              storeData.filter(
-                                (item) =>
-                                  item?.info?.name === card?.card.info.name
-                              )[0]?.info?.quantity
-                            }
+                            <p className="w-fit border border-green-500 text-[8px]">
+                              🟢
+                            </p>
                           </>
                         ) : (
-                          <>Add</>
+                          <>
+                            <p className="w-fit border border-red-500 text-[8px]">
+                              🔺
+                            </p>
+                          </>
                         )}
+                        {card?.card?.info?.ribbon?.text ? (
+                          <p className="text-xs font-semibold text-yellow-600">
+                            ⭐ {card?.card?.info?.ribbon?.text}
+                          </p>
+                        ) : null}
+                      </div>
+                      <div>
+                        <h1 className="text-sm font-bold text-gray-600">
+                          {card?.card.info.name}
+                        </h1>
+                        <p className="text-[12px] text-gray-600">
+                          ⭐ {card?.card?.info.ratings.aggregatedRating.rating}
+                        </p>
+                        <h2 className="text-sm font-semibold text-gray-600">
+                          ₹ {card?.card.info.price / 100}
+                        </h2>
+                      </div>
+                      <p className="leading-3 text-gray-500 text-xs w-[80%]">
+                        {card?.card?.info?.description?.length > 100 ? (
+                          <>
+                            {card?.card?.info?.description?.slice(0, 100) +
+                              "..."}
+                          </>
+                        ) : (
+                          <>{card?.card?.info?.description}</>
+                        )}
+                      </p>
+                      <button
+                        className="w-fit font-bold text-gray-700 hover:underline"
+                        onClick={() =>
+                          navigate(
+                            `/restaurants/${card?.card.restaurant.info.id}`
+                          )
+                        }
+                      >
+                        More
                       </button>
+                    </div>
+                    <div>
+                      <div className="relative w-[100px] h-[100px] flex justify-center">
+                        {card?.card.info.imageId ? (
+                          <>
+                            <img
+                              src={MENU_IMG_URL + card?.card.info.imageId}
+                              className="menu-img w-full h-full object-cover rounded-xl"
+                              alt=""
+                            />
+                          </>
+                        ) : null}
 
-                      {storeData.filter(
-                        (item) => item?.info?.name === card?.card.info.name
-                      )[0]?.info?.quantity > 0 ? (
-                        <>
+                        <div className="absolute bottom-[-10%] bg-white z-[99] flex border-2 rounded-xl overflow-hidden">
+                          {storeData.filter(
+                            (item) => item?.info?.name === card?.card.info.name
+                          )[0]?.info?.quantity > 0 ? (
+                            <>
+                              <button
+                                className="px-2 hover:bg-gray-300"
+                                onClick={() => {
+                                  modifyQuantity(
+                                    "decrease",
+                                    card?.card.info.name
+                                  );
+                                }}
+                              >
+                                -
+                              </button>
+                            </>
+                          ) : null}
+
                           <button
-                            className="px-2 hover:bg-gray-300"
+                            className="px-2 hover:bg-green-500 hover:text-white"
                             onClick={() => {
-                              modifyQuantity("increase", card?.card.info.name);
+                              cartEvent({
+                                nameLocation: card?.card.info.name,
+                                dispatchLocation: card?.card,
+                                restLocation: card?.card.restaurant.info.name,
+                                restId: card?.card.restaurant.info.id,
+                              });
                             }}
                           >
-                            +
+                            {storeData.filter(
+                              (item) =>
+                                item?.info?.name === card?.card.info.name
+                            )[0]?.info?.quantity > 0 ? (
+                              <>
+                                {
+                                  storeData.filter(
+                                    (item) =>
+                                      item?.info?.name === card?.card.info.name
+                                  )[0]?.info?.quantity
+                                }
+                              </>
+                            ) : (
+                              <>Add</>
+                            )}
                           </button>
-                        </>
-                      ) : null}
+
+                          {storeData.filter(
+                            (item) => item?.info?.name === card?.card.info.name
+                          )[0]?.info?.quantity > 0 ? (
+                            <>
+                              <button
+                                className="px-2 hover:bg-gray-300"
+                                onClick={() => {
+                                  modifyQuantity(
+                                    "increase",
+                                    card?.card.info.name
+                                  );
+                                }}
+                              >
+                                +
+                              </button>
+                            </>
+                          ) : null}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              ))}
             </div>
-          ))}
-        </div>
-      </div>
-      </>)}
+          </div>
+        </>
+      )}
     </>
   );
 }
