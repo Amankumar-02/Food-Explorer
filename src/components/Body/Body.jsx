@@ -9,10 +9,10 @@ import { homeFoodRestaurants } from '../../utils/homeFoodRestaurants';
 function Body() {
   const internetStatus = useInternetStatus();
   const [homePageData, setHomePageData] = useState("");
+  const [restTopList, setRestTopList] = useState([]);
   const [restList1, setRestList1] = useState([]);
   const [restList2, setRestList2] = useState([]);
   const [searchInput, setSearchInput] = useState("");
-  console.log("body rest",restList2)
 
   const RestaurantCardOffer = AdditionOfferRestaurantCard(RestaurantCard)
 
@@ -20,10 +20,11 @@ function Body() {
   useEffect(()=>{
     if(fetchHomeData){
       setHomePageData(fetchHomeData?.data)
+      setRestTopList(fetchHomeData?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info)
       setRestList1(fetchHomeData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
       setRestList2(fetchHomeData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
       console.log("All Home Data Rendered");
-      // console.log(fetchHomeData);
+      console.log(fetchHomeData?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info);
     }
   }, [fetchHomeData]);
 
@@ -80,6 +81,14 @@ function Body() {
           ) : (
             <>
               <div className="my-6 mx-8">
+                <section id='section1'>
+                <div className="search-item mb-8">
+                  <h2 className='text-2xl font-semibold'>{homePageData?.cards[0]?.card?.card?.header?.title}</h2>
+                </div>
+                <div id='carousal'>
+                </div>
+                </section>
+
                 <section id='section2'>
                 <div className="search-item mb-8">
                   <h2 className='text-2xl font-semibold'>{homePageData?.cards[1]?.card?.card?.header?.title}</h2>
