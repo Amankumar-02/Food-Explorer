@@ -5,8 +5,10 @@ import { RESTAURANT_HOME } from '../../utils/constants';
 import useApiFetch from '../../hooks/useApiFetch';
 import useInternetStatus from '../../hooks/useInternetStatus';
 import { homeFoodRestaurants } from '../../utils/homeFoodRestaurants';
+import { useNavigate } from 'react-router-dom';
 
 function Body() {
+  const navigate = useNavigate();
   const internetStatus = useInternetStatus();
   const [homePageData, setHomePageData] = useState("");
   const [restTopList, setRestTopList] = useState([]);
@@ -20,7 +22,7 @@ function Body() {
   useEffect(()=>{
     if(fetchHomeData){
       setHomePageData(fetchHomeData?.data)
-      setRestTopList(fetchHomeData?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info)
+      setRestTopList(fetchHomeData?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info.slice(0,14))
       setRestList1(fetchHomeData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
       setRestList2(fetchHomeData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
       console.log("All Home Data Rendered");
@@ -82,16 +84,21 @@ function Body() {
             <>
               <div className="my-6 mx-8">
                 <section id='section1'>
-                <div className="search-item mb-8">
-                  <h2 className='text-2xl font-semibold'>{homePageData?.cards[0]?.card?.card?.header?.title}</h2>
+                <div className="search-item mb-4">
+                  <h2 className='text-[30px] font-semibold'>{homePageData?.cards[0]?.card?.card?.header?.title}</h2>
                 </div>
-                <div id='carousal'>
+                <div id='carousal' className='flex gap-4 flex-wrap'>
+                  {restTopList.map((item, index)=>(
+                  <div key={index} className='w-[168px]' onClick={()=>navigate(`/search/${item.action.text.toLowerCase()}`)}>
+                    <img src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/"+item.imageId} alt="" className='w-full object-cover cursor-pointer'/>
+                  </div>
+                  ))}
                 </div>
                 </section>
 
                 <section id='section2'>
-                <div className="search-item mb-8">
-                  <h2 className='text-2xl font-semibold'>{homePageData?.cards[1]?.card?.card?.header?.title}</h2>
+                <div className="search-item mt-12 mb-8">
+                  <h2 className='text-[30px] font-semibold'>{homePageData?.cards[1]?.card?.card?.header?.title}</h2>
                   <form onSubmit={searchItemEvent} className='mt-2'>
                     <input
                       type="text"
@@ -112,7 +119,7 @@ function Body() {
                 </section>
                 <section id='section3'>
                 <div className="filter mt-12 mb-8">
-                  <h2 className='text-2xl font-semibold mb-2'>{homePageData?.cards[2]?.card?.card?.title}</h2>
+                  <h2 className='text-[30px] font-semibold mb-2'>{homePageData?.cards[2]?.card?.card?.title}</h2>
                   <div className='flex gap-4'>
                   <h2 className="filter-title text-xl text-gray-600">Filters: </h2>
                   <div className='flex gap-2'>
