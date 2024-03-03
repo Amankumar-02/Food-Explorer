@@ -18,8 +18,10 @@ function Header() {
 
   const searchRestaurantsEvent = (e)=>{
     e.preventDefault();
-    navigate(`/search/${restSearchInput.toLowerCase()}`)
-    setRestSearchInput("");
+    if(restSearchInput.length>0){
+      navigate(`/search/${restSearchInput.toLowerCase()}`)
+      setRestSearchInput("");
+    }
   }
 
   const changeBtnName = ()=>{
@@ -33,21 +35,21 @@ function Header() {
   }
 
   return (
-    <div className="header sticky top-0 left-0 z-[999] bg-[#D5CBF6de] shadow-md flex justify-between items-center mb-4 py-2 px-16">
+    <div className="header sticky top-0 left-0 z-[999] b-[#D5CBF6de] shadow-lg flex justify-between items-center py-2 px-16" style={{background: "linear-gradient(0deg, rgb(201, 188, 244) 0%, rgb(201, 188, 244) 95.83%)"}}>
       <div className="logo-container">
         <Link to={"/"}>
-          <img className="logo w-[140px]" src={logo} alt="" />
+          <img className="logo w-[100px]" src={logo} alt="" />
         </Link>
       </div>
       <div className="search">
         <form onSubmit={searchRestaurantsEvent}>
-          <input type="text" className='me-2 px-5 py-1 border border-black rounded-xl' placeholder="Search" value={restSearchInput} onChange={(e)=>{setRestSearchInput(e.target.value)}}/>
-          <input type="submit" className='px-5 py-1 border border-black rounded-xl cursor-pointer hover:bg-[#ad9fdb]' value="Go"/>
+          <input type="text" className='px-5 py-1 rounded-xl rounded-e-none w-[500px]' placeholder="Search" value={restSearchInput} onChange={(e)=>{setRestSearchInput(e.target.value)}}/>
+          <input type="submit" className='px-4 py-1 rounded-xl rounded-s-none cursor-pointer bg-white hover:bg-[#ad9fdb]' value="🔍"/>
         </form>
       </div>
       <div className="nav-items">
         <ul className="flex items-center gap-6 list-none">
-          <li className="text-lg font-semibold text-black">Active Status: {internetStatus ? <>✅</> : <>🔴</>}</li>
+          <li className="font-semibold text-black">Active Status: {internetStatus ? <><span className='text-xs'>✅</span></> : <><span className='text-xs'>🔴</span></>}</li>
           <Link to={"/"} className="no-underline">
             <li className="text-lg font-semibold text-black hover:border-2 hover:border-gray-800 hover:border-x-0 hover:border-t-0">
               Home
