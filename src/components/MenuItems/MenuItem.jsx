@@ -2,6 +2,7 @@ import React from 'react'
 import { MENU_IMG_URL } from '../../utils/constants';
 import { addCartItem, modifyCartQuantity, removeCartItem } from '../../reduxFeatures/cartSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import toast from 'react-hot-toast';
 
 function MenuItem({card, restName, restId}) {
   const dispatch = useDispatch();
@@ -10,6 +11,7 @@ function MenuItem({card, restName, restId}) {
   const cartEvent = (e)=>{
     if(!storeData.filter(item=>item?.info?.name === e)[0]?.info?.quantity || storeData.filter(item=>item?.info?.name === e)[0]?.info?.quantity < 0){
       dispatch(addCartItem({...card?.info, quantity : 1, restaurantName: restName, restaurantId: restId}));
+      toast.success("Item Added SuccessFully");
     }
   }
 
@@ -18,6 +20,7 @@ function MenuItem({card, restName, restId}) {
     if(task === "decrease" && storeData.filter(item=>item?.info?.name === name)[0]?.info?.quantity === 1){
       console.log("first")
       dispatch(removeCartItem(name))
+      toast.success("Item Remove SuccessFully");
     }
   }
 

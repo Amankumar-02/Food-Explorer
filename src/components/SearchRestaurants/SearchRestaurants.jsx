@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { RESTAURANT_SEARCH_RESULT } from '../../utils/constants';
 import { useParams } from 'react-router-dom';
 import {Dish, Restaurant} from './index';
+import RestaurantError from './Restaurant/RestaurantError';
 import Shimmer from '../Shimmer/Shimmer';
 
 function SearchRestaurants(){
@@ -54,10 +55,16 @@ function SearchRestaurants(){
         <div className='w-full h-[400px] flex items-center justify-center'><h1 className='text-xl font-bold'>No match found for "{JSON.parse(searchInfo).query}"</h1></div>
 </>):(
           <>
-        <Restaurant 
-            searchRestaurantResult={searchFetchedData?.RESTAURANT?.cards[0].card.card.info}
-            searchMoreResult={searchFetchedData?.RESTAURANT?.cards[1].card.card.restaurants.slice(0,30)}
+          {searchFetchedData?.RESTAURANT?.cards?.length === 2? (<>
+            <Restaurant 
+                searchRestaurantResult={searchFetchedData?.RESTAURANT?.cards[0].card.card.info}
+                searchMoreResult={searchFetchedData?.RESTAURANT?.cards[1].card.card.restaurants.slice(0,30)}
+                searchName={JSON.parse(searchInfo).query}/>
+          </>): (<>
+            <RestaurantError 
+            searchMoreResult={searchFetchedData?.RESTAURANT?.cards.slice(0,30)}
             searchName={JSON.parse(searchInfo).query}/>
+          </>)}
           </>
         )}
         </>)}

@@ -5,6 +5,7 @@ import { Outlet } from 'react-router-dom';
 // import { UserContextStore } from './utils/UserContextStore';
 import { reduxStore } from './utils/reduxStore';
 import { Provider } from 'react-redux';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
         <Header/>
         {/* <Body/> */}
         <Outlet/>
+        <Toaster />
         <Footer/>
       </div>
     </Provider>

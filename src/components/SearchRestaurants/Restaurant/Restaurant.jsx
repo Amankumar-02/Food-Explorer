@@ -18,13 +18,13 @@ function Restaurant({ searchRestaurantResult, searchMoreResult, searchName }) {
               {/* {searchRestaurantResult.map((info, index) => ( */}
                 <div
                   // key={index}
-                  className="w-[530px] p-4 rounded-2xl border border-gray-600 flex items-center cursor-pointer hover:bg-gray-300" onClick={()=>navigate(`/restaurants/${searchRestaurantResult.id}`)}
+                  className="w-[530px] p-4 rounded-2xl border border-gray-600 flex items-center cursor-pointer hover:bg-gray-300" onClick={()=>navigate(`/restaurants/${searchRestaurantResult?.id}`)}
                 >
                   <div className="relative w-[100px] h-[100px] flex justify-center">
-                    {searchRestaurantResult.cloudinaryImageId ? (
+                    {searchRestaurantResult?.cloudinaryImageId ? (
                       <>
                         <img
-                          src={IMG_URL + searchRestaurantResult.cloudinaryImageId}
+                          src={IMG_URL + searchRestaurantResult?.cloudinaryImageId}
                           className="menu-img w-full h-full object-cover rounded-xl"
                           alt=""
                         />
@@ -45,23 +45,23 @@ function Restaurant({ searchRestaurantResult, searchMoreResult, searchName }) {
                     </>)}
                   </div>
                   <div className="ms-4 flex flex-col gap-1" style={{width: "calc(100% - 100px)"}}>
-                    <h1 className="text-sm font-bold text-gray-600">{searchRestaurantResult.name}</h1>
+                    <h1 className="text-sm font-bold text-gray-600">{searchRestaurantResult?.name}</h1>
                     <p className="text-sm text-gray-600 font-semibold">
                     ⭐{" "}
-                    {searchRestaurantResult.avgRating ||
-                      searchRestaurantResult.avgRatingString}{" "}
+                    {searchRestaurantResult?.avgRating ||
+                      searchRestaurantResult?.avgRatingString}{" "}
                     {`. ${
-                      searchRestaurantResult.sla.slaString ||
-                      searchRestaurantResult.sla.deliveryTime + "MINS"
-                    }`}{" "}{`. ${searchRestaurantResult.costForTwoMessage}`}
+                      searchRestaurantResult?.sla.slaString ||
+                      searchRestaurantResult?.sla.deliveryTime + "MINS"
+                    }`}{" "}{`. ${searchRestaurantResult?.costForTwoMessage}`}
                   </p>
-                  {searchRestaurantResult.cuisines.join(", ").length > 250? (<>
+                  {searchRestaurantResult?.cuisines.join(", ").length > 250? (<>
                     <p className="leading-3 text-gray-500 text-xs w-[100%]">
-                    {searchRestaurantResult.cuisines.join(", ").slice(0,250)+'...'}
+                    {searchRestaurantResult?.cuisines.join(", ").slice(0,250)+'...'}
                   </p>
                   </>) : (<>
                     <p className="leading-3 text-gray-500 text-xs w-[100%]">
-                    {searchRestaurantResult.cuisines.join(", ")}
+                    {searchRestaurantResult?.cuisines.join(", ")}
                   </p>
                   </>)}
                   </div>

@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { modifyCartQuantity, removeCartItem, clearCartItems } from "../../reduxFeatures/cartSlice";
 import { MENU_IMG_URL } from "../../utils/constants";
 import { useNavigate } from "react-router-dom";
+import toast from 'react-hot-toast';
 
 function RestaurantFoodCart() {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ function RestaurantFoodCart() {
     if(task === "decrease" && storeData.filter(item=>item?.info?.name === name)[0]?.info?.quantity === 1){
       console.log("first")
       dispatch(removeCartItem(name))
+      toast.success("Item Remove SuccessFully");
     }
   };
   const [cartToggle, setCartToggle] = useState({
@@ -85,7 +87,7 @@ function RestaurantFoodCart() {
                     <li className="leading-4 text-sm">{item?.info?.description}</li>
                     <li>Quantity: <span className="text-red-500 font-semibold">{item?.info?.quantity}</span> items</li>
                     <li>
-                      <button className="bg-red-500 px-4 text-white font-semibold rounded-xl" onClick={()=>dispatch(removeCartItem(item?.info?.name))}>Remove</button>
+                      <button className="bg-red-500 px-4 text-white font-semibold rounded-xl" onClick={()=>{dispatch(removeCartItem(item?.info?.name)); toast.success("Item Remove SuccessFully")}}>Remove</button>
                     </li>
                   </ul>
                   <div className="relative w-[150px] h-[120px] flex justify-center">
@@ -137,7 +139,7 @@ function RestaurantFoodCart() {
             </div>
           </div>
           <div className="w-[40%] flex gap-4 flex-col items-center px-6">
-            <button className="bg-red-500 w-full py-2 rounded-2xl text-white font-semibold text-lg" onClick={()=>{dispatch(clearCartItems())}}>Checkout</button>
+            <button className="bg-red-500 w-full py-2 rounded-2xl text-white font-semibold text-lg" onClick={()=>{dispatch(clearCartItems()); toast.success("Your Order is Placed Successfully")}}>Checkout</button>
             <div className="w-full">
               <h1>PRICE DETAILS</h1>
               <div className="flex items-center justify-between my-2">

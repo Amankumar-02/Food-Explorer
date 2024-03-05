@@ -4,6 +4,7 @@ import { sorting, MENU_IMG_URL } from "../../../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { addCartItem, modifyCartQuantity, removeCartItem
 } from "../../../reduxFeatures/cartSlice";
+import toast from 'react-hot-toast';
 
 function Dish({ searchFoodResult, searchName }) {
     const [dishFilter, setDishFilter] = useState([]);
@@ -77,6 +78,7 @@ function Dish({ searchFoodResult, searchName }) {
           restaurantId: restId,
         })
       );
+      toast.success("Item Added SuccessFully");
     }
   };
 
@@ -90,6 +92,7 @@ function Dish({ searchFoodResult, searchName }) {
     ) {
       console.log("first");
       dispatch(removeCartItem(name));
+      toast.success("Item Remove SuccessFully");
     }
   };
 
