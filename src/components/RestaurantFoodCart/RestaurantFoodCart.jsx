@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { modifyCartQuantity, removeCartItem } from "../../reduxFeatures/cartSlice";
+import { modifyCartQuantity, removeCartItem, clearCartItems } from "../../reduxFeatures/cartSlice";
 import { MENU_IMG_URL } from "../../utils/constants";
 import { useNavigate } from "react-router-dom";
 
@@ -8,7 +8,7 @@ function RestaurantFoodCart() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const storeData = useSelector((state) => state.cartStore.cart);
-  // console.log(storeData);
+  console.log(storeData);
 
   const modifyQuantity = (task, name) => {
     dispatch(modifyCartQuantity({ nameDis: name, taskDis: task }));
@@ -33,7 +33,7 @@ function RestaurantFoodCart() {
   return (
     <>
       {storeData.length === 0 ? (
-        <div className="w-full mt-10 flex flex-col items-center justify-center">
+        <div className="w-full my-10 flex flex-col items-center justify-center">
           <img
             src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/2xempty_cart_yfxml0"
             alt=""
@@ -48,8 +48,9 @@ function RestaurantFoodCart() {
         </div>
       ) : (
         <>
-          <div className="m-8">
-            <div className="px-10 pb-4 shadow-md flex items-center justify-between">
+        <div className="my-12 mx-8 flex gap-4">
+          <div className="min-h-[300px] w-[60%]">
+            <div className="px-10 py-4 shadow-md flex items-center justify-between bg-gray-300 rounded-xl">
               <h1 className="text-xl font-bold">Cart Items</h1>
               <button onClick={cartToggleEvent}>{cartToggle.name}</button>
             </div>
@@ -57,16 +58,16 @@ function RestaurantFoodCart() {
               {storeData.map((item, index) => (
                 <div
                   key={index}
-                  className="relative flex justify-between items-center py-4 px-8 border border-x-0"
+                  className="relative flex justify-between items-center py-4 px-8 border border-x-0 hover:bg-gray-200 rounded-xl"
                 >
                   <ul className="flex flex-col gap-2 justify-center list-none w-[70%]">
-                    <li className="text-xl font-bold text-gray-700 cursor-pointer" onClick={()=>navigate(`/restaurants/${item?.info?.restaurantId}`)}>{item?.info?.restaurantName}</li>
-                    {item?.info?.itemAttribute?.vegClassifier === "VEG" ? (
+                    <li className="text-xl font-bold text-gray-700 cursor-pointer" onClick={()=>navigate(`/restaurants/${item?.info?.restaurantId}`)}>By {item?.info?.restaurantName}</li>
+                    {item?.info?.itemAttribute?.vegClassifier === "VEG" || item?.info?.isVeg === 1 ? (
                       <li className="w-fit border border-green-500 text-[8px]">
                         🟢
                       </li>
                     ) : null}
-                    {item?.info?.itemAttribute?.vegClassifier === "NONVEG" ? (
+                    {item?.info?.itemAttribute?.vegClassifier === "NONVEG" || !item?.info?.isVeg ? (
                       <li className="w-fit border border-red-500 text-[8px]">
                         🔺
                       </li>
@@ -135,6 +136,28 @@ function RestaurantFoodCart() {
               ))}
             </div>
           </div>
+          <div className="w-[40%] flex gap-4 flex-col items-center px-6">
+            <button className="bg-red-500 w-full py-2 rounded-2xl text-white font-semibold text-lg" onClick={()=>{dispatch(clearCartItems())}}>Checkout</button>
+            <div className="w-full">
+              <h1>PRICE DETAILS</h1>
+              <div className="flex items-center justify-between my-2">
+                <p>Price ({storeData.reduce((a,b)=>a + b.info.quantity,0)} Items)</p>
+                <p>{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(storeData.reduce((a,b)=>a + (b.info.price/100)*b.info.quantity,0))}</p>
+              </div>
+              <div className="flex items-center justify-between my-2">
+                <p>Delivery Charges</p>
+                <p>Free</p>
+              </div>
+              <div className="flex items-center justify-between border border-x-0 py-2">
+              <h2>AMOUNT PAYABLE</h2>
+              <h2>{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(storeData.reduce((a,b)=>a + (b.info.price/100)*b.info.quantity,0))}</h2>
+              </div>
+              <p className="my-2">
+              Safe and Secure Payments. Easy returns. 100% Authentic products.
+              </p>
+            </div>
+          </div>
+        </div>
         </>
       )}
     </>

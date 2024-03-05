@@ -97,24 +97,25 @@ function Dish({ searchFoodResult, searchName }) {
     <>
       {!dishFilter ? null : (
         <>
-          <div className="m-auto w-[80%]">
-            <h1 className="text-2xl font-semibold capitalize">Search Results: {searchName}</h1>
+          <div className="my-10 m-auto w-[80%]">
+            <h1 className="text-xl font-semibold capitalize text-gray-700">Search Results: <span className="text-2xl">{searchName}</span></h1>
             <div className="flex gap-4 items-center mt-4">
+              <h1 className="text-xl font-semibold text-gray-700">Filter:</h1>
               {sorting.map(({ title, purpose }, index) => (
                 <button
                   key={index}
-                  className="border border-black px-4 rounded-xl hover:bg-gray-300 font-semibold"
+                  className="border border-black py-1 px-4 rounded-xl hover:bg-gray-300 font-semibold"
                   onClick={() => sortEvent(purpose)}
                 >
                   {title}
                 </button>
               ))}
             </div>
-            <div className="mt-8 flex gap-4 flex-wrap my-4">
+            <div className="flex gap-4 flex-wrap my-10">
               {dishFilter.map(({ card }, index) => (
                 <div
                   key={index}
-                  className="w-[530px] p-4 rounded-2xl border border-gray-600"
+                  className="w-[530px] p-4 rounded-2xl border border-gray-600 hover:bg-gray-200"
                 >
                   <div
                     className="flex justify-between items-center cursor-pointer pb-2 border border-dotted border-gray-600 border-x-0 border-t-0"
@@ -136,7 +137,7 @@ function Dish({ searchFoodResult, searchName }) {
                         }`}
                       </p>
                     </div>
-                    <button>➡️</button>
+                    <button className="hover:scale-[1.1]">➡️</button>
                   </div>
                   <div className="flex justify-between items-center pt-2">
                     <div className="flex flex-col gap-2" style={{width: "calc(100% - 100px)"}}>

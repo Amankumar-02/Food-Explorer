@@ -11,14 +11,14 @@ function Restaurant({ searchRestaurantResult, searchMoreResult, searchName }) {
     <>
       {!searchRestaurantResult ? null : (
         <>
-          <div className="m-auto w-[80%]">
+          <div className="my-10 m-auto w-[80%]">
             <div>
-            <h1 className="text-2xl font-semibold capitalize">Search Results: {searchName}</h1>
+            <h1 className="text-xl font-semibold capitalize text-gray-700">Search Results: <span className="text-2xl">{searchName}</span></h1>
             <div className="flex gap-4 flex-wrap my-4">
               {/* {searchRestaurantResult.map((info, index) => ( */}
                 <div
                   // key={index}
-                  className="w-[530px] p-4 rounded-2xl border border-gray-600 flex items-center cursor-pointer" onClick={()=>navigate(`/restaurants/${searchRestaurantResult.id}`)}
+                  className="w-[530px] p-4 rounded-2xl border border-gray-600 flex items-center cursor-pointer hover:bg-gray-300" onClick={()=>navigate(`/restaurants/${searchRestaurantResult.id}`)}
                 >
                   <div className="relative w-[100px] h-[100px] flex justify-center">
                     {searchRestaurantResult.cloudinaryImageId ? (
@@ -69,13 +69,13 @@ function Restaurant({ searchRestaurantResult, searchMoreResult, searchName }) {
               {/* ))} */}
             </div>
             </div>
-            <div>
-            <h1 className="text-2xl font-semibold capitalize">More results like this</h1>
+            <div className="mt-10">
+            <h1 className="text-2xl font-semibold capitalize text-gray-700">More results like this</h1>
             <div className="flex gap-4 flex-wrap my-4">
               {searchMoreResult.map(({ info }, index) => (
                 <div
                   key={index}
-                  className="w-[530px] p-4 rounded-2xl border border-gray-600 flex items-center cursor-pointer" onClick={()=>navigate(`/restaurants/${info.id}`)}
+                  className="w-[530px] p-4 rounded-2xl border border-gray-600 flex items-center cursor-pointer hover:bg-gray-300" onClick={()=>navigate(`/restaurants/${info.id}`)}
                 >
                   <div className="relative w-[100px] h-[100px] flex justify-center">
                     {info.cloudinaryImageId ? (
