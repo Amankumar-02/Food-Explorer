@@ -15,6 +15,21 @@ function Body() {
   const [restList1, setRestList1] = useState([]);
   const [restList2, setRestList2] = useState([]);
   const [searchInput, setSearchInput] = useState("");
+  const [slider, setSlider] = useState({action:"translateX(0%)", count:0})
+  const sliderEvent = (task)=>{
+    if(task === "prev"){
+      if(slider.count>0){
+        const query = slider.count-1;
+        setSlider(prev=>({...prev, action: `translateX(${-5*query}%)`, count:query}))
+      }
+    }else{
+      if(slider.count<15){
+        const query = slider.count+1;
+        setSlider(prev=>({...prev, action: `translateX(${-5*query}%)`, count:query}))
+        console.log(query)
+      }
+    }
+  }
 
   const RestaurantCardOffer = AdditionOfferRestaurantCard(RestaurantCard)
 
@@ -22,7 +37,7 @@ function Body() {
   useEffect(()=>{
     if(fetchHomeData){
       setHomePageData(fetchHomeData?.data)
-      setRestTopList(fetchHomeData?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info.slice(0,14))
+      setRestTopList(fetchHomeData?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info)
       setRestList1(fetchHomeData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
       setRestList2(fetchHomeData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
       console.log("All Home Data Rendered");
@@ -30,13 +45,11 @@ function Body() {
     }
   }, [fetchHomeData]);
 
-  const [count, setCount] = useState(1);
-  const [count2, setCount2] = useState(0);
+  const [moreFoodCount, setMoreFoodCount] = useState({count1:1, count2:0})
   const addMoreRest = ()=>{
-    const addingEvent = homeFoodRestaurants.slice((10*count2), (10*count));
+    const addingEvent = homeFoodRestaurants.slice((10*moreFoodCount.count2), (10*moreFoodCount.count1));
     setRestList2(prev=>[...prev, ...addingEvent])
-    setCount(prev=>prev+1)
-    setCount2(prev=>prev+1)
+    setMoreFoodCount(prev=>({...prev, count1:prev.count1+1, count2: prev.count2+1}))
   }
 
   const searchItemEvent = (e)=>{
@@ -83,17 +96,22 @@ function Body() {
           ) : (
             <>
               <div className="my-6 mx-8">
-                <section id='section1'>
-                <div className="search-item mb-4">
+                <section id='section1' className='overflow-hidden'>
+                <div className="search-item mb-4 flex justify-between items-center">
                   <h2 className='text-[30px] font-semibold'>{homePageData?.cards[0]?.card?.card?.header?.title}</h2>
+                  <div className='me-10 flex gap-2 border border-gray-500 px-2 rounded-xl'>
+                  <button className='section1-btn' onClick={()=>{sliderEvent("prev")}}>⬅️</button>
+                  <button className='section1-btn' onClick={()=>{sliderEvent("next")}}>➡️</button>
                 </div>
-                <div id='carousal' className='flex gap-4 flex-wrap'>
+                </div>
+                <div id='carousal' className='flex w-[400v] gap-[40px] transition-all' style={{width: "calc(400% - 64px)", transform: slider.action}}>
                   {restTopList.map((item, index)=>(
-                  <div key={index} className='w-[168px]' onClick={()=>navigate(`/search/${item.action.text.toLowerCase()}`)}>
-                    <img src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/"+item.imageId} alt="" className='w-full object-cover cursor-pointer'/>
+                  <div key={index} className='w-[15v]' style={{width:"calc(20% - 32px)"}} onClick={()=>navigate(`/search/${item.action.text.toLowerCase()}`)}>
+                    <img src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/"+item.imageId} alt="" className='section1-img w-full object-cover cursor-pointer'/>
                   </div>
                   ))}
                 </div>
+                
                 </section>
 
                 <section id='section2'>

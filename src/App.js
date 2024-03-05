@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {Header,Body} from './components/index';
+import {Header,Body, Footer} from './components/index';
 import { Outlet } from 'react-router-dom';
 // import { useContext } from 'react';
 // import { UserContextStore } from './utils/UserContextStore';
@@ -28,6 +28,7 @@ function App() {
         <Header/>
         {/* <Body/> */}
         <Outlet/>
+        <Footer/>
       </div>
     </Provider>
     {/* </UserContextStore.Provider> */}

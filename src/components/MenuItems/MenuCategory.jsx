@@ -13,7 +13,7 @@ function MenuCategory({card, id, toggleEvent, showToggle, restName, restId}) {
   return (
     <>
       <div className="w-[80%] transition-all">
-        <div className="flex justify-between items-center mt-8 p-4 shadow-md" onClick={()=>{toggleEvent(id)}}>
+        <div className="flex justify-between items-center mt-8 p-4 shadow-md bg-gray-200 rounded-xl" onClick={()=>{toggleEvent(id)}}>
           <h1 className="text-2xl font-semibold">
             {card?.card?.title} ({card?.card?.itemCards.length})
           </h1>

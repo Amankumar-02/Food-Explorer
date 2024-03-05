@@ -1,3 +1,7 @@
+.section1-img:hover, .section1-btn:hover{
+    transform: scale(1.1);
+}
+
 /* .res-container{
     display: flex;
     flex-wrap: wrap;

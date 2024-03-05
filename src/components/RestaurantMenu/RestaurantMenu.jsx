@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './RestaurantMenu.css';
 import {MenuCategory, Shimmer} from '../index';
 import { Link, useParams } from 'react-router-dom';
-import { MENU_IMG_URL, RESTAURANT_MENU_RESULT } from '../../utils/constants';
+import { MENU_IMG_URL, IMG_URL, RESTAURANT_MENU_RESULT } from '../../utils/constants';
 import useApiFetch from '../../hooks/useApiFetch';
 
 function RestaurantMenu() {
@@ -82,65 +82,99 @@ function RestaurantMenu() {
           <Shimmer />
         ) : (
           <>
-            <div className="menu mx-8 flex flex-col items-center">
-              <h1 className="text-3xl font-bold">{restMenuInfo?.name}</h1>
-              <p className="text-sm text-gray-600">
-                {restMenuInfo?.cuisines.join(", ")} -{" "}
-                {restMenuInfo?.costForTwoMessage}
-              </p>
-              <p className='text-sm text-gray-600'>{restMenuInfo?.areaName || restMenuInfo?.locality}{restMenuInfo?.expectationNotifiers? (<><span>, 🏍️ {restMenuInfo?.expectationNotifiers[0]?.text}</span></>):null}</p>
-              <p className='text-sm text-gray-600'>Rating: {restMenuInfo?.avgRating} ⭐</p>
-              <h2 className="text-xl font-bold">Menu</h2>
-              <div className="flex gap-4 mt-2">
-                <button
-                  className="px-6 py-1 rounded-lg border border-black hover:bg-gray-300"
-                  onClick={() => {
-                    foodFilter("all");
-                  }}
-                >
-                  All
-                </button>
-                <button
-                  className="px-6 py-1 rounded-lg border border-black hover:bg-gray-300"
-                  onClick={() => {
-                    foodFilter("veg");
-                  }}
-                >
-                  Veg
-                </button>
-                <button
-                  className="px-6 py-1 rounded-lg border border-black hover:bg-gray-300"
-                  onClick={() => {
-                    foodFilter("nonveg");
-                  }}
-                >
-                  NonVeg
-                </button>
+            <div className="menu my-10 mx-8 flex flex-col items-center">
+              <div className="flex flex-col gap-6 items-center">
+                <div className="flex gap-20 items-center justify-between border border-black px-4 py-2 rounded-2xl">
+                  <div
+                    className="flex flex-col gap-2"
+                    style={{ width: "calc(100% - 150px)" }}
+                  >
+                    <h1 className="text-[40px] text-gray-700 font-bold">
+                      {restMenuInfo?.name}
+                    </h1>
+                    <div className="flex flex-col">
+                      <p className="text-[15px] font-semibold text-gray-600">
+                        {restMenuInfo?.cuisines.join(", ")} -{" "}
+                        {restMenuInfo?.costForTwoMessage}
+                      </p>
+                      <p className="text-[15px] font-semibold text-gray-600 max-w-[90%]">
+                        {restMenuInfo?.areaName || restMenuInfo?.locality}
+                        {restMenuInfo?.expectationNotifiers ? (
+                          <>
+                            <span>
+                              , 🏍️ {restMenuInfo?.expectationNotifiers[0]?.text}
+                            </span>
+                          </>
+                        ) : null}
+                      </p>
+                      <p className="text-[15px] font-semibold text-gray-600">
+                        Rating: {restMenuInfo?.avgRating} ⭐
+                      </p>
+                    </div>
+                  </div>
+                  <div>
+                    <img
+                      src={IMG_URL + restMenuInfo?.cloudinaryImageId}
+                      className="w-[150px] rounded-xl"
+                      alt=""
+                    />
+                  </div>
+                </div>
+                <div className='flex flex-col items-center gap-2'>
+                  <h2 className="text-2xl italic font-bold px-2 border-2 border-gray-700 border-dotted border-x-0 border-t-0">
+                    Menu
+                  </h2>
+                  <div className="flex gap-4 mt-2">
+                    <button
+                      className="px-6 py-1 rounded-lg border border-black hover:bg-gray-300"
+                      onClick={() => {
+                        foodFilter("all");
+                      }}
+                    >
+                      All
+                    </button>
+                    <button
+                      className="px-6 py-1 rounded-lg border border-black hover:bg-gray-300"
+                      onClick={() => {
+                        foodFilter("veg");
+                      }}
+                    >
+                      Veg
+                    </button>
+                    <button
+                      className="px-6 py-1 rounded-lg border border-black hover:bg-gray-300"
+                      onClick={() => {
+                        foodFilter("nonveg");
+                      }}
+                    >
+                      NonVeg
+                    </button>
+                  </div>
+                </div>
               </div>
               {restMenuItems.map(
-                ({ card }, index) =>
+                ({ card }, index) => (
                   // {restMenuItems.filter(item=>item?.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory").map(({ card }, index) =>
                   // card?.card?.title && card?.card?.itemCards && (
                   // card?.card?.["@type"] ===
                   //   "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory" && (
-                    <MenuCategory
-                      key={index}
-                      id={index}
-                      card={card}
-                      restName={restMenuInfo?.name}
-                      restId={restMenuInfo?.id}
-                      toggleEvent={(e)=>{
-                        if(showCategory === e){
-                          setShowCategory(null);
-                        }else{
-                          setShowCategory(e);
-                        }
-                      }}
-                      showToggle={
-                        index === showCategory ? true : false
+                  <MenuCategory
+                    key={index}
+                    id={index}
+                    card={card}
+                    restName={restMenuInfo?.name}
+                    restId={restMenuInfo?.id}
+                    toggleEvent={(e) => {
+                      if (showCategory === e) {
+                        setShowCategory(null);
+                      } else {
+                        setShowCategory(e);
                       }
-                    />
-                  // )
+                    }}
+                    showToggle={index === showCategory ? true : false}
+                  />
+                )
+                // )
               )}
             </div>
           </>
