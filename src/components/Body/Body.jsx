@@ -41,7 +41,7 @@ function Body() {
       setRestList1(fetchHomeData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
       setRestList2(fetchHomeData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
       console.log("All Home Data Rendered");
-      console.log(fetchHomeData?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info);
+      // console.log(fetchHomeData?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info);
     }
   }, [fetchHomeData]);
 
@@ -85,26 +85,26 @@ function Body() {
         {/* <div className='w-full flex' style={{background: "linear-gradient(0deg, rgb(201, 188, 244) 0%, rgb(255, 255, 255) 95.83%)"}}> */}
         <div className='w-full flex' style={{background: "linear-gradient(0deg, rgb(201, 188, 244) 0%, rgb(255, 255, 255) 50.83%, rgb(201, 188, 244)95.83%)"}}>
           <div className='w-[50%] flex flex-col items-center justify-center'>
-            <h1 className='text-3xl text-gray-700 font-bold border-4 border-orange-600 border-x-0 border-t-0 pb-2 px-4'>Craving For Something</h1>
+            <h1 className='text-2xl lg:text-3xl text-gray-700 font-bold lg:border-4 lg:border-orange-600 lg:border-x-0 lg:border-t-0 pb-2 px-4'>Craving For Something</h1>
           </div>
-          <div className='w-[50%] flex items-center justify-center h-[250px]'>
-            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_1002,h_600/v1678428358/portal/m/seo_web/dweb_header.png" alt="" className='h-full object-cover'/>
+          <div className='w-[50%] flex items-center justify-center'>
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_1002,h_600/v1678428358/portal/m/seo_web/dweb_header.png" alt="" className='w-full lg:w-[80%] object-cover'/>
           </div>
         </div>
           {!homePageData ? (
             <Shimmer />
           ) : (
             <>
-              <div className="my-6 mx-8">
+              <div className="my-3 lg:my-6 mx-4 lg:mx-8">
                 <section id='section1' className='overflow-hidden'>
                 <div className="search-item mb-4 flex justify-between items-center">
-                  <h2 className='text-[30px] font-semibold'>{homePageData?.cards[0]?.card?.card?.header?.title}</h2>
-                  <div className='me-10 flex gap-2 border border-gray-500 px-2 rounded-xl'>
-                  <button className='section1-btn' onClick={()=>{sliderEvent("prev")}}>⬅️</button>
-                  <button className='section1-btn' onClick={()=>{sliderEvent("next")}}>➡️</button>
+                  <h2 className='text-xl lg:text-[30px] font-semibold'>{homePageData?.cards[0]?.card?.card?.header?.title}</h2>
+                  <div className='lg:me-10 flex gap-2 border border-gray-500 px-2 rounded-xl'>
+                  <button className='section1-btn text-sm lg:text-base' onClick={()=>{sliderEvent("prev")}}>⬅️</button>
+                  <button className='section1-btn text-sm lg:text-base' onClick={()=>{sliderEvent("next")}}>➡️</button>
                 </div>
                 </div>
-                <div id='carousal' className='flex w-[400v] gap-[40px] transition-all' style={{width: "calc(400% - 64px)", transform: slider.action}}>
+                <div id='carousal' className='flex w-[400v] gap-2 lg:gap-[40px] transition-all' style={{width: "calc(400% - 32px)", transform: slider.action}}>
                   {restTopList.map((item, index)=>(
                   <div key={index} className='w-[15v]' style={{width:"calc(20% - 32px)"}} onClick={()=>navigate(`/search/${item.action.text.toLowerCase()}`)}>
                     <img src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/"+item.imageId} alt="" className='section1-img w-full object-cover cursor-pointer'/>
@@ -115,28 +115,28 @@ function Body() {
                 </section>
 
                 <section id='section2'>
-                <div className="search-item mt-12 mb-8">
-                  <h2 className='text-[30px] font-semibold'>{homePageData?.cards[1]?.card?.card?.header?.title}</h2>
+                <div className="search-item mt-6 lg:mt-12 mb-4 lg:mb-8">
+                  <h2 className='text-xl lg:text-[30px] font-semibold'>{homePageData?.cards[1]?.card?.card?.header?.title}</h2>
                   <form onSubmit={searchItemEvent} className='mt-2'>
                     <input
                       type="text"
-                      className='py-1 px-3 border border-black border-e-0 rounded-xl rounded-e-none w-[400px]'
+                      className='lg:py-1 px-3 border border-black border-e-0 rounded-xl rounded-e-none lg:w-[400px]'
                       value={searchInput}
                       onChange={(e) => setSearchInput(e.target.value)}
                       placeholder="Seach top rated restaurants"
                     />
-                    <input type="submit" className='py-1 px-3 border border-black border-s-0 rounded-xl rounded-s-none hover:bg-gray-300 cursor-pointer font-semibold' value="Go" />
+                    <input type="submit" className='lg:py-1 px-3 border border-black border-s-0 rounded-xl rounded-s-none hover:bg-gray-300 cursor-pointer font-semibold' value="Go" />
                   </form>
                 </div>
                 <div className="res-container flex gap-4 flex-wrap my-4">
                   {restList1.map((item, index) => (
                     // <RestaurantCard key={index} items={item.info} />
-                    item?.info?.aggregatedDiscountInfoV3? (<RestaurantCardOffer key={index} items={item.info} />):(<div className='relative' key={index}><RestaurantCard items={item.info} /></div>)
+                    item?.info?.aggregatedDiscountInfoV3? (<RestaurantCardOffer key={index} items={item.info} />):(<div className='relative w-[172px] lg:w-auto' key={index}><RestaurantCard items={item.info} /></div>)
                   ))}
                 </div>
                 </section>
                 <section id='section3'>
-                <div className="filter mt-12 mb-8">
+                <div className="filter mt-6 lg:mt-12 mb-4 lg:mb-8">
                   <h2 className='text-[30px] font-semibold mb-2'>{homePageData?.cards[2]?.card?.card?.title}</h2>
                   <div className='flex gap-4'>
                   <h2 className="filter-title text-xl text-gray-600">Filters: </h2>
@@ -161,7 +161,7 @@ function Body() {
                 <div className="res-container flex gap-4 flex-wrap my-4">
                   {restList2.map((item, index) => (
                     // <RestaurantCard key={index} items={item.info} />
-                    item?.info?.aggregatedDiscountInfoV3? (<RestaurantCardOffer key={index} items={item.info} />):(<div className='relative' key={index}><RestaurantCard items={item.info} /></div>)
+                    item?.info?.aggregatedDiscountInfoV3? (<RestaurantCardOffer key={index} items={item.info} />):(<div className='relative w-[172px] lg:w-auto' key={index}><RestaurantCard items={item.info} /></div>)
                   ))}
                 </div>
                 <div className='flex justify-center'>
