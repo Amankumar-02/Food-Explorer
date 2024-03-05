@@ -144,7 +144,7 @@ function RestaurantFoodCart() {
               <h1>PRICE DETAILS</h1>
               <div className="flex items-center justify-between my-2">
                 <p>Price ({storeData.reduce((a,b)=>a + b.info.quantity,0)} Items)</p>
-                <p>{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(storeData.reduce((a,b)=>a + (b.info.price/100)*b.info.quantity,0))}</p>
+                <p>{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(storeData.reduce((a,b)=>a + (b.info.price/100 || b.info.defaultPrice/100)*b.info.quantity,0))}</p>
               </div>
               <div className="flex items-center justify-between my-2">
                 <p>Delivery Charges</p>
@@ -152,7 +152,7 @@ function RestaurantFoodCart() {
               </div>
               <div className="flex items-center justify-between border border-x-0 py-2">
               <h2>AMOUNT PAYABLE</h2>
-              <h2>{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(storeData.reduce((a,b)=>a + (b.info.price/100)*b.info.quantity,0))}</h2>
+              <h2>{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(storeData.reduce((a,b)=>a + (b.info.price/100 || b.info.defaultPrice/100)*b.info.quantity,0))}</h2>
               </div>
               <p className="my-2">
               Safe and Secure Payments. Easy returns. 100% Authentic products.

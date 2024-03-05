@@ -16,7 +16,7 @@ function RestaurantError({searchMoreResult, searchName}) {
               {searchMoreResult.map(({ card }, index) => (
                 <div
                   key={index}
-                  className="w-[530px] p-4 rounded-2xl border border-gray-600 flex items-center cursor-pointer hover:bg-gray-300" onClick={()=>navigate(`/restaurants/${card?.card?.info?.id}`)}
+                  className="w-[370px] lg:w-[530px] p-4 rounded-2xl border border-gray-600 flex items-center cursor-pointer hover:bg-gray-300" onClick={()=>navigate(`/restaurants/${card?.card?.info?.id}`)}
                 >
                   <div className="relative w-[100px] h-[100px] flex justify-center">
                     {card?.card?.info?.cloudinaryImageId ? (

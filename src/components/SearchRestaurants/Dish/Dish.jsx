@@ -118,7 +118,7 @@ function Dish({ searchFoodResult, searchName }) {
               {dishFilter.map(({ card }, index) => (
                 <div
                   key={index}
-                  className="w-[530px] p-4 rounded-2xl border border-gray-600 hover:bg-gray-200"
+                  className="w-[370px] lg:w-[530px] p-4 rounded-2xl border border-gray-600 hover:bg-gray-200"
                 >
                   <div
                     className="flex justify-between items-center cursor-pointer pb-2 border border-dotted border-gray-600 border-x-0 border-t-0"

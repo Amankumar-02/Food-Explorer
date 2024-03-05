@@ -18,7 +18,7 @@ function Restaurant({ searchRestaurantResult, searchMoreResult, searchName }) {
               {/* {searchRestaurantResult.map((info, index) => ( */}
                 <div
                   // key={index}
-                  className="w-[530px] p-4 rounded-2xl border border-gray-600 flex items-center cursor-pointer hover:bg-gray-300" onClick={()=>navigate(`/restaurants/${searchRestaurantResult?.id}`)}
+                  className="w-[370px] lg:w-[530px] p-4 rounded-2xl border border-gray-600 flex items-center cursor-pointer hover:bg-gray-300" onClick={()=>navigate(`/restaurants/${searchRestaurantResult?.id}`)}
                 >
                   <div className="relative w-[100px] h-[100px] flex justify-center">
                     {searchRestaurantResult?.cloudinaryImageId ? (
@@ -75,7 +75,7 @@ function Restaurant({ searchRestaurantResult, searchMoreResult, searchName }) {
               {searchMoreResult.map(({ info }, index) => (
                 <div
                   key={index}
-                  className="w-[530px] p-4 rounded-2xl border border-gray-600 flex items-center cursor-pointer hover:bg-gray-300" onClick={()=>navigate(`/restaurants/${info.id}`)}
+                  className="w-[370px] lg:w-[530px] p-4 rounded-2xl border border-gray-600 flex items-center cursor-pointer hover:bg-gray-300" onClick={()=>navigate(`/restaurants/${info.id}`)}
                 >
                   <div className="relative w-[100px] h-[100px] flex justify-center">
                     {info.cloudinaryImageId ? (
