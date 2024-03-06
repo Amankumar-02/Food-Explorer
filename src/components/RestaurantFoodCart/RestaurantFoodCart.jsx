@@ -139,7 +139,7 @@ function RestaurantFoodCart() {
             </div>
           </div>
           <div className="relative w-[40%] px-6">
-            <div className="sticky top-[90px] right-0 flex gap-4 flex-col items-center">
+            <div className="sticky top-[135px] lg:top-[90px] right-0 flex gap-4 flex-col items-center">
             <button className="bg-red-500 w-full py-2 rounded-2xl text-white font-semibold text-lg" onClick={()=>{dispatch(clearCartItems()); toast.success("Your Order is Placed Successfully")}}>Checkout</button>
             <div className="w-full">
               <h1>PRICE DETAILS</h1>
