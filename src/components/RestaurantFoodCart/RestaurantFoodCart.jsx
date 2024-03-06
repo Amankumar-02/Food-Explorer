@@ -138,7 +138,8 @@ function RestaurantFoodCart() {
               ))}
             </div>
           </div>
-          <div className="w-[40%] flex gap-4 flex-col items-center px-6">
+          <div className="relative w-[40%] px-6">
+            <div className="sticky top-[90px] right-0 flex gap-4 flex-col items-center">
             <button className="bg-red-500 w-full py-2 rounded-2xl text-white font-semibold text-lg" onClick={()=>{dispatch(clearCartItems()); toast.success("Your Order is Placed Successfully")}}>Checkout</button>
             <div className="w-full">
               <h1>PRICE DETAILS</h1>
@@ -157,6 +158,7 @@ function RestaurantFoodCart() {
               <p className="my-2">
               Safe and Secure Payments. Easy returns. 100% Authentic products.
               </p>
+            </div>
             </div>
           </div>
         </div>
