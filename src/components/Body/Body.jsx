@@ -143,11 +143,13 @@ function Body() {
                   <div className='flex gap-2'>
                   <button
                     className="filter-btn cursor-pointer px-4 border border-black rounded-xl hover:bg-gray-300 text-sm font-semibold"
-                    onClick={() =>
+                    onClick={() =>{
+                      const addingEvent = homeFoodRestaurants.slice((0), (10*moreFoodCount.count2));
                       setRestList2(
-                        homePageData?.cards[4]?.card?.card?.gridElements
-                          ?.infoWithStyle?.restaurants
+                        [...homePageData?.cards[4]?.card?.card?.gridElements
+                        ?.infoWithStyle?.restaurants , ...addingEvent]
                       )
+                    }
                     }
                   >
                     All Restaurants
