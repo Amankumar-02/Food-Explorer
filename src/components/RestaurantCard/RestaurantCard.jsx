@@ -1,11 +1,12 @@
 import React from 'react';
-import './RestaurantCard.css';
+// import './RestaurantCard.css';
 import { IMG_URL } from '../../utils/constants';
 import { useNavigate } from 'react-router-dom';
 
 function RestaurantCard({items}) {
     const {avgRating, name, cloudinaryImageId, sla, cuisines, areaName, id} = items;
     const navigate = useNavigate();
+    // console.log(items);
   return (
     <>
         <div className="res-card w-[175px] lg:w-[240px] h-full flex flex-col bg-[#f0f0f0] p-2 rounded-xl hover:border hover:border-black hover: cursor-pointer" onClick={()=>{navigate(`restaurants/${id}`)}}>
