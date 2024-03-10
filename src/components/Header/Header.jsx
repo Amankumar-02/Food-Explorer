@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Header.css';
-import logo from '../../../public/logo.png';
+// import logo from '../../../public/logo.png';
 import {Link, useNavigate} from 'react-router-dom';
 import useInternetStatus from '../../hooks/useInternetStatus';
 // import { useContext } from 'react';
@@ -38,7 +38,7 @@ function Header() {
     <div className="header sticky top-0 left-0 z-[999] b-[#D5CBF6de] shadow-lg flex flex-col lg:flex-row justify-between items-center py-2 lg:px-16" style={{background: "linear-gradient(0deg, rgb(201, 188, 244) 0%, rgb(201, 188, 244) 95.83%)"}}>
       <div className="logo-container">
         <Link to={"/"}>
-          <img className="logo w-[80px] lg:w-[100px]" src={logo} alt="" />
+          <img className="logo w-[80px] lg:w-[100px]" src="	https://food-explorer-002.netlify.app/logo.355b7f2c.png" alt="" />
         </Link>
       </div>
       <div className="search">
@@ -60,17 +60,17 @@ function Header() {
             <li className="text-lg font-semibold text-black hover:border-2 hover:border-gray-800 hover:border-x-0 hover:border-t-0">
               Grocery
             </li>
-          </Link>
-          <Link to={"/about"} className="no-underline">
+          </Link> */}
+          {/* <Link to={"/about"} className="no-underline">
             <li className="text-lg font-semibold text-black hover:border-2 hover:border-gray-800 hover:border-x-0 hover:border-t-0">
               About Us
             </li>
-          </Link>
+          </Link> */}
           <Link to={"/contact"} className="no-underline">
             <li className="text-lg font-semibold text-black hover:border-2 hover:border-gray-800 hover:border-x-0 hover:border-t-0">
               Contact Us
             </li>
-          </Link> */}
+          </Link>
           <Link to={"/cart"} className="no-underline">
           <li className="text-lg font-semibold text-black hover:border-2 hover:border-gray-800 hover:border-x-0 hover:border-t-0">
             Cart{storeData.length===0? null:(<>: {storeData.length}</>)}

@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import {Header,Body, Footer} from './components/index';
+import React from 'react'
+import {Header, Footer} from './components/index';
 import { Outlet } from 'react-router-dom';
 // import { useContext } from 'react';
 // import { UserContextStore } from './utils/UserContextStore';
@@ -27,7 +27,6 @@ function App() {
 
       <div className='app relative'>
         <Header/>
-        {/* <Body/> */}
         <Outlet/>
         <Toaster />
         <Footer/>
