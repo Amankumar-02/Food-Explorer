@@ -25,11 +25,18 @@ function MenuCategory({card, id, toggleEvent, showToggle, restName, restId}) {
           </button>
         </div>
         {/* <div className="" style={toggle}></div> */}
-        <div className={`${showToggle? ("block"): ("hidden")}`}>
+        {showToggle? (<>
+          <div>
           {card?.card?.itemCards.map(({ card }, index2) => (
             <MenuItem key={index2} card={card} restName={restName} restId={restId}/>
           ))}
         </div>
+        </>) : null}
+        {/* <div className={`${showToggle? ("block"): ("hidden")}`}>
+          {card?.card?.itemCards.map(({ card }, index2) => (
+            <MenuItem key={index2} card={card} restName={restName} restId={restId}/>
+          ))}
+        </div> */}
       </div>
     </>
   );
