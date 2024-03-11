@@ -1,5 +1,5 @@
 import React from 'react'
-import Logo from '../../../public/logo.png';
+// import Logo from '../../../public/logo.png';
 
 function Footer() {
     const data = [
@@ -38,7 +38,7 @@ function Footer() {
     <>
     <div className='py-10 px-20 flex gap-4 text-gray-700' style={{background: "linear-gradient(0deg, rgb(201, 188, 244) 0%, rgb(201, 188, 244) 95.83%)"}}>
         <div className='w-[32%] flex flex-col gap-2'>
-            <img src={Logo} className='w-[130px]' alt="" />
+            <img src="https://food-explorer-002.netlify.app/logo.355b7f2c.png" className='w-[130px]' alt="" />
             <h1 className='text-2xl font-bold'>Food Explorer</h1>
             <h1 className='font-semibold'>&copy; 2024 AmanKr - All Right Reseved</h1>
         </div>

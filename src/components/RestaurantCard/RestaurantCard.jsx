@@ -9,7 +9,7 @@ function RestaurantCard({items}) {
     // console.log(items);
   return (
     <>
-        <div className="res-card w-[175px] lg:w-[240px] h-full flex flex-col bg-[#f0f0f0] p-2 rounded-xl hover:border hover:border-black hover: cursor-pointer" onClick={()=>{navigate(`restaurants/${id}`)}}>
+        <div data-testid="test-myRestCard" className="res-card w-[175px] lg:w-[240px] h-full flex flex-col bg-[#f0f0f0] p-2 rounded-xl hover:border hover:border-black hover: cursor-pointer" onClick={()=>{navigate(`restaurants/${id}`)}}>
             <img className='res-logo my-1 mx-auto w-[94%] h-[120px] lg:h-[160px] object-cover rounded-xl' src={IMG_URL+cloudinaryImageId} alt="" />
             <div className='res-card-content my-1 mx-auto w-[94%] flex flex-col gap-1'>
               <h3 className='text-lg font-semibold leading-5'>{name}</h3>

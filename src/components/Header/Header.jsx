@@ -38,7 +38,7 @@ function Header() {
     <div className="header sticky top-0 left-0 z-[999] b-[#D5CBF6de] shadow-lg flex flex-col lg:flex-row justify-between items-center py-2 lg:px-16" style={{background: "linear-gradient(0deg, rgb(201, 188, 244) 0%, rgb(201, 188, 244) 95.83%)"}}>
       <div className="logo-container">
         <Link to={"/"}>
-          <img className="logo w-[80px] lg:w-[100px]" src="	https://food-explorer-002.netlify.app/logo.355b7f2c.png" alt="" />
+          <img className="logo w-[80px] lg:w-[100px]" src="https://food-explorer-002.netlify.app/logo.355b7f2c.png" alt="" />
         </Link>
       </div>
       <div className="search">

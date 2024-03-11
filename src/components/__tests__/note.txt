@@ -3,6 +3,7 @@ Unit testing cases
 2. contact.test ==> 5
 3. header.test ==> 4
 4. restaurantCard.test ==> 2
-5. additionOffer ==> 1
+5. additionOffer.test ==> 1
+6. search.test ==> 2
 
 Integration testing cases

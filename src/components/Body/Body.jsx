@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import './Body.css';
+// import './Body.css';
 import {RestaurantCard, AdditionOfferRestaurantCard, Shimmer} from '../index';
 import { RESTAURANT_HOME } from '../../utils/constants';
-import useApiFetch from '../../hooks/useApiFetch';
+// import useApiFetch from '../../hooks/useApiFetch';
 import useInternetStatus from '../../hooks/useInternetStatus';
 import { homeFoodRestaurants } from '../../utils/homeFoodRestaurants';
 import { useNavigate } from 'react-router-dom';
@@ -33,17 +33,33 @@ function Body() {
 
   const RestaurantCardOffer = AdditionOfferRestaurantCard(RestaurantCard)
 
-  const fetchHomeData = useApiFetch(RESTAURANT_HOME);
+  // This fetch is for testing purpose only
   useEffect(()=>{
-    if(fetchHomeData){
-      setHomePageData(fetchHomeData?.data)
-      setRestTopList(fetchHomeData?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info)
-      setRestList1(fetchHomeData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-      setRestList2(fetchHomeData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-      console.log("All Home Data Rendered");
-      // console.log(fetchHomeData?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info);
-    }
-  }, [fetchHomeData]);
+    const fetchData = async () => {
+      const data = await fetch(RESTAURANT_HOME);
+      const json = await data.json();
+      setHomePageData(json?.data)
+      setRestTopList(json?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info)
+      setRestList1(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+      setRestList2(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    };
+    fetchData();
+  }, [])
+
+  
+
+  //Original Fetch Code
+  // const fetchHomeData = useApiFetch(RESTAURANT_HOME);
+  // useEffect(()=>{
+  //   if(fetchHomeData){
+  //     setHomePageData(fetchHomeData?.data)
+  //     setRestTopList(fetchHomeData?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info)
+  //     setRestList1(fetchHomeData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+  //     setRestList2(fetchHomeData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+  //     console.log("All Home Data Rendered");
+  //     // console.log(fetchHomeData?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info);
+  //   }
+  // }, [fetchHomeData]);
 
   const [moreFoodCount, setMoreFoodCount] = useState({count1:1, count2:0})
   const addMoreRest = ()=>{
@@ -104,13 +120,17 @@ function Body() {
                   <button className='section1-btn text-sm lg:text-base' onClick={()=>{sliderEvent("next")}}>➡️</button>
                 </div>
                 </div>
-                <div id='carousal' className='flex w-[400v] gap-2 lg:gap-[40px] transition-all' style={{width: "calc(400% - 32px)", transform: slider.action}}>
+                {!restTopList? null : (
+                  <>
+                  <div id='carousal' className='flex w-[400v] gap-2 lg:gap-[40px] transition-all' style={{width: "calc(400% - 32px)", transform: slider.action}}>
                   {restTopList.map((item, index)=>(
                   <div key={index} className='w-[15v]' style={{width:"calc(20% - 32px)"}} onClick={()=>navigate(`/search/${item.action.text.toLowerCase()}`)}>
                     <img src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/"+item.imageId} alt="" className='section1-img w-full object-cover cursor-pointer'/>
                   </div>
                   ))}
                 </div>
+                  </>
+                )}
                 
                 </section>
 
@@ -118,7 +138,7 @@ function Body() {
                 <div className="search-item mt-6 lg:mt-12 mb-4 lg:mb-8">
                   <h2 className='text-xl lg:text-[30px] font-semibold'>{homePageData?.cards[1]?.card?.card?.header?.title}</h2>
                   <form onSubmit={searchItemEvent} className='mt-2'>
-                    <input
+                    <input data-testid="test-search-id"
                       type="text"
                       className='lg:py-1 px-3 border border-black border-e-0 rounded-xl rounded-e-none lg:w-[400px]'
                       value={searchInput}
@@ -154,7 +174,7 @@ function Body() {
                   >
                     All Restaurants
                   </button>
-                  <button className="filter-btn cursor-pointer px-4 border border-black rounded-xl hover:bg-gray-300 text-sm font-semibold" onClick={filterRestautants}>
+                  <button data-testid="test-button-id" className="filter-btn cursor-pointer px-4 border border-black rounded-xl hover:bg-gray-300 text-sm font-semibold" onClick={filterRestautants}>
                     Top Rated Restaurants
                   </button>
                     </div>

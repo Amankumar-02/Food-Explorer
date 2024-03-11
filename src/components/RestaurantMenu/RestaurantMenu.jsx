@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './RestaurantMenu.css';
+// import './RestaurantMenu.css';
 import {MenuCategory, Shimmer} from '../index';
 import { Link, useParams } from 'react-router-dom';
 import { MENU_IMG_URL, IMG_URL, RESTAURANT_MENU_RESULT } from '../../utils/constants';
