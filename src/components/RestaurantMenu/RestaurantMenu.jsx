@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import {MenuCategory, Shimmer} from '../index';
 import { Link, useParams } from 'react-router-dom';
 import { MENU_IMG_URL, IMG_URL, RESTAURANT_MENU_RESULT } from '../../utils/constants';
-import useApiFetch from '../../hooks/useApiFetch';
+// import useApiFetch from '../../hooks/useApiFetch';
 
 function RestaurantMenu() {
     const {restId} = useParams();
@@ -13,28 +13,44 @@ function RestaurantMenu() {
     const [restMenuItems, setRestMenuItems] = useState([]);
     const [showCategory, setShowCategory] = useState(0)
 
-    const fetchMenuData = useApiFetch(RESTAURANT_MENU_RESULT+restId);
-
     useEffect(()=>{
-      if(fetchMenuData){
-
-        setRestMenu(fetchMenuData?.data?.cards);
-
-        setRestMenuInfo(fetchMenuData?.data?.cards[0]?.card?.card?.info);
-
-        // setRestMenuOffers(fetchMenuData?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle);
-
-        // setRestMenuItems(fetchMenuData?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
-
-        // setRestMenuItems(fetchMenuData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
-
-        setRestMenuItems(fetchMenuData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(item=>item?.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"));
-
+      const fetchData = async () => {
+        const data = await fetch(RESTAURANT_MENU_RESULT+restId);
+        const json = await data.json();
+        // setHomePageData(json?.data)
+        // setRestTopList(json?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info)
+        // setRestList1(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        // setRestList2(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setRestMenu(json?.data?.cards);
+        setRestMenuInfo(json?.data?.cards[0]?.card?.card?.info);
+        setRestMenuItems(json?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(item=>item?.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"));
         console.log("All Menu Data Rendered");
+      };
+      fetchData();
+    }, [])
 
-        // console.log("fetch" , fetchMenuData?.data?.cards[0]?.card?.card?.info);
-      }
-    }, [fetchMenuData]);
+    // Original Fetch Code
+    // const fetchMenuData = useApiFetch(RESTAURANT_MENU_RESULT+restId);
+    // useEffect(()=>{
+    //   if(fetchMenuData){
+
+    //     setRestMenu(fetchMenuData?.data?.cards);
+
+    //     setRestMenuInfo(fetchMenuData?.data?.cards[0]?.card?.card?.info);
+
+    //     // setRestMenuOffers(fetchMenuData?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle);
+
+    //     // setRestMenuItems(fetchMenuData?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
+
+    //     // setRestMenuItems(fetchMenuData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
+
+    //     setRestMenuItems(fetchMenuData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(item=>item?.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"));
+
+    //     console.log("All Menu Data Rendered");
+
+    //     // console.log("fetch" , fetchMenuData?.data?.cards[0]?.card?.card?.info);
+    //   }
+    // }, [fetchMenuData]);
 
     const foodFilter = (e) => {
       const originalMenu =

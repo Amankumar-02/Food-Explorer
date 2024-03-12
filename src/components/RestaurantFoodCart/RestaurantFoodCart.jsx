@@ -75,7 +75,8 @@ function RestaurantFoodCart() {
                       </li>
                     ) : null}
                     <div>
-                      <li className="text-lg font-bold">
+                      <li
+                  data-testid="cart-item" className="text-lg font-bold">
                         {item?.info?.name}
                       </li>
                       <li className="text-lg font-bold text-gray-600">

@@ -26,7 +26,7 @@ function MenuItem({card, restName, restId}) {
 
   return (
     <>
-      <div className="flex justify-between items-center py-6 px-8 border border-x-0 hover:bg-gray-200 rounded-xl">
+      <div data-testid="food-Item" className="flex justify-between items-center py-6 px-8 border border-x-0 hover:bg-gray-200 rounded-xl">
         <ul className="flex flex-col gap-4 justify-center list-none w-[80%]">
           {card?.info?.itemAttribute?.vegClassifier === "VEG" ? (
             <li className="w-fit border border-green-500 text-[8px]">🟢</li>

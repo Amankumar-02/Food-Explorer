@@ -13,10 +13,10 @@ global.fetch = jest.fn(()=>
 );
 
 describe("Should render the body component", ()=>{
-    beforeAll(()=>{console.log("Before All")})
-    beforeEach(()=>{console.log("Before Each")})
-    afterEach(()=>{console.log("After Each")})
-    afterAll(()=>{console.log("After All")})
+    // beforeAll(()=>{console.log("Before All")})
+    // beforeEach(()=>{console.log("Before Each")})
+    // afterEach(()=>{console.log("After Each")})
+    // afterAll(()=>{console.log("After All")})
     it("Should render the body component with text.", async()=>{
         await act(async ()=>render(
                 <BrowserRouter>
