@@ -15,8 +15,13 @@ function SearchRestaurants(){
     // call everytime when params update
     useEffect(()=>{
         if(restSearchId){
-            const searchQuery = restSearchId.replaceAll("%", " ").replaceAll("|", " ").replaceAll("/", " ").replaceAll("&", "and").replaceAll(" ", "%2520");
-            const url = `${RESTAURANT_SEARCH_RESULT}${searchQuery}%26trackingId%3Dundefined%26submitAction%3DENTER%26queryUniqueId%3Dundefined`;
+            //Original
+            const searchQuery = restSearchId.replaceAll("%", " ").replaceAll("|", " ").replaceAll("/", " ").replaceAll("&", "and").replaceAll(" ", "%20");
+            const url = `${RESTAURANT_SEARCH_RESULT}${searchQuery}&trackingId=e9ca664a-c8db-5f6c-ecba-af9fbdf648c4&submitAction=ENTER&queryUniqueId=undefined`;
+            
+            // corsProxy
+            // const searchQuery = restSearchId.replaceAll("%", " ").replaceAll("|", " ").replaceAll("/", " ").replaceAll("&", "and").replaceAll(" ", "%2520");
+            // const url = `${RESTAURANT_SEARCH_RESULT}${searchQuery}%26trackingId%3Dundefined%26submitAction%3DENTER%26queryUniqueId%3Dundefined`;
             setChangeUrl(url);
         }
     }, [restSearchId])
