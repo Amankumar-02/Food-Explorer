@@ -13,14 +13,14 @@ function RestaurantMenu() {
     const [restMenuItems, setRestMenuItems] = useState([]);
     const [showCategory, setShowCategory] = useState(0)
 
-    const fetchMenuData = useApiFetch(RESTAURANT_MENU_RESULT+restId);
+    const fetchMenuData = useApiFetch(RESTAURANT_MENU_RESULT+'?restaurantId='+restId);
 
     useEffect(()=>{
       if(fetchMenuData){
 
         setRestMenu(fetchMenuData?.data?.cards);
 
-        setRestMenuInfo(fetchMenuData?.data?.cards[0]?.card?.card?.info);
+        setRestMenuInfo(fetchMenuData?.data?.cards[2]?.card?.card?.info);
 
         // setRestMenuOffers(fetchMenuData?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle);
 
@@ -28,7 +28,7 @@ function RestaurantMenu() {
 
         // setRestMenuItems(fetchMenuData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
 
-        setRestMenuItems(fetchMenuData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(item=>item?.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"));
+        setRestMenuItems(fetchMenuData?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(item=>item?.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"));
 
         console.log("All Menu Data Rendered");
 
@@ -38,7 +38,7 @@ function RestaurantMenu() {
 
     const foodFilter = (e) => {
       const originalMenu =
-      fetchMenuData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(item=>item?.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory");
+      fetchMenuData?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(item=>item?.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory");
 
       // const filteredItem = originalMenu?.filter(
       //   (item) =>

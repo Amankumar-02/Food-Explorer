@@ -17,7 +17,7 @@ function SearchRestaurants(){
         if(restSearchId){
             //Original
             const searchQuery = restSearchId.replaceAll("%", " ").replaceAll("|", " ").replaceAll("/", " ").replaceAll("&", "and").replaceAll(" ", "%20");
-            const url = `${RESTAURANT_SEARCH_RESULT}${searchQuery}&trackingId=e9ca664a-c8db-5f6c-ecba-af9fbdf648c4&submitAction=ENTER&queryUniqueId=undefined`;
+            const url = `${RESTAURANT_SEARCH_RESULT}?searchId=${searchQuery}&trackingId=e9ca664a-c8db-5f6c-ecba-af9fbdf648c4&submitAction=ENTER&queryUniqueId=undefined`;
             
             // corsProxy
             // const searchQuery = restSearchId.replaceAll("%", " ").replaceAll("|", " ").replaceAll("/", " ").replaceAll("&", "and").replaceAll(" ", "%2520");
