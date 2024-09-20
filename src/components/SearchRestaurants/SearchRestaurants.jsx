@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { RESTAURANT_SEARCH_RESULT } from '../../utils/constants';
+import { RESTAURANT_SEARCH_RESULT, SERVER_APIKEY } from '../../utils/constants';
 import { useParams } from 'react-router-dom';
 import {Dish, Restaurant} from './index';
 import RestaurantError from './Restaurant/RestaurantError';
@@ -17,7 +17,7 @@ function SearchRestaurants(){
         if(restSearchId){
             //Original
             const searchQuery = restSearchId.replaceAll("%", " ").replaceAll("|", " ").replaceAll("/", " ").replaceAll("&", "and").replaceAll(" ", "%20");
-            const url = `${RESTAURANT_SEARCH_RESULT}?searchId=${searchQuery}&trackingId=e9ca664a-c8db-5f6c-ecba-af9fbdf648c4&submitAction=ENTER&queryUniqueId=undefined`;
+            const url = `${RESTAURANT_SEARCH_RESULT}?searchId=${searchQuery}`;
             
             // corsProxy
             // const searchQuery = restSearchId.replaceAll("%", " ").replaceAll("|", " ").replaceAll("/", " ").replaceAll("&", "and").replaceAll(" ", "%2520");
@@ -30,15 +30,14 @@ function SearchRestaurants(){
     useEffect(()=>{
         const fetchRestaurantSearchData = async()=>{
             try{
-              const res = await fetch(changeUrl);
+              const res = await fetch(changeUrl, { headers: { apikey: SERVER_APIKEY } });
               if(!res.ok){
                 throw new Error("Error Serving Search Data");
               }else{
                 const data = await res.json();
-                setSearchInfo(data?.data?.cards[0]?.card?.card?.tab[0]?.analytics?.context);
-                setSearchFetchedData(data?.data?.cards[1]?.groupedCard?.cardGroupMap)
-                // console.log("root", data?.data?.cards[1]?.groupedCard?.cardGroupMap?.DISH?.cards)
-                console.log("root", data)
+                setSearchInfo(data?.data?.data?.cards[0]?.card?.card?.tab[0]?.analytics?.context);
+                setSearchFetchedData(data?.data?.data?.cards[1]?.groupedCard?.cardGroupMap)
+                // console.log("root", data?.data?.data?.cards[1]?.groupedCard?.cardGroupMap?.DISH?.cards)
               }
             }catch (error){
               console.log("Error fetching data:", error)

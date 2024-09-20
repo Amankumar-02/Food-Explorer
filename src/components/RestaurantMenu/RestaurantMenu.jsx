@@ -16,29 +16,29 @@ function RestaurantMenu() {
     const fetchMenuData = useApiFetch(RESTAURANT_MENU_RESULT+'?restaurantId='+restId);
 
     useEffect(()=>{
-      if(fetchMenuData){
+      if(fetchMenuData?.data){
 
-        setRestMenu(fetchMenuData?.data?.cards);
+        setRestMenu(fetchMenuData?.data?.data?.cards);
 
-        setRestMenuInfo(fetchMenuData?.data?.cards[2]?.card?.card?.info);
+        setRestMenuInfo(fetchMenuData?.data?.data?.cards[2]?.card?.card?.info);
 
-        // setRestMenuOffers(fetchMenuData?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle);
+        // setRestMenuOffers(fetchMenuData?.data?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle);
 
-        // setRestMenuItems(fetchMenuData?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
+        // setRestMenuItems(fetchMenuData?.data?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
 
-        // setRestMenuItems(fetchMenuData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
+        // setRestMenuItems(fetchMenuData?.data?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
 
-        setRestMenuItems(fetchMenuData?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(item=>item?.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"));
+        setRestMenuItems(fetchMenuData?.data?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(item=>item?.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"));
 
         console.log("All Menu Data Rendered");
 
-        // console.log("fetch" , fetchMenuData?.data?.cards[0]?.card?.card?.info);
+        // console.log("fetch" , fetchMenuData?.data?.data?.cards[0]?.card?.card?.info);
       }
     }, [fetchMenuData]);
 
     const foodFilter = (e) => {
       const originalMenu =
-      fetchMenuData?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(item=>item?.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory");
+      fetchMenuData?.data?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(item=>item?.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory");
 
       // const filteredItem = originalMenu?.filter(
       //   (item) =>

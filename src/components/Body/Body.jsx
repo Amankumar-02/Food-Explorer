@@ -35,13 +35,12 @@ function Body() {
 
   const fetchHomeData = useApiFetch(RESTAURANT_HOME);
   useEffect(()=>{
-    if(fetchHomeData){
-      setHomePageData(fetchHomeData?.data)
-      setRestTopList(fetchHomeData?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info)
-      setRestList1(fetchHomeData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-      setRestList2(fetchHomeData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    if(fetchHomeData?.data){
+      setHomePageData(fetchHomeData?.data?.data)
+      setRestTopList(fetchHomeData?.data?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info);
+      setRestList1(fetchHomeData?.data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+      setRestList2(fetchHomeData?.data?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
       console.log("All Home Data Rendered");
-      // console.log(fetchHomeData?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info);
     }
   }, [fetchHomeData]);
 

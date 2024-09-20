@@ -905,14 +905,19 @@ const cardData = [
 // Original Url
 // const RESTAURANT_HOME = "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.6195574&lng=77.0549901&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
 const RESTAURANT_HOME = "https://food-explorer-server-prime.vercel.app/api/restaurants";
+// const RESTAURANT_HOME = "http://localhost:3000/api/food-explorer/restaurants";
 
-// const RESTAURANT_HOME2 = "https://www.swiggy.com/api/seo/getListing?lat=28.6195574&lng=77.0549901";
+const RESTAURANT_HOME2 = "https://www.swiggy.com/api/seo/getListing?lat=28.6195574&lng=77.0549901";
 
 // const RESTAURANT_MENU_RESULT = "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.6195574&lng=77.0549901&restaurantId=";
 const RESTAURANT_MENU_RESULT = "https://food-explorer-server-prime.vercel.app/api/menu";
+// const RESTAURANT_MENU_RESULT = "http://localhost:3000/api/food-explorer/menu";
 
 // const RESTAURANT_SEARCH_RESULT = "https://www.swiggy.com/dapi/restaurants/search/v3?lat=28.6195574&lng=77.0549901&str="
 const RESTAURANT_SEARCH_RESULT = "https://food-explorer-server-prime.vercel.app/api/search"
+// const RESTAURANT_SEARCH_RESULT = "http://localhost:3000/api/food-explorer/search";
+
+const SERVER_APIKEY = '12233344445678';
 
 // CorsProxy Url
 // const RESTAURANT_HOME = "https://corsproxy.org/?https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Frestaurants%2Flist%2Fv5%3Flat%3D28.6195574%26lng%3D77.0549901%26is-seo-homepage-enabled%3Dtrue%26page_type%3DDESKTOP_WEB_LISTING";
@@ -932,4 +937,4 @@ const sorting = [
   { title: "Price (Low to High)", purpose: "PriAsc" },
 ];
 
-export {cardData, RESTAURANT_HOME, RESTAURANT_HOME2, RESTAURANT_MENU_RESULT, RESTAURANT_SEARCH_RESULT, IMG_URL, MENU_IMG_URL, sorting};
+export {cardData, RESTAURANT_HOME, RESTAURANT_HOME2, RESTAURANT_MENU_RESULT, RESTAURANT_SEARCH_RESULT, SERVER_APIKEY, IMG_URL, MENU_IMG_URL, sorting};
