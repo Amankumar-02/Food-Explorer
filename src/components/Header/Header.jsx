@@ -10,19 +10,19 @@ import { useSelector } from 'react-redux';
 function Header() {
   const [btnName, setBtnName] = useState({title:"Login", color:"#008000db"});
   const [btnStatus, setBtnStatus] = useState(true);
-  const [restSearchInput, setRestSearchInput] = useState("");
-  const navigate = useNavigate();
+  // const [restSearchInput, setRestSearchInput] = useState("");
+  // const navigate = useNavigate();
   const internetStatus = useInternetStatus();
   // const {logginName} = useContext(UserContextStore);
   const storeData = useSelector((state) => state.cartStore.cart);
 
-  const searchRestaurantsEvent = (e)=>{
-    e.preventDefault();
-    if(restSearchInput.length>0){
-      navigate(`/search/${restSearchInput.toLowerCase()}`)
-      setRestSearchInput("");
-    }
-  }
+  // const searchRestaurantsEvent = (e)=>{
+  //   e.preventDefault();
+  //   if(restSearchInput.length>0){
+  //     navigate(`/search/${restSearchInput.toLowerCase()}`)
+  //     setRestSearchInput("");
+  //   }
+  // }
 
   const changeBtnName = ()=>{
     if(btnStatus===true){
@@ -41,12 +41,12 @@ function Header() {
           <img className="logo w-[80px] lg:w-[100px]" src={logo} alt="" />
         </Link>
       </div>
-      <div className="search">
+      {/* <div className="search">
         <form onSubmit={searchRestaurantsEvent}>
           <input type="text" className='px-5 lg:py-1 rounded-xl rounded-e-none lg:w-[500px]' placeholder="Search" value={restSearchInput} onChange={(e)=>{setRestSearchInput(e.target.value)}}/>
           <input type="submit" className='px-4 lg:py-1 rounded-xl rounded-s-none cursor-pointer bg-white hover:bg-[#ad9fdb]' value="🔍"/>
         </form>
-      </div>
+      </div> */}
       <div className="nav-items">
         <ul className="flex items-center gap-6 list-none mt-2 lg:mt-auto">
           <li className="font-semibold text-black">Active Status: {internetStatus ? <><span className='text-xs'>✅</span></> : <><span className='text-xs'>🔴</span></>}</li>
@@ -54,6 +54,11 @@ function Header() {
           <Link to={"/"} className="no-underline">
             <li className="text-lg font-semibold text-black hover:border-2 hover:border-gray-800 hover:border-x-0 hover:border-t-0">
               Home
+            </li>
+          </Link>
+          <Link to={"/search"} className="no-underline">
+            <li className="text-lg font-semibold text-black hover:border-2 hover:border-gray-800 hover:border-x-0 hover:border-t-0">
+              Search
             </li>
           </Link>
           {/* <Link to={"/grocery"} className="no-underline">

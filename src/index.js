@@ -11,6 +11,7 @@ const router = createBrowserRouter(
         <Route path='/' element={<App/>} errorElement={<Error/>}>
             <Route path='/' element={<Body/>}/>
             <Route path='/restaurants/:restId' element={<RestaurantMenu/>}/>
+            <Route path='/search' element={<SearchRestaurants/>}/>
             <Route path='/search/:restSearchId' element={<SearchRestaurants/>}/>
             <Route path='/grocery' element={<Suspense fallback={<Shimmer/>}><Grocery/></Suspense>}/>
             <Route path='/about' element={<AboutUs/>}/>
