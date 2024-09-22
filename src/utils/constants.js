@@ -909,6 +909,10 @@ const RESTAURANT_HOME = "https://food-explorer-server-prime.vercel.app/api/food-
 
 const RESTAURANT_HOME2 = "https://www.swiggy.com/api/seo/getListing?lat=28.6195574&lng=77.0549901";
 
+const SEARCH_PAGE_DATA = "https://food-explorer-server-prime.vercel.app/api/food-explorer/searchPageData";
+// const SEARCH_PAGE_DATA = "http://localhost:3000/api/food-explorer/searchPageData";
+
+
 // const RESTAURANT_MENU_RESULT = "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.6195574&lng=77.0549901&restaurantId=";
 const RESTAURANT_MENU_RESULT = "https://food-explorer-server-prime.vercel.app/api/food-explorer/menu";
 // const RESTAURANT_MENU_RESULT = "http://localhost:3000/api/food-explorer/menu";
@@ -937,4 +941,4 @@ const sorting = [
   { title: "Price (Low to High)", purpose: "PriAsc" },
 ];
 
-export {cardData, RESTAURANT_HOME, RESTAURANT_HOME2, RESTAURANT_MENU_RESULT, RESTAURANT_SEARCH_RESULT, SERVER_APIKEY, IMG_URL, MENU_IMG_URL, sorting};
+export {cardData, RESTAURANT_HOME, RESTAURANT_HOME2, SEARCH_PAGE_DATA, RESTAURANT_MENU_RESULT, RESTAURANT_SEARCH_RESULT, SERVER_APIKEY, IMG_URL, MENU_IMG_URL, sorting};
