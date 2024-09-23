@@ -49,7 +49,7 @@ function Header() {
       </div> */}
       <div className="nav-items">
         <ul className="flex items-center gap-6 list-none mt-2 lg:mt-auto">
-          <li className="font-semibold text-black">Active Status: {internetStatus ? <><span className='text-xs'>✅</span></> : <><span className='text-xs'>🔴</span></>}</li>
+          {/* <li className="font-semibold text-black">Active Status: {internetStatus ? <><span className='text-xs'>✅</span></> : <><span className='text-xs'>🔴</span></>}</li> */}
           {/* <li className='text- font-semibold text-black'>📍 Location New Delhi</li> */}
           <Link to={"/"} className="no-underline">
             <li className="text-lg font-semibold text-black hover:border-2 hover:border-gray-800 hover:border-x-0 hover:border-t-0">

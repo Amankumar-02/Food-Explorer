@@ -25,7 +25,6 @@ function SearchRoute() {
       );
     }
   }, [fetchSearchPageData]);
-  console.log(searchSlider);
 
   const settings = {
     dots: false,
@@ -83,9 +82,10 @@ function SearchRoute() {
   return (
     <>
       <SearchBar />
-      <div className="mt-10 mb-20 m-auto w-[90%] md:w-[70%] h-[60vh]">
+      <div className="search-slider mt-10 mb-20 m-auto w-[90%] md:w-[70%] h-[60vh]">
         {!searchSlider ? null : (
           <>
+          <h1 className="text-2xl font-semibold mb-6">{searchSliderInfo}</h1>
             <Slider {...settings}>
               {searchSlider.map((item) => (
                 <>

@@ -1,6 +1,19 @@
 .section1-img:hover, .section1-btn:hover{
     transform: scale(1.1);
 }
+.seaction1-Slider .slick-track{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.seaction2-Slider .slick-track{
+    display: flex;
+    align-items: start;
+    gap: 0px;
+}
+.seaction2-Slider .slick-arrow::before{
+    color: gray;
+}
 
 /* .res-container{
     display: flex;

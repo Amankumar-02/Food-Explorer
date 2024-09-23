@@ -102,7 +102,7 @@ function Dish({ searchFoodResult, searchName }) {
         <>
           <div className="my-10 m-auto w-[80%]">
             <h1 className="text-xl font-semibold capitalize text-gray-700">Search Results: <span className="text-2xl">{searchName}</span></h1>
-            <div className="flex gap-4 items-center mt-4">
+            <div className="flex flex-wrap gap-4 items-center mt-4">
               <h1 className="text-xl font-semibold text-gray-700">Filter:</h1>
               {sorting.map(({ title, purpose }, index) => (
                 <button
