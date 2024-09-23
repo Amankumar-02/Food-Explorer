@@ -9,7 +9,7 @@ function RestaurantError({searchMoreResult, searchName}) {
     <>
     {!searchMoreResult? null : (
         <>
-            <div className="my-10 m-auto w-[80%]">
+            <div className="my-10 m-auto w-[94%] lg:w-[80%]">
             {/* <div className=""> */}
             <h1 className="text-2xl font-semibold capitalize text-gray-700">More results like this</h1>
             <div className="flex gap-4 flex-wrap my-4">
@@ -23,7 +23,7 @@ function RestaurantError({searchMoreResult, searchName}) {
                       <>
                         <img
                           src={IMG_URL + card?.card?.info?.cloudinaryImageId}
-                          className="menu-img w-full h-full object-cover rounded-xl"
+                          className="w-full h-full object-cover rounded-xl hover:scale-[1.08] transition-all"
                           alt=""
                         />
                       </>

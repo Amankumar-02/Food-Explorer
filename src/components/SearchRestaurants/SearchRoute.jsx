@@ -82,7 +82,7 @@ function SearchRoute() {
   return (
     <>
       <SearchBar />
-      <div className="search-slider mt-10 mb-20 m-auto w-[90%] md:w-[70%] h-[60vh]">
+      <div className="search-slider mt-10 mb-20 m-auto w-[94%] lg:w-[80%] h-[60vh]">
         {!searchSlider ? null : (
           <>
           <h1 className="text-2xl font-semibold mb-6">{searchSliderInfo}</h1>

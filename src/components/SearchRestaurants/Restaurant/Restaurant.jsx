@@ -11,7 +11,7 @@ function Restaurant({ searchRestaurantResult, searchMoreResult, searchName }) {
     <>
       {!searchRestaurantResult ? null : (
         <>
-          <div className="my-10 m-auto w-[80%]">
+          <div className="my-10 m-auto w-[94%] lg:w-[80%]">
             <div>
             <h1 className="text-xl font-semibold capitalize text-gray-700">Search Results: <span className="text-2xl">{searchName}</span></h1>
             <div className="flex gap-4 flex-wrap my-4">
@@ -25,7 +25,7 @@ function Restaurant({ searchRestaurantResult, searchMoreResult, searchName }) {
                       <>
                         <img
                           src={IMG_URL + searchRestaurantResult?.cloudinaryImageId}
-                          className="menu-img w-full h-full object-cover rounded-xl"
+                          className="w-full h-full object-cover rounded-xl hover:scale-[1.08] transition-all"
                           alt=""
                         />
                       </>
@@ -82,7 +82,7 @@ function Restaurant({ searchRestaurantResult, searchMoreResult, searchName }) {
                       <>
                         <img
                           src={IMG_URL + info.cloudinaryImageId}
-                          className="menu-img w-full h-full object-cover rounded-xl"
+                          className="w-full h-full object-cover rounded-xl hover:scale-[1.08] transition-all"
                           alt=""
                         />
                       </>

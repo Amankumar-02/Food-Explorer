@@ -94,7 +94,7 @@ function RestaurantFoodCart() {
                     {item?.info?.imageId ? (
                       <img
                         src={MENU_IMG_URL + item?.info?.imageId}
-                        className="menu-img w-full h-full rounded-xl object-cover"
+                        className="w-full h-full rounded-xl object-cover hover:scale-[1.08] transition-all"
                       />
                     ) : null}
                     <div className="absolute bottom-[-10%] bg-white z-[99] flex border-2 rounded-xl overflow-hidden">

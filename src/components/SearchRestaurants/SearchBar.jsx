@@ -30,6 +30,7 @@ function SearchBar({value1 = ""}) {
   }, [debouncedInput, navigate]);
 
   const handleSubmit = (e) => {
+    console.log("first")
     e.preventDefault();
     if (searchBtn) {
       setRestSearchInput("");
@@ -40,7 +41,7 @@ function SearchBar({value1 = ""}) {
 
   return (
     <div className="my-10 m-auto w-[80%]">
-      <form className="w-full flex items-center justify-center">
+      <div className="w-full flex items-center justify-center">
         <input
           type="text"
           className="px-5 lg:py-2 rounded-md rounded-e-none w-[60%] border border-black border-e-0"
@@ -51,7 +52,6 @@ function SearchBar({value1 = ""}) {
           }}
         />
         <button
-          type="submit"
           className={`px-5 lg:py-2 rounded-md rounded-s-none w-fit border border-black border-s-0 ${
             searchBtn ? "cursor-pointer" : null
           }`}
@@ -59,7 +59,7 @@ function SearchBar({value1 = ""}) {
         >
           {searchBtn ? "❌" : "🔍"}
         </button>
-      </form>
+      </div>
     </div>
   );
 }

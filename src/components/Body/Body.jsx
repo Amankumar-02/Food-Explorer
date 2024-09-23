@@ -238,8 +238,8 @@ function Body() {
                 {/* <div className="search-item mb-4 flex justify-between items-center">
                   <h2 className='text-xl lg:text-2xl font-semibold'>{homePageData?.cards[0]?.card?.card?.header?.title}</h2>
                   <div className='lg:me-10 flex gap-2 border border-gray-500 px-2 rounded-xl'>
-                  <button className='section1-btn text-sm lg:text-base' onClick={()=>{sliderEvent("prev")}}>⬅️</button>
-                  <button className='section1-btn text-sm lg:text-base' onClick={()=>{sliderEvent("next")}}>➡️</button>
+                  <button className='section1-btn text-sm lg:text-base' onClick={()=>{sliderEvent("prev")}}>⬅</button>
+                  <button className='section1-btn text-sm lg:text-base' onClick={()=>{sliderEvent("next")}}>➡</button>
                 </div>
                 </div>
                 <div id='carousal' className='flex w-[400v] gap-2 lg:gap-[40px] transition-all' style={{width: "calc(400% - 32px)", transform: slider.action}}>
