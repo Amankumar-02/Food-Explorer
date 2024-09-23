@@ -85,8 +85,8 @@ function Body() {
   const settings2 = {
     dots: false,
     arrows: true,
-    // autoplay: true,
-    // autoplaySpeed: 2000,
+    autoplay: true,
+    autoplaySpeed: 2000,
     mouseScroll: false,
 
     infinite: true,

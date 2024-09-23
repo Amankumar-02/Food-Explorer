@@ -8,7 +8,7 @@ function RestaurantCard({items}) {
     const navigate = useNavigate();
   return (
     <>
-        <div className="res-card w-full h-full flex flex-col mb-8 cursor-pointer" onClick={()=>{navigate(`restaurants/${id}`)}}>
+        <div className="res-card w-auto lg:w-[257px] h-full flex flex-col mb-8 cursor-pointer" onClick={()=>{navigate(`restaurants/${id}`)}}>
             <img className='res-logo my-1 w-full h-[160px] lg:h-[200px] object-cover rounded-xl' src={IMG_URL+cloudinaryImageId} alt="" />
             <div className='res-card-content my-1 mx-auto w-[94%] flex flex-col gap-1'>
               <h3 className='text-lg font-semibold leading-5'>{name}</h3>
