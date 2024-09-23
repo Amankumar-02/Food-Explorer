@@ -145,8 +145,12 @@ function Body() {
         fetchHomeData?.data?.data?.cards[1]?.card?.card?.gridElements
           ?.infoWithStyle?.restaurants
       );
+      // setRestList2(
+      //   fetchHomeData?.data?.data?.cards[4]?.card?.card?.gridElements
+      //     ?.infoWithStyle?.restaurants
+      // );
       setRestList2(
-        fetchHomeData?.data?.data?.cards[4]?.card?.card?.gridElements
+        fetchHomeData?.data?.data?.cards[1]?.card?.card?.gridElements
           ?.infoWithStyle?.restaurants
       );
       console.log("All Home Data Rendered");
@@ -186,7 +190,7 @@ function Body() {
   };
 
   const filterRestautants = () => {
-    setRestList2((prev) => prev.filter((item) => item.info.avgRating > 4));
+    setRestList2((prev) => prev.filter((item) => item.info.avgRating > 4.2));
   };
 
   if (internetStatus === false) {
@@ -229,7 +233,7 @@ function Body() {
           <Shimmer />
         ) : (
           <>
-            <div className="my-6 lg:my-10 m-auto w-[92%] lg:w-[80%]">
+            <div className="my-6 lg:my-10 m-auto w-[94%] lg:w-[80%]">
               <section id="section1" className="overflow-hidden">
                 {/* <div className="search-item mb-4 flex justify-between items-center">
                   <h2 className='text-xl lg:text-2xl font-semibold'>{homePageData?.cards[0]?.card?.card?.header?.title}</h2>
@@ -248,7 +252,7 @@ function Body() {
                   <h2 className="text-xl lg:text-2xl mb-4 font-semibold">
                     {homePageData?.cards[0]?.card?.card?.header?.title}
                   </h2>
-                  <div className="seaction1-Slider">
+                  <div className="section1-Slider">
                 <Slider {...settings}>
                   {restTopList.map((item) => (
                     <>
@@ -302,19 +306,14 @@ function Body() {
                     )
                   )}
                 </div> */}
-                <div className="seaction2-Slider">
-                <Slider {...settings2}>
-                  {restList1.map((item) => 
-                    //   item?.info?.aggregatedDiscountInfoV3 ? (
-                    //   <RestaurantCardSliderOffer key={item?.id} items={item.info} />
-                    // ) : (
-                    // <div className="mx-2" key={item?.id}>
-                        <RestaurantCardSlider items={item.info} />
-                    // </div>
-                    // )
-                  )}
-                </Slider>
-                </div>
+                <div className="section2-Slider">
+  <Slider {...settings2}>
+    {restList1.map((item) => (
+      <RestaurantCardSlider key={item?.id} items={item.info} />
+    ))}
+  </Slider>
+</div>
+
               </section>
               <section id="section3" className="mb-12 lg:mb-20">
                 <h2 className="text-2xl font-semibold mb-6">
@@ -333,7 +332,7 @@ function Body() {
                           10 * moreFoodCount.count2
                         );
                         setRestList2([
-                          ...homePageData?.cards[4]?.card?.card?.gridElements
+                          ...homePageData?.cards[1]?.card?.card?.gridElements
                             ?.infoWithStyle?.restaurants,
                           ...addingEvent,
                         ]);
@@ -345,21 +344,22 @@ function Body() {
                       className="filter-btn cursor-pointer px-4 border border-black rounded-xl hover:bg-gray-300 text-sm font-semibold"
                       onClick={filterRestautants}
                     >
-                      Rating 4.0+
+                      Rating 4.2+
                     </button>
                   </div>
                 </div>
-                <div className="res-container flex gap-4 flex-wrap my-4">
-                  {restList2.map((item, index) =>
-                    item?.info?.aggregatedDiscountInfoV3 ? (
-                      <RestaurantCardOffer key={index} items={item.info} />
-                    ) : (
-                      <div className="relative w-[172px] lg:w-auto hover:scale-[0.94] transition-all" key={index}>
-                        <RestaurantCard items={item.info} />
-                      </div>
-                    )
-                  )}
-                </div>
+                <div className="res-container grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 my-4">
+    {restList2.map((item, index) =>
+        item?.info?.aggregatedDiscountInfoV3 ? (
+            <RestaurantCardOffer key={index} items={item.info} />
+        ) : (
+            <div className="relative w-full lg:w-auto hover:scale-[0.94] transition-all" key={index}>
+                <RestaurantCard items={item.info} />
+            </div>
+        )
+    )}
+</div>
+
                 <div className="flex justify-center">
                   <button
                     className="p-1 px-6 border-2 border-gray-600 hover:bg-gray-300 rounded-xl text-xl font-semibold text-gray-600"
