@@ -2,35 +2,44 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { sorting, MENU_IMG_URL } from "../../../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
-import { addCartItem, modifyCartQuantity, removeCartItem
+import {
+  addCartItem,
+  modifyCartQuantity,
+  removeCartItem,
 } from "../../../reduxFeatures/cartSlice";
-import toast from 'react-hot-toast';
+import toast from "react-hot-toast";
 
 function Dish({ searchFoodResult, searchName }) {
-    const [dishFilter, setDishFilter] = useState([]);
+  const [dishFilter, setDishFilter] = useState([]);
   const navigate = useNavigate();
   const storeData = useSelector((state) => state.cartStore.cart);
   const dispatch = useDispatch();
 
   // setting the props Data
-  useEffect(()=>{
-    if(searchFoodResult){
-        setDishFilter(searchFoodResult.filter(
+  useEffect(() => {
+    if (searchFoodResult) {
+      setDishFilter(
+        searchFoodResult
+          .filter(
             (item) =>
-            item?.card?.card?.["@type"] ===
-            "type.googleapis.com/swiggy.presentation.food.v2.Dish"
-            ).slice(0,30))
+              item?.card?.card?.["@type"] ===
+              "type.googleapis.com/swiggy.presentation.food.v2.Dish"
+          )
+          .slice(0, 30)
+      );
     }
-  }, [searchFoodResult])
+  }, [searchFoodResult]);
   // console.log("dish", dishFilter[0]?.card?.card.info.description.slice(0,50));
 
   // sorting event
   const sortEvent = (purpose) => {
-    const newFilter = searchFoodResult.filter(
+    const newFilter = searchFoodResult
+      .filter(
         (item) =>
           item?.card?.card?.["@type"] ===
           "type.googleapis.com/swiggy.presentation.food.v2.Dish"
-      ).slice(0,30);
+      )
+      .slice(0, 30);
     if (purpose === "all") {
       setDishFilter(newFilter);
     } else if (purpose === "ratDesc") {
@@ -63,7 +72,12 @@ function Dish({ searchFoodResult, searchName }) {
   };
 
   //adding item to cart event
-  const cartEvent = ({ nameLocation, dispatchLocation, restLocation, restId }) => {
+  const cartEvent = ({
+    nameLocation,
+    dispatchLocation,
+    restLocation,
+    restId,
+  }) => {
     if (
       !storeData.filter((item) => item?.info?.name === nameLocation)[0]?.info
         ?.quantity ||
@@ -100,25 +114,30 @@ function Dish({ searchFoodResult, searchName }) {
     <>
       {!dishFilter ? null : (
         <>
-          <div className="my-10 m-auto w-[80%]">
-            <h1 className="text-xl font-semibold capitalize text-gray-700">Search Results: <span className="text-2xl">{searchName}</span></h1>
-            <div className="flex flex-wrap gap-4 items-center mt-4">
-              <h1 className="text-xl font-semibold text-gray-700">Filter:</h1>
+          <div className="my-10 m-auto w-[94%] lg:w-[80%]">
+            <h1 className="text-xl font-semibold capitalize text-gray-700">
+              Search Results: <span className="text-2xl">{searchName}</span>
+            </h1>
+            <div className="flex flex-wrap gap-2 lg:gap-4 items-center mt-4">
+              <h1 className="text-lg sm:text-xl font-semibold text-gray-700">
+                Filter:
+              </h1>
+
               {sorting.map(({ title, purpose }, index) => (
                 <button
                   key={index}
-                  className="border border-black py-1 px-4 rounded-xl hover:bg-gray-300 font-semibold"
+                  className="border border-black py-1 px-3 sm:px-4 rounded-xl hover:bg-gray-300 font-semibold text-sm sm:text-base"
                   onClick={() => sortEvent(purpose)}
                 >
                   {title}
                 </button>
               ))}
             </div>
-            <div className="flex gap-4 flex-wrap my-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-4 my-10">
               {dishFilter.map(({ card }, index) => (
                 <div
                   key={index}
-                  className="w-[370px] lg:w-[530px] p-4 rounded-2xl border border-gray-600 hover:bg-gray-200"
+                  className="w-full p-4 rounded-2xl border border-gray-600 hover:bg-gray-200"
                 >
                   <div
                     className="flex justify-between items-center cursor-pointer pb-2 border border-dotted border-gray-600 border-x-0 border-t-0"
@@ -140,30 +159,28 @@ function Dish({ searchFoodResult, searchName }) {
                         }`}
                       </p>
                     </div>
-                    <button className="hover:scale-[1.1]">➡️</button>
+                    <button className="hover:scale-[1.1]">➜</button>
                   </div>
+
                   <div className="flex justify-between items-center pt-2">
                     <div className="flex flex-col gap-2" style={{width: "calc(100% - 100px)"}}>
                       <div className="flex gap-4 items-center">
                         {card?.card?.info?.isVeg ? (
-                          <>
-                            <p className="w-fit border border-green-500 text-[8px]">
-                              🟢
-                            </p>
-                          </>
+                          <p className="w-fit border border-green-500 text-[8px]">
+                            🟢
+                          </p>
                         ) : (
-                          <>
-                            <p className="w-fit border border-red-500 text-[8px]">
-                              🔺
-                            </p>
-                          </>
+                          <p className="w-fit border border-red-500 text-[8px]">
+                            🔺
+                          </p>
                         )}
-                        {card?.card?.info?.ribbon?.text ? (
+                        {card?.card?.info?.ribbon?.text && (
                           <p className="text-xs font-semibold text-yellow-600">
                             ⭐ {card?.card?.info?.ribbon?.text}
                           </p>
-                        ) : null}
+                        )}
                       </div>
+
                       <div>
                         <h1 className="text-sm font-bold text-gray-600">
                           {card?.card.info.name}
@@ -175,16 +192,13 @@ function Dish({ searchFoodResult, searchName }) {
                           ₹ {card?.card.info.price / 100}
                         </h2>
                       </div>
+
                       <p className="leading-3 text-gray-500 text-xs w-[80%]">
-                        {card?.card?.info?.description?.length > 100 ? (
-                          <>
-                            {card?.card?.info?.description?.slice(0, 100) +
-                              "..."}
-                          </>
-                        ) : (
-                          <>{card?.card?.info?.description}</>
-                        )}
+                        {card?.card?.info?.description?.length > 100
+                          ? `${card?.card?.info?.description?.slice(0, 100)}...`
+                          : card?.card?.info?.description}
                       </p>
+
                       <button
                         className="w-fit font-bold text-gray-700 hover:underline"
                         onClick={() =>
@@ -196,17 +210,16 @@ function Dish({ searchFoodResult, searchName }) {
                         More
                       </button>
                     </div>
+
                     <div>
                       <div className="relative w-[100px] h-[100px] flex justify-center">
-                        {card?.card.info.imageId ? (
-                          <>
-                            <img
-                              src={MENU_IMG_URL + card?.card.info.imageId}
-                              className="menu-img w-full h-full object-cover rounded-xl"
-                              alt=""
-                            />
-                          </>
-                        ) : null}
+                        {card?.card.info.imageId && (
+                          <img
+                            src={MENU_IMG_URL + card?.card.info.imageId}
+                            className="w-full h-full object-cover rounded-xl hover:scale-[1.08] transition-all"
+                            alt=""
+                          />
+                        )}
 
                         <div className="absolute bottom-[-10%] bg-white z-[99] flex border-2 rounded-xl overflow-hidden">
                           {storeData.filter(
@@ -215,12 +228,12 @@ function Dish({ searchFoodResult, searchName }) {
                             <>
                               <button
                                 className="px-2 hover:bg-gray-300"
-                                onClick={() => {
+                                onClick={() =>
                                   modifyQuantity(
                                     "decrease",
                                     card?.card.info.name
-                                  );
-                                }}
+                                  )
+                                }
                               >
                                 -
                               </button>
@@ -241,37 +254,26 @@ function Dish({ searchFoodResult, searchName }) {
                             {storeData.filter(
                               (item) =>
                                 item?.info?.name === card?.card.info.name
-                            )[0]?.info?.quantity > 0 ? (
-                              <>
-                                {
-                                  storeData.filter(
-                                    (item) =>
-                                      item?.info?.name === card?.card.info.name
-                                  )[0]?.info?.quantity
-                                }
-                              </>
-                            ) : (
-                              <>Add</>
-                            )}
+                            )[0]?.info?.quantity > 0
+                              ? storeData.filter(
+                                  (item) =>
+                                    item?.info?.name === card?.card.info.name
+                                )[0]?.info?.quantity
+                              : "Add"}
                           </button>
 
                           {storeData.filter(
                             (item) => item?.info?.name === card?.card.info.name
-                          )[0]?.info?.quantity > 0 ? (
-                            <>
-                              <button
-                                className="px-2 hover:bg-gray-300"
-                                onClick={() => {
-                                  modifyQuantity(
-                                    "increase",
-                                    card?.card.info.name
-                                  );
-                                }}
-                              >
-                                +
-                              </button>
-                            </>
-                          ) : null}
+                          )[0]?.info?.quantity > 0 && (
+                            <button
+                              className="px-2 hover:bg-gray-300"
+                              onClick={() =>
+                                modifyQuantity("increase", card?.card.info.name)
+                              }
+                            >
+                              +
+                            </button>
+                          )}
                         </div>
                       </div>
                     </div>

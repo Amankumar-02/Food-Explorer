@@ -40,7 +40,7 @@ function SearchBar({value1 = ""}) {
   };
 
   return (
-    <div className="my-10 m-auto w-[80%]">
+    <div className="my-10 m-auto w-[94%] lg:w-[80%]">
       <div className="w-full flex items-center justify-center">
         <input
           type="text"

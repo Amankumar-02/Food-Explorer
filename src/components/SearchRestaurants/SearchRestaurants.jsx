@@ -68,13 +68,15 @@ function SearchRestaurants() {
   return (
     <>
       <SearchBar value1={restSearchId} />
+
+      {/* stage1 */}
       {!searchFetchedData ? (
         <>
           <Shimmer />
         </>
       ) : (
         <>
-          {/* all result data */}
+          {/* stage2 */}
           {searchFetchedData.DISH ? (
             <>
               <Dish
@@ -84,7 +86,7 @@ function SearchRestaurants() {
             </>
           ) : (
             <>
-              {/* if not data / data with 2 more */}
+              {/* stage3 */}
               {Object.keys(searchFetchedData.RESTAURANT).length === 0 ? (
                 <>
                   <div className="w-full h-[400px] flex items-center justify-center">
@@ -95,6 +97,7 @@ function SearchRestaurants() {
                 </>
               ) : (
                 <>
+                  {/* stage4 & final */}
                   {searchFetchedData?.RESTAURANT?.cards?.length === 2 ? (
                     <>
                       <Restaurant

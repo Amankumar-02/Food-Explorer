@@ -10,13 +10,12 @@ function RestaurantError({searchMoreResult, searchName}) {
     {!searchMoreResult? null : (
         <>
             <div className="my-10 m-auto w-[94%] lg:w-[80%]">
-            {/* <div className=""> */}
-            <h1 className="text-2xl font-semibold capitalize text-gray-700">More results like this</h1>
-            <div className="flex gap-4 flex-wrap my-4">
+            <h1 className="text-xl font-semibold capitalize text-gray-700">More results like this</h1>
+            <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-4 my-10">
               {searchMoreResult.map(({ card }, index) => (
                 <div
                   key={index}
-                  className="w-[370px] lg:w-[530px] p-4 rounded-2xl border border-gray-600 flex items-center cursor-pointer hover:bg-gray-300" onClick={()=>navigate(`/restaurants/${card?.card?.info?.id}`)}
+                  className="w-full p-4 rounded-2xl border border-gray-600 flex items-center cursor-pointer hover:bg-gray-300" onClick={()=>navigate(`/restaurants/${card?.card?.info?.id}`)}
                 >
                   <div className="relative w-[100px] h-[100px] flex justify-center">
                     {card?.card?.info?.cloudinaryImageId ? (
@@ -53,20 +52,19 @@ function RestaurantError({searchMoreResult, searchName}) {
                       card?.card?.info?.sla.deliveryTime + "MINS"
                     }`}{" "}{`. ${card?.card?.info?.costForTwo}`}
                   </p>
-                  {card?.card?.info?.cuisines.join(", ").length > 250? (<>
-                    <p className="leading-3 text-gray-500 text-xs w-[100%]">
-                    {card?.card?.info?.cuisines.join(", ").slice(0,250)+'...'}
-                  </p>
-                  </>) : (<>
-                    <p className="leading-3 text-gray-500 text-xs w-[100%]">
-                    {card?.card?.info?.cuisines.join(", ")}
-                  </p>
-                  </>)}
+                  <p className="leading-3 text-gray-500 text-xs">
+                      {card?.card?.info?.cuisines.join(", ").length > 250
+                        ? 
+                        `${searchRestaurantResult?.cuisines
+                            .join(", ")
+                            .slice(0, 250)}...`
+                        : 
+                        card?.card?.info?.cuisines.join(", ")}
+                    </p>
                   </div>
                 </div>
               ))}
             </div>
-            {/* </div> */}
           </div>
         </>
     )}

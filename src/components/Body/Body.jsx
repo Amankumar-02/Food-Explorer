@@ -86,7 +86,7 @@ function Body() {
     dots: false,
     arrows: true,
     autoplay: true,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 3000,
     mouseScroll: false,
 
     infinite: true,
