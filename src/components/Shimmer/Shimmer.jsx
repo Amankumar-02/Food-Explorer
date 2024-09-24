@@ -4,9 +4,9 @@ import './Shimmer.css';
 function Shimmer() {
   return (
     <>
-    <div className="shimmer-container flex gap-3 flex-wrap mx-6 mt-20">
+    <div className="shimmer-container grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 my-6 lg:my-10 m-auto w-[94%] lg:w-[80%]">
         {Array(15).fill().map((_,index)=>(
-            <div key={index} className="shimmer-card w-[250px] h-[300px] bg-[#f0f0f0] rounded-xl"></div>
+            <div key={index} className="shimmer-card w-full h-[300px] bg-[#f0f0f0] rounded-xl"></div>
         ))}
     </div>
     </>

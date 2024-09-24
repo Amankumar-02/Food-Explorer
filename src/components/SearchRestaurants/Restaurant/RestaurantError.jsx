@@ -1,4 +1,5 @@
 import React from 'react'
+import 'remixicon/fonts/remixicon.css'
 import { useNavigate } from 'react-router-dom';
 import { IMG_URL } from "../../../utils/constants";
 
@@ -9,7 +10,7 @@ function RestaurantError({searchMoreResult, searchName}) {
     <>
     {!searchMoreResult? null : (
         <>
-            <div className="my-10 m-auto w-[94%] lg:w-[80%]">
+            <div className="my-6 lg:my-10 m-auto w-[94%] lg:w-[80%]">
             <h1 className="text-xl font-semibold capitalize text-gray-700">More results like this</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-4 my-10">
               {searchMoreResult.map(({ card }, index) => (
@@ -44,7 +45,7 @@ function RestaurantError({searchMoreResult, searchName}) {
                   <div className="ms-4 flex flex-col gap-1" style={{width: "calc(100% - 100px)"}}>
                     <h1 className="text-sm font-bold text-gray-600">{card?.card?.info?.name}</h1>
                     <p className="text-sm text-gray-600 font-semibold">
-                    ⭐{" "}
+                    <i className="ri-star-fill text-yellow-500 text-lg"></i>{" "}
                     {card?.card?.info?.avgRating ||
                       card?.card?.info?.avgRatingString}{" "}
                     {`. ${

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import 'remixicon/fonts/remixicon.css'
 import { useNavigate } from "react-router-dom";
 import { IMG_URL } from "../../../utils/constants";
 
@@ -11,7 +12,7 @@ function Restaurant({ searchRestaurantResult, searchMoreResult, searchName }) {
     <>
       {!searchRestaurantResult ? null : (
         <>
-          <div className="my-10 m-auto w-[94%] lg:w-[80%]">
+          <div className="my-6 lg:my-10 m-auto w-[94%] lg:w-[80%]">
             <div id="exactRestSearchResult">
               <h1 className="text-xl font-semibold capitalize text-gray-700">
                 Search Results: <span className="text-2xl">{searchName}</span>
@@ -85,7 +86,7 @@ function Restaurant({ searchRestaurantResult, searchMoreResult, searchName }) {
                       {searchRestaurantResult?.name}
                     </h1>
                     <p className="text-sm text-gray-600 font-semibold">
-                      ⭐{" "}
+                    <i className="ri-star-fill text-yellow-500 text-lg"></i>{" "}
                       {searchRestaurantResult?.avgRating ||
                         searchRestaurantResult?.avgRatingString}{" "}
                       {`. ${
@@ -167,7 +168,7 @@ function Restaurant({ searchRestaurantResult, searchMoreResult, searchName }) {
                         {info.name}
                       </h1>
                       <p className="text-sm text-gray-600 font-semibold">
-                        ⭐ {info.avgRating || info.avgRatingString}{" "}
+                      <i className="ri-star-fill text-yellow-500 text-lg"></i> {info.avgRating || info.avgRatingString}{" "}
                         {`. ${
                           info.sla.slaString || info.sla.deliveryTime + "MINS"
                         }`}{" "}

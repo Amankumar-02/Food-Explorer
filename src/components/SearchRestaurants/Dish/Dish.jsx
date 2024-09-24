@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import 'remixicon/fonts/remixicon.css'
 import { useNavigate } from "react-router-dom";
 import { sorting, MENU_IMG_URL } from "../../../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
@@ -114,7 +115,7 @@ function Dish({ searchFoodResult, searchName }) {
     <>
       {!dishFilter ? null : (
         <>
-          <div className="my-10 m-auto w-[94%] lg:w-[80%]">
+          <div className="my-6 lg:my-10 m-auto w-[94%] lg:w-[80%]">
             <h1 className="text-xl font-semibold capitalize text-gray-700">
               Search Results: <span className="text-2xl">{searchName}</span>
             </h1>
@@ -150,7 +151,7 @@ function Dish({ searchFoodResult, searchName }) {
                         By {card?.card.restaurant.info.name}
                       </h1>
                       <p className="text-xs text-gray-600">
-                        ⭐{" "}
+                      <i className="ri-star-fill text-yellow-500 text-lg"></i>{" "}
                         {card?.card.restaurant.info.avgRating ||
                           card?.card.restaurant.info.avgRatingString}{" "}
                         {`. ${
@@ -159,7 +160,7 @@ function Dish({ searchFoodResult, searchName }) {
                         }`}
                       </p>
                     </div>
-                    <button className="hover:scale-[1.1]">➜</button>
+                    <button className="hover:scale-[1.1]"><i className="ri-arrow-right-line text-lg"></i></button>
                   </div>
 
                   <div className="flex justify-between items-center pt-2">
@@ -176,7 +177,7 @@ function Dish({ searchFoodResult, searchName }) {
                         )}
                         {card?.card?.info?.ribbon?.text && (
                           <p className="text-xs font-semibold text-yellow-600">
-                            ⭐ {card?.card?.info?.ribbon?.text}
+                            <i className="ri-star-fill text-yellow-500 text-lg"></i> {card?.card?.info?.ribbon?.text}
                           </p>
                         )}
                       </div>
@@ -186,7 +187,7 @@ function Dish({ searchFoodResult, searchName }) {
                           {card?.card.info.name}
                         </h1>
                         <p className="text-[12px] text-gray-600">
-                          ⭐ {card?.card?.info.ratings.aggregatedRating.rating}
+                        <i className="ri-star-fill text-yellow-500 text-lg"></i> {card?.card?.info.ratings.aggregatedRating.rating}
                         </p>
                         <h2 className="text-sm font-semibold text-gray-600">
                           ₹ {card?.card.info.price / 100}

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import 'remixicon/fonts/remixicon.css'
 
 function SearchBar({value1 = ""}) {
   const [restSearchInput, setRestSearchInput] = useState(value1);
@@ -40,7 +41,7 @@ function SearchBar({value1 = ""}) {
   };
 
   return (
-    <div className="my-10 m-auto w-[94%] lg:w-[80%]">
+    <div className="my-6 lg:my-10 m-auto w-[94%] lg:w-[80%]">
       <div className="w-full flex items-center justify-center">
         <input
           type="text"
@@ -53,11 +54,11 @@ function SearchBar({value1 = ""}) {
         />
         <button
           className={`px-5 lg:py-2 rounded-md rounded-s-none w-fit border border-black border-s-0 ${
-            searchBtn ? "cursor-pointer" : null
+            searchBtn ? "cursor-pointer" : "cursor-default"
           }`}
           onClick={handleSubmit}
         >
-          {searchBtn ? "❌" : "🔍"}
+          {searchBtn ? "❌" : <i className="ri-search-line"></i>}
         </button>
       </div>
     </div>

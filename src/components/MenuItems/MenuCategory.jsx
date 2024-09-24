@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import 'remixicon/fonts/remixicon.css'
 import {MenuItem} from '../index';
 
 function MenuCategory({card, id, toggleEvent, showToggle, restName, restId}) {
-  // const [toggle, setToggle] = useState({display:"block", type:true, name:"⬆️"});
+  // const [toggle, setToggle] = useState({display:"block", type:true, name:"<i className="ri-arrow-up-s-line"></i>"});
   // const toggleEvent = ()=>{
   //   if(showToggle === true){
-  //     setToggle({display:"none", type:false, name:"⬇️"});
+  //     setToggle({display:"none", type:false, name:"<i className="ri-arrow-down-s-line"></i>"});
   //   }else{
-  //     setToggle({display:"block", type:true, name:"⬆️"});
+  //     setToggle({display:"block", type:true, name:"<i className="ri-arrow-up-s-line"></i>"});
   //   }
   // }
   return (
@@ -21,7 +22,7 @@ function MenuCategory({card, id, toggleEvent, showToggle, restName, restId}) {
             className="text-lg font-semibold px-2 rounded-xl"
           >
             {/* {toggleEvent.name} */}
-            {showToggle? (<>⬆️</>) : (<>⬇️</>)}
+            {showToggle? (<><i className="ri-arrow-up-s-line text-xl"></i></>) : (<><i className="ri-arrow-down-s-line text-xl"></i></>)}
           </button>
         </div>
         {/* <div className="" style={toggle}></div> */}

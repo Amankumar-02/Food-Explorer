@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import 'remixicon/fonts/remixicon.css'
 import { useSelector, useDispatch } from "react-redux";
 import { modifyCartQuantity, removeCartItem, clearCartItems } from "../../reduxFeatures/cartSlice";
 import { MENU_IMG_URL } from "../../utils/constants";
@@ -20,15 +21,15 @@ function RestaurantFoodCart() {
     }
   };
   const [cartToggle, setCartToggle] = useState({
-    name: "⬆️",
+    iconClass: `ri-arrow-up-s-line text-xl`,
     type: true,
     display: "block",
   });
   const cartToggleEvent = () => {
     if (cartToggle.type === true) {
-      setCartToggle({ name: "⬇️", type: false, display: "hidden" });
+      setCartToggle({ iconClass: `ri-arrow-down-s-line text-xl`, type: false, display: "hidden" });
     } else {
-      setCartToggle({ name: "⬆️", type: true, display: "block" });
+      setCartToggle({ iconClass: `ri-arrow-up-s-line text-xl`, type: true, display: "block" });
     }
   };
 
@@ -54,7 +55,7 @@ function RestaurantFoodCart() {
           <div className="min-h-[300px] w-[60%]">
             <div className="px-10 py-4 shadow-md flex items-center justify-between bg-gray-300 rounded-xl">
               <h1 className="text-xl font-bold">Cart Items</h1>
-              <button onClick={cartToggleEvent}>{cartToggle.name}</button>
+              <button onClick={cartToggleEvent}><i className={cartToggle.iconClass}></i></button>
             </div>
             <div className={`${cartToggle.display}`}>
               {storeData.map((item, index) => (
