@@ -127,10 +127,10 @@ function RestaurantMenu() {
         </div>
       </div>
 
-      <div className="hidden md:block w-[100px] md:w-[200px] h-[100px] md:h-[200px]">
+      <div className="hidden md:block w-[100px] md:w-[200px] h-[80px] md:h-[180px]">
         <img
           src={IMG_URL + restMenuInfo?.cloudinaryImageId}
-          className="w-full h-full object-cover rounded-md"
+          className="w-full h-full object-cover rounded-xl"
           alt=""
         />
       </div>

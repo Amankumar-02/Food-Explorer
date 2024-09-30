@@ -18,7 +18,7 @@ function RestaurantError({searchMoreResult, searchName}) {
                   key={index}
                   className="w-full p-4 rounded-2xl border border-gray-600 flex items-center cursor-pointer hover:bg-gray-300" onClick={()=>navigate(`/restaurants/${card?.card?.info?.id}`)}
                 >
-                  <div className="relative w-[100px] h-[100px] flex justify-center">
+                  <div className="relative w-[120px] h-[100px] flex justify-center">
                     {card?.card?.info?.cloudinaryImageId ? (
                       <>
                         <img
@@ -51,8 +51,9 @@ function RestaurantError({searchMoreResult, searchName}) {
                     {`. ${
                       card?.card?.info?.sla.slaString ||
                       card?.card?.info?.sla.deliveryTime + "MINS"
-                    }`}{" "}{`. ${card?.card?.info?.costForTwo}`}
+                    }`}
                   </p>
+                  <p className="text-sm text-gray-600 font-semibold">(Cost For two {`${card?.card?.info?.costForTwo / 100}`})</p>
                   <p className="leading-3 text-gray-500 text-xs">
                       {card?.card?.info?.cuisines.join(", ").length > 250
                         ? 

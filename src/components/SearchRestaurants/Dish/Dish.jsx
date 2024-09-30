@@ -213,7 +213,7 @@ function Dish({ searchFoodResult, searchName }) {
                     </div>
 
                     <div>
-                      <div className="relative w-[100px] h-[100px] flex justify-center">
+                      <div className="relative w-[120px] h-[100px] flex justify-center">
                         {card?.card.info.imageId && (
                           <img
                             src={MENU_IMG_URL + card?.card.info.imageId}

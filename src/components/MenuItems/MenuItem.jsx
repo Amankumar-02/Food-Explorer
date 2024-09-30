@@ -48,7 +48,7 @@ function MenuItem({card, restName, restId}) {
       </li>
     <li className="leading-4 text-xs lg:text-sm">{card?.info?.description}</li>
   </ul>
-  <div className="relative w-[100px] lg:w-[150px] h-[100px] lg:h-[150px] flex justify-center">
+  <div className="relative w-[100px] lg:w-[150px] h-[80px] lg:h-[130px] flex justify-center">
     {card?.info?.imageId ? (
       <img
         src={MENU_IMG_URL + card?.info?.imageId}

@@ -28,7 +28,7 @@ function Restaurant({ searchRestaurantResult, searchMoreResult, searchName }) {
                     navigate(`/restaurants/${searchRestaurantResult?.id}`)
                   }
                 >
-                  <div className="relative w-[100px] h-[100px] flex justify-center">
+                  <div className="relative w-[120px] h-[100px] flex justify-center">
                     {searchRestaurantResult?.cloudinaryImageId ? (
                       <>
                         <img
@@ -92,10 +92,9 @@ function Restaurant({ searchRestaurantResult, searchMoreResult, searchName }) {
                       {`. ${
                         searchRestaurantResult?.sla.slaString ||
                         searchRestaurantResult?.sla.deliveryTime + "MINS"
-                      }`}{" "}
-                      {`. ${searchRestaurantResult?.costForTwoMessage}`}
+                      }`}
                     </p>
-
+                      <p className="text-sm text-gray-600 font-semibold">({searchRestaurantResult?.costForTwoMessage})</p>
                     <p className="leading-3 text-gray-500 text-xs">
                       {searchRestaurantResult?.cuisines.join(", ").length > 250
                         ? `${searchRestaurantResult?.cuisines
@@ -121,7 +120,7 @@ function Restaurant({ searchRestaurantResult, searchMoreResult, searchName }) {
                     className="w-full p-4 rounded-2xl border border-gray-600 flex items-center cursor-pointer hover:bg-gray-300"
                     onClick={() => navigate(`/restaurants/${info.id}`)}
                   >
-                    <div className="relative w-[100px] h-[100px] flex justify-center">
+                    <div className="relative w-[120px] h-[100px] flex justify-center">
                       {info.cloudinaryImageId ? (
                         <>
                           <img
@@ -171,9 +170,9 @@ function Restaurant({ searchRestaurantResult, searchMoreResult, searchName }) {
                       <i className="ri-star-fill text-yellow-500 text-lg"></i> {info.avgRating || info.avgRatingString}{" "}
                         {`. ${
                           info.sla.slaString || info.sla.deliveryTime + "MINS"
-                        }`}{" "}
-                        {`. ${info.costForTwo}`}
+                        }`}
                       </p>
+                      <p className="text-sm text-gray-600 font-semibold">({info.costForTwo})</p>
                       <p className="leading-3 text-gray-500 text-xs">
                       {info?.cuisines.join(", ").length > 250
                         ? 
