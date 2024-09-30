@@ -44,7 +44,11 @@ function MenuItem({card, restName, restId}) {
       </li>
     </div>
       <li className="text-base lg:text-lg font-bold text-gray-600">
-      <i className="ri-star-fill text-yellow-500 text-lg"></i>{" "}{card?.info?.ratings?.aggregatedRating?.rating}{" "} <span className='text-sm lg:text-md'>({card?.info?.ratings?.aggregatedRating?.ratingCountV2})</span>
+        {card?.info?.ratings?.aggregatedRating?.rating && (
+          <>
+          <i className="ri-star-fill text-yellow-500 text-lg"></i>{" "}{card?.info?.ratings?.aggregatedRating?.rating}{" "} <span className='text-sm lg:text-md'>({card?.info?.ratings?.aggregatedRating?.ratingCountV2})</span>
+          </>
+        )}
       </li>
     <li className="leading-4 text-xs lg:text-sm">{card?.info?.description}</li>
   </ul>

@@ -105,11 +105,15 @@ function RestaurantMenu() {
         </h1>
         <div className="flex flex-col gap-2">
           <p className="text-sm md:text-[15px] font-semibold text-gray-600">
-            <i className="ri-star-fill text-yellow-500 text-lg"></i> {restMenuInfo?.avgRating} (
-            {restMenuInfo?.totalRatingsString})
-            <span className="ml-4">
-              {restMenuInfo?.costForTwoMessage}
-            </span>
+          {restMenuInfo?.avgRating && (
+    <>
+      <i className="ri-star-fill text-yellow-500 text-lg"></i> {restMenuInfo?.avgRating}
+    </>
+  )}
+  {restMenuInfo?.totalRatingsString && (
+    <span>{` (${restMenuInfo?.totalRatingsString})`}</span>
+  )}
+  <span className="ml-4">{restMenuInfo?.costForTwoMessage}</span>
           </p>
           <p className="text-sm md:text-[15px] font-semibold text-gray-600">
             {restMenuInfo?.cuisines.join(", ")}
