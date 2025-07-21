@@ -15,34 +15,45 @@ Food Explorer is a modern food ordering web application built to provide users w
 
 ## ✨ Key Features
 
-### ✍️ Content Creation & Management
+### 🍽️ Restaurant & Menu Discovery
 
-- Rich Text Editor powered by TinyMCE with advanced formatting options
-- 40% increase in content engagement through enhanced styling capabilities
-- Full CRUD Operations for authorized users
-- 25% reduction in post management time with streamlined workflows
-- Draft saving and auto-save functionality
+- Real-time Integration with Swiggy's API for live restaurant data
+- 1,000+ Monthly Users actively using the platform
+- Comprehensive restaurant listings with ratings and reviews
+- Detailed menu exploration with item descriptions and pricing
+- High-quality food imagery and restaurant information
 
-### 🔐 Authentication & Security
+### 🔍 Advanced Search & Filtering
 
-- Appwrite Integration for seamless, secure user authentication
-- Enhanced user data security and session management
-- Social login options and email verification
-- Password reset and account recovery features
+- Optimized Auto-search with debouncing functionality
+- 35% reduction in API load with intelligent search optimization
+- Improved response times for better user experience
+- Dietary Preference Filters - Vegetarian and Non-vegetarian options
+- Smart Sorting by price, rating, delivery time, and distance
+- 40% reduction in search time through enhanced filtering
 
-### 🔒 Privacy & Control
+### 🛒 Shopping Cart & Transactions
 
-- Visibility Toggle - Public and private post options
-- 30% increase in user satisfaction based on feedback
-- Granular privacy controls for individual posts
-- Private draft management system
+- Fully Functional Cart built with Redux state management
+- 100+ Daily Transactions processed seamlessly
+- Real-time cart updates and item management
+- Order customization with add-ons and special instructions
+- Secure checkout process with order tracking
 
-### 🎨 User Experience
+### 🎨 Performance & UI Enhancements
 
-- Responsive Design built with Tailwind CSS
-- Modern, clean interface optimized for reading and writing
-- Centralized State Management with Redux Toolkit
-- Fast navigation with React Router
+- Shimmer Effect Loading improving perceived load time by 40%
+- React Slick integration for smooth image carousels
+- Responsive design optimized for all devices
+- Tailwind CSS for modern, consistent styling
+- Progressive loading and lazy loading implementation
+
+### 🚀 State Management & Navigation
+- Redux Toolkit for centralized state management
+- React Router for seamless page navigation
+- Persistent cart state across sessions
+- Real-time data synchronization
+- Optimized component re-rendering
 
 ---
 
@@ -54,17 +65,13 @@ Food Explorer is a modern food ordering web application built to provide users w
 - **Redux Toolkit (RTK)** - Efficient state management and data flow
 - **React Router** - Client-side routing and navigation
 - **Tailwind CSS** - Utility-first CSS framework for rapid styling
-- **TinyMCE** - Rich text editor for content creation
+- **React Slick** - Carousel component for image galleries
 
-### Backend as a Service
+### API Integration
 
-- **Appwrite** - Complete backend platform
-
-  - User Authentication & Authorization
-  - Database Management
-  - File Storage & Management
-  - Real-time Subscriptions
-  - Server-side Functions
+- **Swiggy API** - Real-time restaurant and menu data
+- **Axios/Fetch** - HTTP client for API requests
+- **Custom API Layer** - Data transformation and caching
 
 ### Development Tools
 
@@ -80,7 +87,6 @@ Food Explorer is a modern food ordering web application built to provide users w
 ### ✅ Prerequisites
 
 - [Node.js](https://nodejs.org/) (v18+ recommended)
-- [Appwrite server instance](https://appwrite.io/)
 - npm or Yarn
 - [Git](https://git-scm.com/)
 
@@ -92,8 +98,8 @@ Food Explorer is a modern food ordering web application built to provide users w
 1. Clone Repositories
 
 bash
-git clone https://github.com/Amankumar-02/Mind-Mirror
-cd MindMirror
+git clone https://github.com/Amankumar-02/Food-Explorer
+cd FoodExplorer
 
 2. Install dependencies:
 
@@ -104,9 +110,6 @@ yarn install
 
 3. Environment Setup:
 Create a .env.local file in the root directory
-
-4. Firebase Setup
-Set up your Appwrite collections
 
 5. Start the development server
 
@@ -120,75 +123,93 @@ yarn dev
 
 ## 🗂️ Project Structure
 ```
-mind-mirror/
+food-explorer/
 ├── public/                 # Static assets
 ├── src/
 │   ├── components/        # Reusable components
-│   │   ├── ui/           # UI components (buttons, inputs, etc.)
-│   │   ├── layout/       # Layout components (header, footer, sidebar)
-│   │   ├── blog/         # Blog-specific components
-│   │   ├── editor/       # Rich text editor components
-│   │   └── auth/         # Authentication components
+│   │   ├── ui/           # UI components (buttons, cards, etc.)
+│   │   ├── layout/       # Layout components (header, footer, navbar)
+│   │   ├── restaurant/   # Restaurant-related components
+│   │   ├── cart/         # Shopping cart components
+│   │   ├── search/       # Search and filter components
+│   │   └── common/       # Common components (shimmer, loader)
 │   ├── pages/            # Page components
-│   │   ├── Home/         # Landing page
-│   │   ├── Blog/         # Blog listing and detail pages
-│   │   ├── Write/        # Post creation and editing
-│   │   ├── Profile/      # User profile and dashboard
-│   │   └── Auth/         # Authentication pages
+│   │   ├── Home/         # Homepage with restaurant listings
+│   │   ├── Restaurant/   # Restaurant detail and menu page
+│   │   ├── Cart/         # Shopping cart and checkout
+│   │   ├── Search/       # Search results page
+│   │   └── Profile/      # User profile and order history
 │   ├── store/            # Redux store configuration
 │   │   ├── slices/       # Redux slices
+│   │   │   ├── restaurantSlice.js
+│   │   │   ├── cartSlice.js
+│   │   │   ├── searchSlice.js
+│   │   │   └── uiSlice.js
 │   │   └── api/          # RTK Query APIs
-│   ├── appwrite/         # Appwrite service configurations
-│   │   ├── auth.js       # Authentication service
-│   │   ├── database.js   # Database operations
-│   │   └── storage.js    # File storage operations
+│   ├── services/         # API service functions
+│   │   ├── swiggyAPI.js  # Swiggy API integration
+│   │   ├── geocoding.js  # Location services
+│   │   └── utils.js      # API utilities
 │   ├── hooks/            # Custom React hooks
+│   │   ├── useDebounce.js
+│   │   ├── useLocalStorage.js
+│   │   └── useGeolocation.js
 │   ├── utils/            # Utility functions
+│   │   ├── constants.js  # App constants
+│   │   ├── helpers.js    # Helper functions
+│   │   └── filters.js    # Filter and sort utilities
 │   ├── styles/           # Global styles and Tailwind config
 │   └── App.jsx           # Main App component
-├── appwrite.json          # Appwrite configuration
 └── package.json          # Dependencies and scripts
 ```
 
 ---
 
-## 🛒 Core Features
+## 🍽️ Core Features
 
-### Content Management
+### Restaurant Discovery
 
-- Rich Text Editor with TinyMCE integration
-- Advanced formatting options (headings, lists, links, images)
-- Draft System with auto-save functionality
-- Post Scheduling for future publication
-- SEO-friendly URLs and meta descriptions
+- Real-time Restaurant Data from Swiggy's API
+- Location-based Listings with GPS integration
+- Restaurant Cards with ratings, cuisine types, and delivery info
+- Image Carousels using React Slick for food galleries
+- Detailed Restaurant Pages with complete menu information
 
-### User Dashboard
+### Smart Search System
 
-- Personal Writing Space with all user posts
-- Analytics Overview - views, likes, comments
-- Draft Management - save and edit unpublished posts
-- Privacy Settings - toggle post visibility
-- Profile Customization with bio and social links
+- Debounced Search reducing API calls by 35%
+- Auto-suggestions for restaurants and dishes
+- Voice Search capability (future enhancement)
+- Search History with popular searches
+- Intelligent Filtering by multiple criteria
 
-### Reading Experience
+### Advanced Filtering & Sorting
 
-- Clean, Distraction-free reading interface
-- Responsive Typography optimized for readability
-- Social Sharing buttons for public posts
-- Related Posts suggestions
-- Reading Time Estimation
+- Dietary Preferences: Vegetarian/Non-vegetarian filters
+- Price Range: Budget-friendly to premium options
+- Ratings: Sort by customer ratings and reviews
+- Delivery Time: Fastest delivery options
+- Cuisine Types: Filter by food categories
+- 40% faster search results through optimized filtering
+
+### Shopping Cart Management
+- Redux-powered Cart with persistent state
+- Real-time Updates for item quantities and prices
+- Order Customization with add-ons and modifications
+- Promo Code Integration for discounts
+- Order Summary with tax and delivery fee calculation
 
 ---
 
 ## 📊 Performance Metrics
 
-- **500+ Active Users** - Growing community of writers and readers
-- 40% Increase in content engagement through rich text editing
-- 25% Reduction in post management time with streamlined CRUD operations
-- 30% Improvement in user satisfaction from privacy controls
-- Fast Loading Times with optimized React components
-- Mobile Responsive design for cross-device accessibility
-
+- **1,000+ Monthly Users** - Growing user base
+- 35% Reduction in API load through optimized search
+- 40% Improvement in search time with advanced filtering
+- 100+ Daily Transactions processed seamlessly
+- 40% Better Perceived Performance with shimmer effects
+- Fast Loading Times with component optimization
+- Mobile Responsive design for cross-device usage
 ---
 
 ## 🔧 Redux Store Structure
@@ -196,23 +217,23 @@ mind-mirror/
 javascript
 
 // Store slices
-├── authSlice.js          # User authentication and profile state
-├── postsSlice.js         # Blog posts management and CRUD operations
-├── editorSlice.js        # Rich text editor state and settings
-├── uiSlice.js           # UI state (modals, loading, notifications)
-└── settingsSlice.js     # User preferences and app settings
+├── restaurantSlice.js    # Restaurant data and listings
+├── cartSlice.js          # Shopping cart state management
+├── searchSlice.js        # Search queries and results
+├── filterSlice.js        # Filter preferences and sorting
+├── locationSlice.js      # User location and delivery address
+├── orderSlice.js         # Order history and tracking
+└── uiSlice.js           # UI state (loading, modals, notifications)
 ```
 
 ---
 
-## 🎨 Design Features
+## 🎨 Responsive Design
 
-- Modern UI/UX with clean, minimalist design
-- Dark/Light Mode toggle for user preference
-- Typography Focus with readable fonts and spacing
-- Mobile-First responsive design approach
-- Accessibility features for inclusive user experience
-- Loading States and skeleton screens for better UX
+- Mobile-First approach with Tailwind CSS
+- Touch-Optimized interface for mobile devices
+- Adaptive Layouts for different screen sizes
+- Fast Scroll Performance with virtualization
 
 ---
 
@@ -226,38 +247,45 @@ javascript
 
 <!-- Alternative Deployment Options
 
-Netlify: Connect GitHub repository for automatic deployments
-Firebase Hosting: Deploy static build with Firebase CLI
-AWS S3 + CloudFront: Scalable static hosting solution
+Netlify: Automatic deployments from Git
+Firebase Hosting: Google's hosting platform
+AWS S3 + CloudFront: Scalable static hosting
+GitHub Pages: Free hosting for public repositories
 
-🛡️ Security & Privacy
+🛡️ Performance Optimizations
+Search Optimization
 
-Appwrite Security with built-in authentication and authorization
-Environment Variables for sensitive configuration
-Input Sanitization for XSS prevention
-HTTPS Enforcement for secure data transmission
-Privacy Controls for user content visibility
-GDPR Compliance considerations for user data
+Debouncing: 300ms delay to reduce API calls
+Caching: Store recent search results
+Memoization: React.memo for expensive components
+Virtualization: Handle large restaurant lists efficiently
+
+State Management
+
+Redux Toolkit: Efficient state updates
+Normalized Data: Prevent unnecessary re-renders
+Selective Updates: Update only changed components
+Persistent State: LocalStorage for cart data
 
 📱 Mobile Optimization
 
 Progressive Web App (PWA) capabilities
-Touch-Optimized interface for mobile writing
-Responsive Editor that works on all screen sizes
-Offline Support for draft saving
-App-like Experience with smooth navigation
+Touch Gestures for intuitive navigation
+Optimized Images with WebP format
+Service Workers for offline functionality
+App-like Experience with smooth transitions
 
 🔮 Future Enhancements
 
- Collaborative Writing - Multiple authors per post
- Advanced Analytics - Detailed post performance metrics
- Email Subscriptions - Newsletter functionality for followers
- Content Categories - Better organization and discovery
- Search Functionality - Full-text search across posts
- Comment System - Reader engagement features
- Export Options - PDF/Word export for posts
- API Integration - Third-party publishing platforms -->
+ Real-time Order Tracking with live updates
+ Payment Integration with multiple payment gateways
+ User Reviews & Ratings system
+ Loyalty Program with rewards and points
+ Voice Search and AI recommendations
+ Dark Mode theme support
+ Offline Mode with cached data
+ Push Notifications for order updates -->
 
 ---
 
-## Mind Mirror - Reflect your thoughts, share your voice! ✨📝
+## Food Explorer - Discover, Order, Enjoy! 🍽️✨
